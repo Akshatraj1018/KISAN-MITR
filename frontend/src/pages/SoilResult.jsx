@@ -222,6 +222,62 @@ function SoilResult() {
     );
   }
 
+  if (rawResult.is_soil === false) {
+    return (
+      <div className="scanner-page" style={{ padding: "40px 16px", textAlign: "center", color: "white" }}>
+        <div style={{
+          maxWidth: 500,
+          margin: "0 auto",
+          background: "rgba(239, 68, 68, 0.12)",
+          border: "1.5px solid rgba(239, 68, 68, 0.35)",
+          borderRadius: 20,
+          padding: 24,
+          boxShadow: "0 10px 30px rgba(0,0,0,0.5)"
+        }}>
+          <div style={{ fontSize: 46, marginBottom: 12 }}>🪵 ⚠️</div>
+          <h2 style={{ color: "#f87171", fontSize: 22, fontWeight: 800, margin: "0 0 10px 0" }}>
+            {rawResult.soil_type || "No Agricultural Soil Detected"}
+          </h2>
+          <p style={{ color: "#e2e8f0", fontSize: 14, lineHeight: 1.6, margin: "0 0 20px 0" }}>
+            {rawResult.recommendation}
+          </p>
+          <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+            <button
+              onClick={() => navigate("/soil")}
+              style={{
+                background: "#10b981",
+                color: "white",
+                border: "none",
+                borderRadius: 12,
+                padding: "12px 22px",
+                fontWeight: 700,
+                fontSize: 14,
+                cursor: "pointer"
+              }}
+            >
+              📸 Scan Actual Farm Soil
+            </button>
+            <button
+              onClick={() => navigate("/dashboard")}
+              style={{
+                background: "rgba(255,255,255,0.08)",
+                color: "white",
+                border: "1px solid rgba(255,255,255,0.15)",
+                borderRadius: 12,
+                padding: "12px 18px",
+                fontWeight: 600,
+                fontSize: 14,
+                cursor: "pointer"
+              }}
+            >
+              Back to Dashboard
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // Localize report dynamically if language changes
   const soilTypeKey = rawResult.soil_type || rawResult.predicted_class || "Alluvial Soil";
   const localizedData = getDetailedSoilReport(soilTypeKey, rawResult.crop_name || "", language);

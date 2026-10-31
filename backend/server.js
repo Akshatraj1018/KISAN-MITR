@@ -13,6 +13,7 @@ import multer from "multer";
 import { spawn, execSync } from "child_process";
 import fs from "fs";
 import path from "path";
+import os from "os";
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -98,7 +99,8 @@ function classifySoilWithPyTorch(base64Image) {
 
     try {
       const cleanB64 = base64Image.replace(/^data:image\/[a-z]+;base64,/, "").trim();
-      const child = spawn("python3", [SOIL_CLASSIFIER_SCRIPT], { stdio: ["pipe", "pipe", "pipe"] });
+      const pyCmd = process.platform === "win32" ? "python" : "python3";
+      const child = spawn(pyCmd, [SOIL_CLASSIFIER_SCRIPT], { stdio: ["pipe", "pipe", "pipe"] });
       let stdout = "";
       let stderr = "";
 
@@ -206,10 +208,15 @@ function toDevanagariPhonetic(str) {
 
 // Generate crystal-clear, high quality Indian Female Audio locally on server
 function generateFemaleAudio(text, lang = "hi") {
+  if (process.platform !== "darwin") {
+    // Windows/Linux compatibility: Hand over cleanly to browser speech synthesis
+    return null;
+  }
   try {
+    const tmpDir = os.tmpdir();
     const tmpId = Date.now() + "_" + Math.floor(Math.random() * 10000);
-    const aiffPath = `/tmp/tts_${tmpId}.aiff`;
-    const m4aPath = `/tmp/tts_${tmpId}.m4a`;
+    const aiffPath = path.join(tmpDir, `tts_${tmpId}.aiff`);
+    const m4aPath = path.join(tmpDir, `tts_${tmpId}.m4a`);
 
     let voiceName = "Lekha";
     if (lang === "en") voiceName = "Tara";

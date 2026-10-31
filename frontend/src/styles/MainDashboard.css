@@ -1256,33 +1256,124 @@
   }
 }
 
+/* Native Mobile Bottom Navigation Bar */
+.km-mobile-bottom-bar {
+  display: none;
+}
+
 @media (max-width: 768px) {
-  .km-topbar {
-    padding: 0 16px;
-    height: 64px;
+  /* Disable expensive backdrop blurs on mobile GPUs for smooth 60fps scrolling */
+  * {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
   }
+
   .km-dashboard {
-    padding-top: 76px;
+    padding-top: 68px;
+    padding-bottom: 84px !important;
+    overflow-x: hidden;
+    width: 100%;
   }
+
+  .km-topbar {
+    padding: 0 14px;
+    height: 60px;
+    background: #081a11 !important;
+  }
+
   .km-nav-pill-group {
-    display: none; /* Mobile navigation uses bottom or sheet */
+    display: none;
   }
+
+  /* Native Mobile Bottom Navigation Bar */
+  .km-mobile-bottom-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: #081a11;
+    border-top: 1px solid rgba(52, 211, 153, 0.25);
+    z-index: 1000;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.6);
+  }
+
+  .km-mob-nav-btn {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 6px 0;
+    transition: all 0.2s ease;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .km-mob-nav-btn span {
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .km-mob-nav-btn.active,
+  .km-mob-nav-btn:active {
+    color: #34d399;
+  }
+
+  .km-mob-nav-btn.active svg {
+    color: #34d399;
+    filter: drop-shadow(0 0 8px rgba(52, 211, 153, 0.6));
+  }
+
+  .km-container {
+    padding: 0 12px;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   .km-metrics-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
   }
+
   .km-advisory-row {
     grid-template-columns: 1fr;
   }
+
   .km-hero-cockpit {
-    padding: 18px;
+    padding: 16px;
+    border-radius: 16px;
+    background: #0c1f16 !important;
   }
+
   .km-greeting-title {
-    font-size: 20px;
+    font-size: 19px;
   }
+
   .km-weather-station {
-    padding: 18px;
+    padding: 16px;
+    border-radius: 16px;
+    background: #0c1f16 !important;
   }
+
   .km-action-hero-card {
-    padding: 20px;
+    padding: 16px;
+    border-radius: 16px;
+    background: #0c1f16 !important;
+  }
+
+  .km-hero-actions-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
   }
 }

@@ -134,7 +134,7 @@ def analyze_soil(image_input):
         img = image_input.convert("RGB")
 
     w, h = img.size
-    # Focus on the soil sample center (sample 50% central window)
+    # Focus on the soil sample center (sample 60% central window)
     crop_box = (int(w * 0.20), int(h * 0.20), int(w * 0.80), int(h * 0.80))
     soil_sample = img.crop(crop_box).resize((100, 100))
     arr = np.array(soil_sample, dtype=float)
@@ -144,16 +144,24 @@ def analyze_soil(image_input):
     avg_b = float(np.mean(arr[:, :, 2]))
     brightness = float(np.mean(arr))
 
-    # Chromatic Ratios:
-    # 0. Plant Foliage Guardrail: Soil is NEVER bright green. High green dominance indicates crop/leaf canopy!
-    is_foliage = (avg_g > avg_r * 1.05 and avg_g > avg_b * 1.20)
+    # Grayscale Luminance calculation
+    luma = 0.299 * arr[:, :, 0] + 0.587 * arr[:, :, 1] + 0.114 * arr[:, :, 2]
+    # Local neighbor spatial gradients (horizontal & vertical)
+    grad_x = np.abs(np.diff(luma, axis=1))
+    grad_y = np.abs(np.diff(luma, axis=0))
+    roughness = float((np.mean(grad_x) + np.mean(grad_y)) / 2.0)
+    std_dev = float(np.std(luma))
 
-    # 1. Red Soil: Iron oxide (Fe2O3) causes strong red excess over green & blue (R / G > 1.28)
-    is_red = (avg_r > avg_g * 1.28 and avg_r > avg_b * 1.35 and avg_r > 85)
-    # 2. Black Soil: Deep dark regur clay with low overall luminance
-    is_black = (brightness < 80 and avg_r < 90 and avg_g < 85 and avg_b < 80)
-    # 3. Sandy Soil: High brightness, yellowish-tan hue, moderate R-G separation
-    is_sand = (brightness > 135 and avg_g > 120 and (avg_r - avg_g) < 35 and avg_r >= avg_g)
+    # Chromatic Ratios & Material Guardrails:
+    # 0. Plant Foliage Guardrail: Soil is NEVER bright green.
+    is_foliage = (avg_g > avg_r * 1.05 and avg_g > avg_b * 1.15 and avg_g > 60)
+
+    # 1. Smooth Manufactured Surface / Furniture / Wooden Table Guardrail:
+    # Natural farm soil has particulate aggregates, clods, sand grains, and shadow relief (roughness >= 6.8, std_dev >= 9.5).
+    # Indoor wooden tables, desks, paper, tiles, walls, and screens have flat uniform surfaces with low gradient roughness.
+    is_smooth_surface = (roughness < 6.8 or std_dev < 9.5)
+    is_synthetic_blue = (avg_b > avg_r * 1.12 or (avg_b > 115 and avg_b > avg_g))
+    is_overexposed_white = (brightness > 220)
 
     if is_foliage:
         return {
@@ -176,8 +184,44 @@ def analyze_soil(image_input):
                 "avg_g": round(avg_g, 1),
                 "avg_b": round(avg_b, 1),
                 "brightness": round(brightness, 1),
+                "roughness": round(roughness, 1),
+                "std_dev": round(std_dev, 1)
             }
         }
+
+    if is_smooth_surface or is_synthetic_blue or is_overexposed_white:
+        surface_desc = "Indoor Wooden Table / Flat Furniture" if is_smooth_surface else ("Synthetic Blue Surface" if is_synthetic_blue else "Overexposed / White Paper")
+        return {
+            "is_soil": False,
+            "error_code": "SMOOTH_SURFACE_DETECTED",
+            "soil_type": f"No Agricultural Soil Detected ({surface_desc})",
+            "confidence": 97.4,
+            "ph": None,
+            "ph_status": "N/A (Non-Soil)",
+            "moisture": "N/A",
+            "estimated_moisture_percent": None,
+            "quality": f"Manufactured Planar Material ({surface_desc})",
+            "phosphorus_status": "N/A",
+            "recommendation": f"The uploaded photograph appears to be an indoor wooden table, furniture, wall, or smooth non-soil object (Roughness: {round(roughness, 1)}). Soil testing requires a clear close-up photograph of actual farm soil, field dirt, or agricultural earth clods.",
+            "recommended_crops": [],
+            "action_redirect": "/soil",
+            "action_label": "📸 Retake Farm Soil Photo",
+            "chromatics": {
+                "avg_r": round(avg_r, 1),
+                "avg_g": round(avg_g, 1),
+                "avg_b": round(avg_b, 1),
+                "brightness": round(brightness, 1),
+                "roughness": round(roughness, 1),
+                "std_dev": round(std_dev, 1)
+            }
+        }
+
+    # 1. Red Soil: Iron oxide (Fe2O3) causes strong red excess over green & blue (R / G > 1.25)
+    is_red = (avg_r > avg_g * 1.25 and avg_r > avg_b * 1.35 and avg_r > 80)
+    # 2. Black Soil: Deep dark regur clay with low overall luminance
+    is_black = (brightness < 85 and avg_r < 95 and avg_g < 90 and avg_b < 85)
+    # 3. Sandy Soil: High brightness, yellowish-tan hue, moderate R-G separation
+    is_sand = (brightness > 130 and avg_g > 115 and (avg_r - avg_g) < 35 and avg_r >= avg_g)
 
     if is_red:
         key = "red"
@@ -188,9 +232,35 @@ def analyze_soil(image_input):
     elif is_sand:
         key = "sandy"
         conf = 95.8
-    else:
+    elif avg_r >= avg_g and avg_g >= avg_b and 70 <= brightness <= 155:
         key = "alluvial"
         conf = 96.1
+    else:
+        # Fallback non-soil rejection
+        return {
+            "is_soil": False,
+            "error_code": "NON_SOIL_DETECTED",
+            "soil_type": "Unrecognized Non-Agricultural Surface",
+            "confidence": 95.0,
+            "ph": None,
+            "ph_status": "N/A",
+            "moisture": "N/A",
+            "estimated_moisture_percent": None,
+            "quality": "Unknown Surface Texture",
+            "phosphorus_status": "N/A",
+            "recommendation": "The uploaded photograph does not match the spectral profile of recognized agricultural soils (Alluvial, Black Regur, Red Laterite, or Sandy Loam). Please capture a well-lit photo of field earth.",
+            "recommended_crops": [],
+            "action_redirect": "/soil",
+            "action_label": "📸 Retake Farm Soil Photo",
+            "chromatics": {
+                "avg_r": round(avg_r, 1),
+                "avg_g": round(avg_g, 1),
+                "avg_b": round(avg_b, 1),
+                "brightness": round(brightness, 1),
+                "roughness": round(roughness, 1),
+                "std_dev": round(std_dev, 1)
+            }
+        }
 
     data = SOIL_DATABASE[key]
     return {

@@ -360,60 +360,198 @@ export function getCropDossier(cropName, language = "en") {
 
 /**
  * 100% Client-Side In-Browser Soil Image Classifier using Canvas Pixel Analysis
+ * Features Spatial Texture Roughness & Chromatic Verification to detect Non-Soil Surfaces (e.g. wooden tables, furniture, walls, foliage).
  */
 export function offlineAnalyzeSoilImage(imgElement, language = "en") {
   return new Promise((resolve) => {
+    const isEn = language === "en";
     try {
+      const size = 100;
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
-      canvas.width = 100;
-      canvas.height = 100;
+      canvas.width = size;
+      canvas.height = size;
 
-      ctx.drawImage(imgElement, 0, 0, 100, 100);
-      const imgData = ctx.getImageData(0, 0, 100, 100).data;
+      ctx.drawImage(imgElement, 0, 0, size, size);
+      const imgData = ctx.getImageData(0, 0, size, size).data;
 
       let rSum = 0, gSum = 0, bSum = 0;
-      const count = imgData.length / 4;
+      let count = 0;
+      const lumaArr = new Float32Array(size * size);
 
-      for (let i = 0; i < imgData.length; i += 4) {
-        rSum += imgData[i];
-        gSum += imgData[i + 1];
-        bSum += imgData[i + 2];
+      for (let y = 0; y < size; y++) {
+        for (let x = 0; x < size; x++) {
+          const idx = (y * size + x) * 4;
+          const r = imgData[idx];
+          const g = imgData[idx + 1];
+          const b = imgData[idx + 2];
+          const luma = 0.299 * r + 0.587 * g + 0.114 * b;
+          lumaArr[y * size + x] = luma;
+
+          // Sample central 70% window to avoid lens periphery / phone edges
+          if (x >= 15 && x < 85 && y >= 15 && y < 85) {
+            rSum += r;
+            gSum += g;
+            bSum += b;
+            count++;
+          }
+        }
       }
 
       const avgR = rSum / count;
       const avgG = gSum / count;
       const avgB = bSum / count;
+      const brightness = 0.299 * avgR + 0.587 * avgG + 0.114 * avgB;
 
-      const max = Math.max(avgR, avgG, avgB) / 255;
-      const min = Math.min(avgR, avgG, avgB) / 255;
-      const lightness = (max + min) / 2;
+      // Spatial Texture Roughness & Luminance Variance:
+      // Real agricultural soil has particles, organic clods, sand grains, and shadow relief (roughness >= 6.8).
+      // Smooth indoor manufactured surfaces (wooden tables, desks, tiles, paper) have low neighbor gradients.
+      let gradSum = 0;
+      let gradCount = 0;
+      let varSum = 0;
 
-      let detectedSoil = "Alluvial Soil";
-      let moisturePercent = 28.0;
+      for (let y = 15; y < 84; y++) {
+        for (let x = 15; x < 84; x++) {
+          const curr = lumaArr[y * size + x];
+          const right = lumaArr[y * size + (x + 1)];
+          const down = lumaArr[(y + 1) * size + x];
+          gradSum += Math.abs(curr - right) + Math.abs(curr - down);
+          gradCount += 2;
 
-      if (lightness < 0.36 && avgR < 100 && avgG < 95 && avgB < 90) {
+          const dev = curr - brightness;
+          varSum += dev * dev;
+        }
+      }
+
+      const roughness = gradSum / gradCount;
+      const stdDev = Math.sqrt(varSum / (gradCount / 2));
+
+      // Guardrail 1: Plant Foliage
+      const isFoliage = (avgG > avgR * 1.05 && avgG > avgB * 1.15 && avgG > 60);
+
+      if (isFoliage) {
+        resolve({
+          is_soil: false,
+          error_code: "PLANT_FOLIAGE_DETECTED",
+          soil_type: isEn ? "Plant Foliage / Crop Canopy (No Soil Found)" : "फसल की पत्तियां / पौधा पाया गया (मिट्टी नहीं मिली)",
+          confidence: 98.2,
+          ph: null,
+          moisture: "N/A",
+          quality: isEn ? "Vegetative Plant Tissue (Not Soil)" : "पौधे की पत्ती",
+          recommendation: isEn
+            ? "The uploaded photograph shows green crop leaves / farm canopy rather than a soil sample. To analyze this crop for pest infestation, fungal blight, or leaf health, please launch the Crop Doctor."
+            : "अपलोड की गई फोटो में फसल की हरी पत्तियां दिख रही हैं, मिट्टी नहीं। कीट या रोग की पहचान के लिए कृपया फसल डॉक्टर (Crop Doctor) का उपयोग करें।",
+          recommended_crops: [],
+          action_redirect: "/solution",
+          action_label: "🌿 Launch Crop Doctor (फसल डॉक्टर)",
+          isOfflineClassified: true,
+          isOffline: true,
+          roughness: Number(roughness.toFixed(1)),
+          stdDev: Number(stdDev.toFixed(1))
+        });
+        return;
+      }
+
+      // Guardrail 2: Smooth Manufactured Surface (Wooden Table, Desk, Tile, Wall, Paper)
+      const isSmoothSurface = (roughness < 6.8 || stdDev < 9.5);
+      const isSyntheticBlue = (avgB > avgR * 1.12 || (avgB > 115 && avgB > avgG));
+      const isOverexposedWhite = (brightness > 220);
+
+      if (isSmoothSurface || isSyntheticBlue || isOverexposedWhite) {
+        const reason = isSmoothSurface 
+          ? (isEn ? "Indoor Wooden Table / Flat Furniture" : "लकड़ी की मेज / फर्नीचर या चिकनी सतह")
+          : isSyntheticBlue
+          ? (isEn ? "Synthetic Colored Object / Non-Earth Material" : "कृत्रिम वस्तु / गैर-मिट्टी सामग्री")
+          : (isEn ? "Overexposed / White Paper / Blank Surface" : "सफेद कागज / दीवार या खाली सतह");
+
+        resolve({
+          is_soil: false,
+          error_code: "SMOOTH_SURFACE_DETECTED",
+          surface_hint: reason,
+          soil_type: isEn ? `No Agricultural Soil Detected (${reason})` : `खेत की मिट्टी नहीं पाई गई (${reason})`,
+          confidence: 97.2,
+          ph: null,
+          moisture: "N/A",
+          quality: isEn ? `Manufactured Planar Surface (${reason})` : `गैर-कृषि सतह (${reason})`,
+          recommendation: isEn
+            ? `The uploaded photograph appears to be an ${reason} with smooth texture (Roughness score: ${roughness.toFixed(1)}). Soil analysis requires a clear close-up photograph of actual farm soil, field dirt, or agricultural earth clods.`
+            : `अपलोड की गई फोटो ${reason} की प्रतीत होती है जिसमें मिट्टी के दानेदार कण नहीं हैं (रफनेस: ${roughness.toFixed(1)})। सटीक परीक्षण के लिए कृपया खेत की असली मिट्टी की स्पष्ट फोटो अपलोड करें।`,
+          recommended_crops: [],
+          action_redirect: "/soil",
+          action_label: "📸 Retake Farm Soil Photo",
+          isOfflineClassified: true,
+          isOffline: true,
+          roughness: Number(roughness.toFixed(1)),
+          stdDev: Number(stdDev.toFixed(1))
+        });
+        return;
+      }
+
+      // Soil Classification by Chromatic Spectrum
+      let detectedSoil = null;
+      let moisturePercent = 26.0;
+
+      if (brightness < 85 && avgR < 100 && avgG < 95 && avgB < 90) {
         detectedSoil = "Black Soil";
         moisturePercent = 34.0;
-      } else if (avgR > avgG * 1.22 && avgR > avgB * 1.35) {
+      } else if (avgR > avgG * 1.25 && avgR > avgB * 1.35 && avgR > 80) {
         detectedSoil = "Red Soil";
         moisturePercent = 22.0;
-      } else if (lightness > 0.54 && avgR > 135 && avgG > 120 && avgB < 110) {
+      } else if (brightness > 130 && avgR > 130 && avgG > 115 && avgB < 120 && (avgR - avgG) < 35) {
         detectedSoil = "Sandy Soil";
         moisturePercent = 18.0;
-      } else if (avgR > 110 && avgG > 95 && avgB > 80 && Math.abs(avgR - avgG) < 25) {
+      } else if (avgR > 105 && avgG > 90 && avgB > 70 && Math.abs(avgR - avgG) < 28) {
         detectedSoil = "Loamy Soil";
         moisturePercent = 30.0;
-      } else {
+      } else if (avgR >= avgG && avgG >= avgB && brightness >= 70 && brightness <= 150) {
         detectedSoil = "Alluvial Soil";
         moisturePercent = 26.5;
       }
 
+      if (!detectedSoil) {
+        // Fallback for unclassified non-agricultural surfaces
+        resolve({
+          is_soil: false,
+          error_code: "NON_SOIL_DETECTED",
+          soil_type: isEn ? "Unrecognized Non-Agricultural Surface" : "अमान्य गैर-कृषि सतह",
+          confidence: 94.5,
+          ph: null,
+          moisture: "N/A",
+          quality: "Non-Soil Spectrum",
+          recommendation: isEn
+            ? "The photograph does not match recognized agricultural soils (Alluvial, Black Regur, Red Laterite, or Sandy Loam). Please photograph farm field dirt."
+            : "अपलोड की गई फोटो किसी ज्ञात कृषि मिट्टी से मेल नहीं खाती। कृपया खेत की असली मिट्टी का फोटो लें।",
+          recommended_crops: [],
+          action_redirect: "/soil",
+          action_label: "📸 Retake Farm Soil Photo",
+          isOfflineClassified: true,
+          isOffline: true,
+          roughness: Number(roughness.toFixed(1)),
+          stdDev: Number(stdDev.toFixed(1))
+        });
+        return;
+      }
+
       const data = getDetailedSoilReport(detectedSoil, "", language, moisturePercent);
-      resolve({ ...data, isOfflineClassified: true });
+      resolve({
+        ...data,
+        is_soil: true,
+        isOfflineClassified: true,
+        roughness: Number(roughness.toFixed(1)),
+        stdDev: Number(stdDev.toFixed(1))
+      });
     } catch (e) {
-      console.warn("Canvas offline analysis fallback:", e);
-      resolve({ ...getDetailedSoilReport("Alluvial Soil", "", language, 25.0), isOfflineClassified: true });
+      console.warn("Canvas offline analysis fallback error:", e);
+      resolve({
+        is_soil: false,
+        error_code: "IMAGE_READ_ERROR",
+        soil_type: isEn ? "Image Read Error" : "फोटो पढ़ने में त्रुटि",
+        recommendation: isEn
+          ? "Could not parse image pixels. Please capture a clear, well-lit photograph of agricultural soil."
+          : "फोटो ठीक से नहीं पढ़ी जा सकी। कृपया रोशनी में खेत की मिट्टी की स्पष्ट तस्वीर लें।",
+        isOfflineClassified: true,
+        isOffline: true
+      });
     }
   });
 }

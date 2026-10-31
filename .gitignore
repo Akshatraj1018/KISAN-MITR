@@ -17,6 +17,7 @@ build/
 # Presentations & Raw Slide Assets (Shared individually)
 /*.pptx
 /*.png
+/*.pdf
 
 # Agents & Scaffolding
 .agent/

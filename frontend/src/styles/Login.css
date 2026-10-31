@@ -551,18 +551,24 @@
 
 /* ---------------- Responsive Queries ---------------- */
 @media (max-width: 900px) {
+  .km-login-page {
+    padding: 16px 12px;
+    align-items: flex-start;
+  }
+
   .km-login-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 20px;
   }
 
   .km-login-showcase {
     text-align: center;
     align-items: center;
+    padding: 6px 0;
   }
 
   .km-showcase-title {
-    font-size: 32px;
+    font-size: 28px;
   }
 
   .km-feature-cards {
@@ -571,14 +577,32 @@
   }
 }
 
+@media (max-width: 768px) {
+  * {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .km-login-card {
+    background: #0b1e15 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
+    border: 1px solid rgba(52, 211, 153, 0.25) !important;
+  }
+}
+
 @media (max-width: 480px) {
   .km-login-card {
-    padding: 24px 18px;
-    border-radius: 22px;
+    padding: 20px 14px;
+    border-radius: 20px;
   }
 
   .km-showcase-title {
-    font-size: 26px;
+    font-size: 24px;
+  }
+
+  .km-login-nav {
+    padding: 10px 0;
+    margin-bottom: 16px;
   }
 }
 

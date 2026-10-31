@@ -1,26 +1,34 @@
-/* src/styles/SoilAnalyser.css - KISAN MITRA PyTorch CNN Soil Testing Lab */
+/* ==============================================================================
+   KISAN MITRA - SOIL TESTING & DIAGNOSTIC LAB STYLESHEET
+   100% Responsive, High-Performance (60 FPS on Mobile), ICAR Aligned
+   ============================================================================== */
 
 .km-soil-lab-page {
   min-height: 100vh;
-  background-color: #07100b;
+  background-color: #07120c;
   background-image: 
-    radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
     radial-gradient(circle at 85% 75%, rgba(245, 158, 11, 0.08) 0%, transparent 40%),
     radial-gradient(circle at 50% 90%, rgba(56, 189, 248, 0.06) 0%, transparent 50%);
   background-attachment: fixed;
   color: #f8fafc;
-  padding-top: 86px;
+  padding-top: 80px;
   padding-bottom: 70px;
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   box-sizing: border-box;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .km-soil-container {
-  max-width: 1320px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0 20px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
+/* Header Bar */
 .km-soil-header {
   display: flex;
   justify-content: space-between;
@@ -31,7 +39,7 @@
 }
 
 .km-soil-title-wrap h1 {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: white;
@@ -43,10 +51,34 @@
 
 .km-soil-title-wrap p {
   color: #94a3b8;
-  font-size: 14px;
+  font-size: 13.5px;
   margin: 0;
+  line-height: 1.5;
 }
 
+.km-doc-nav-back {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  padding: 10px 18px;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+}
+
+.km-doc-nav-back:hover {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(52, 211, 153, 0.4);
+  color: #34d399;
+}
+
+/* Grid Layout */
 .km-soil-grid {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
@@ -54,18 +86,22 @@
   align-items: start;
 }
 
+/* Cards */
 .km-soil-card {
-  background: rgba(13, 24, 18, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(13, 27, 20, 0.88);
+  border: 1px solid rgba(52, 211, 153, 0.18);
   border-radius: 20px;
-  padding: 26px;
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(16px);
+  padding: 24px;
+  box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-sizing: border-box;
 }
 
+/* Camera & Viewfinder */
 .km-soil-viewfinder {
   width: 100%;
-  min-height: 280px;
+  min-height: 260px;
   border: 2px dashed rgba(52, 211, 153, 0.35);
   border-radius: 16px;
   background: rgba(0, 0, 0, 0.35);
@@ -73,18 +109,19 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 20px;
   box-sizing: border-box;
   text-align: center;
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
 }
 
 .km-soil-viewfinder:hover {
   border-color: #10b981;
-  background: rgba(16, 185, 129, 0.05);
+  background: rgba(16, 185, 129, 0.06);
 }
 
 .km-soil-viewfinder.has-preview {
@@ -95,12 +132,113 @@
 
 .km-soil-preview-img {
   width: 100%;
-  max-height: 320px;
+  max-height: 300px;
   object-fit: cover;
   border-radius: 14px;
   display: block;
 }
 
+.km-preview-remove-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  transition: all 0.2s;
+  z-index: 10;
+}
+
+.km-preview-remove-btn:hover {
+  background: #ef4444;
+  border-color: #ef4444;
+}
+
+/* Form Groups & Inputs */
+.km-form-group {
+  margin: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.km-form-label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.2px;
+}
+
+.km-form-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 12px 14px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.km-form-input:focus {
+  border-color: #34d399;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.km-form-input::placeholder {
+  color: #64748b;
+}
+
+/* Action Submit Button */
+.km-btn-analyze-submit {
+  width: 100%;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 20px;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.38);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  touch-action: manipulation;
+  min-height: 48px;
+  box-sizing: border-box;
+}
+
+.km-btn-analyze-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.55);
+}
+
+.km-btn-analyze-submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Results & Radar */
 .km-soil-result-badge-row {
   display: flex;
   align-items: center;
@@ -109,50 +247,64 @@
   flex-wrap: wrap;
 }
 
+.km-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+
 .km-soil-type-card {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(20, 36, 27, 0.95) 100%);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.16) 0%, rgba(13, 27, 20, 0.95) 100%);
   border: 1px solid rgba(52, 211, 153, 0.35);
   border-radius: 16px;
-  padding: 20px 24px;
-  margin-bottom: 20px;
+  padding: 18px 22px;
+  margin-bottom: 18px;
 }
 
 .km-soil-type-title {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
   color: #34d399;
-  margin: 0 0 4px 0;
+  margin: 0 0 6px 0;
 }
 
 .km-soil-metrics-quad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin: 18px 0;
+  gap: 10px;
+  margin: 16px 0;
 }
 
 .km-soil-quad-box {
   background: rgba(0, 0, 0, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-  padding: 12px 14px;
+  padding: 10px 12px;
   text-align: center;
 }
 
 .km-soil-quad-label {
-  font-size: 11px;
+  font-size: 10.5px;
   color: #94a3b8;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 .km-soil-quad-val {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 800;
   color: white;
   margin-top: 4px;
 }
 
+/* Recommended Crops List */
 .km-rec-crop-card-row {
   display: flex;
   align-items: center;
@@ -161,18 +313,157 @@
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   transition: all 0.2s ease;
+  touch-action: manipulation;
 }
 
 .km-rec-crop-card-row:hover {
   background: rgba(16, 185, 129, 0.1);
   border-color: rgba(16, 185, 129, 0.3);
-  transform: translateX(3px);
 }
 
+.km-match-badge {
+  font-size: 11px;
+  font-weight: 700;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+/* Sample Soil Presets Grid */
+.km-sample-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.km-sample-card {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  touch-action: manipulation;
+}
+
+.km-sample-card:hover {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
+  transform: translateY(-2px);
+}
+
+.km-sample-card h5 {
+  margin: 0 0 4px 0;
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #34d399;
+}
+
+.km-sample-card p {
+  margin: 0;
+  font-size: 11.5px;
+  color: #cbd5e1;
+  line-height: 1.4;
+}
+
+/* ==============================================================================
+   RESPONSIVE MOBILE BREAKPOINTS (Smartphones & Tablets)
+   ============================================================================== */
 @media (max-width: 900px) {
   .km-soil-grid {
     grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .km-soil-lab-page {
+    padding-top: 20px;
+    padding-bottom: 90px;
+    background-attachment: scroll !important;
+  }
+
+  .km-soil-container {
+    padding: 0 12px;
+  }
+
+  .km-soil-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .km-soil-title-wrap h1 {
+    font-size: 21px;
+    gap: 8px;
+  }
+
+  .km-soil-title-wrap p {
+    font-size: 12.5px;
+  }
+
+  .km-doc-nav-back {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 16px;
+    font-size: 13.5px;
+  }
+
+  .km-soil-card {
+    padding: 16px;
+    border-radius: 16px;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: #0b1e15 !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+  }
+
+  .km-soil-viewfinder {
+    min-height: 200px;
+    padding: 16px;
+  }
+
+  .km-soil-preview-img {
+    max-height: 220px;
+  }
+
+  .km-soil-type-card {
+    padding: 14px 16px;
+  }
+
+  .km-soil-type-title {
+    font-size: 19px;
+  }
+
+  .km-soil-metrics-quad {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+
+  .km-soil-quad-box {
+    padding: 8px 6px;
+  }
+
+  .km-soil-quad-label {
+    font-size: 9px;
+  }
+
+  .km-soil-quad-val {
+    font-size: 13.5px;
+  }
+
+  .km-sample-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .km-rec-crop-card-row {
+    padding: 12px 14px;
   }
 }

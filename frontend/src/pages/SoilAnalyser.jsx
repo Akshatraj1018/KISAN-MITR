@@ -18,6 +18,7 @@ import {
   ChevronRight,
   Layers,
   Play,
+  Sun,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useLanguage } from "../context/LanguageContext";
@@ -361,57 +362,162 @@ export default function SoilAnalyser() {
 
             {report ? (
               report.is_soil === false ? (
-                <div style={{
-                  background: "rgba(245, 158, 11, 0.12)",
-                  border: "1.5px solid rgba(245, 158, 11, 0.4)",
-                  borderRadius: 16,
-                  padding: 24,
-                  textAlign: "center"
-                }}>
-                  <div style={{ fontSize: 44, marginBottom: 12 }}>🌿</div>
-                  <h3 style={{ color: "#f59e0b", fontSize: 20, fontWeight: 800, margin: "0 0 8px 0" }}>
-                    Plant Foliage / Crop Canopy Detected
-                  </h3>
-                  <p style={{ color: "#e2e8f0", fontSize: 14, lineHeight: 1.6, margin: "0 0 18px 0" }}>
-                    {report.recommendation}
-                  </p>
-                  <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
-                    <button
-                      onClick={() => navigate("/solution")}
-                      style={{
-                        background: "#10b981",
-                        color: "white",
-                        border: "none",
-                        borderRadius: 12,
-                        padding: "12px 22px",
-                        fontWeight: 700,
-                        fontSize: 14,
-                        cursor: "pointer",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 8,
-                        boxShadow: "0 4px 14px rgba(16,185,129,0.3)"
-                      }}
-                    >
-                      <span>🌿</span> Launch Crop Doctor (फसल डॉक्टर)
-                    </button>
-                    <button
-                      onClick={handleClearImage}
-                      style={{
-                        background: "rgba(255,255,255,0.08)",
-                        color: "white",
-                        border: "1px solid rgba(255,255,255,0.15)",
-                        borderRadius: 12,
-                        padding: "12px 18px",
-                        fontWeight: 600,
-                        fontSize: 14,
-                        cursor: "pointer"
-                      }}
-                    >
-                      Upload Soil Dirt Sample
-                    </button>
+                report.error_code === "PLANT_FOLIAGE_DETECTED" ? (
+                  <div style={{
+                    background: "rgba(245, 158, 11, 0.12)",
+                    border: "1.5px solid rgba(245, 158, 11, 0.4)",
+                    borderRadius: 16,
+                    padding: 24,
+                    textAlign: "center"
+                  }}>
+                    <div style={{ fontSize: 44, marginBottom: 12 }}>🌿</div>
+                    <h3 style={{ color: "#f59e0b", fontSize: 20, fontWeight: 800, margin: "0 0 8px 0" }}>
+                      Plant Foliage / Crop Canopy Detected
+                    </h3>
+                    <p style={{ color: "#e2e8f0", fontSize: 14, lineHeight: 1.6, margin: "0 0 18px 0" }}>
+                      {report.recommendation}
+                    </p>
+                    <div style={{ display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
+                      <button
+                        onClick={() => navigate("/solution")}
+                        style={{
+                          background: "#10b981",
+                          color: "white",
+                          border: "none",
+                          borderRadius: 12,
+                          padding: "12px 22px",
+                          fontWeight: 700,
+                          fontSize: 14,
+                          cursor: "pointer",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 8,
+                          boxShadow: "0 4px 14px rgba(16,185,129,0.3)"
+                        }}
+                      >
+                        <span>🌿</span> Launch Crop Doctor (फसल डॉक्टर)
+                      </button>
+                      <button
+                        onClick={handleClearImage}
+                        style={{
+                          background: "rgba(255,255,255,0.08)",
+                          color: "white",
+                          border: "1px solid rgba(255,255,255,0.15)",
+                          borderRadius: 12,
+                          padding: "12px 18px",
+                          fontWeight: 600,
+                          fontSize: 14,
+                          cursor: "pointer"
+                        }}
+                      >
+                        Upload Soil Dirt Sample
+                      </button>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div style={{
+                    background: "rgba(239, 68, 68, 0.10)",
+                    border: "1.5px solid rgba(239, 68, 68, 0.35)",
+                    borderRadius: 16,
+                    padding: 24,
+                    textAlign: "center"
+                  }}>
+                    <div style={{ fontSize: 42, marginBottom: 10 }}>🪵 ⚠️</div>
+                    <span style={{
+                      display: "inline-block",
+                      fontSize: 11,
+                      fontWeight: 800,
+                      color: "#f87171",
+                      background: "rgba(239, 68, 68, 0.2)",
+                      border: "1px solid rgba(239, 68, 68, 0.4)",
+                      padding: "4px 12px",
+                      borderRadius: 20,
+                      marginBottom: 10,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.5px"
+                    }}>
+                      Non-Soil Object Detected • Granularity Guardrail
+                    </span>
+                    <h3 style={{ color: "#f87171", fontSize: 20, fontWeight: 800, margin: "0 0 10px 0" }}>
+                      {report.soil_type || "No Agricultural Soil Detected"}
+                    </h3>
+                    <p style={{ color: "#e2e8f0", fontSize: 13.5, lineHeight: 1.6, margin: "0 0 18px 0" }}>
+                      {report.recommendation}
+                    </p>
+
+                    <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap", marginBottom: 20 }}>
+                      <button
+                        onClick={() => fileInputRef.current?.click()}
+                        style={{
+                          background: "#10b981",
+                          color: "white",
+                          border: "none",
+                          borderRadius: 12,
+                          padding: "12px 20px",
+                          fontWeight: 700,
+                          fontSize: 13.5,
+                          cursor: "pointer",
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 6,
+                          boxShadow: "0 4px 14px rgba(16,185,129,0.3)"
+                        }}
+                      >
+                        <span>📸</span> Retake Farm Soil Photo
+                      </button>
+                      <button
+                        onClick={handleClearImage}
+                        style={{
+                          background: "rgba(255,255,255,0.08)",
+                          color: "white",
+                          border: "1px solid rgba(255,255,255,0.15)",
+                          borderRadius: 12,
+                          padding: "12px 16px",
+                          fontWeight: 600,
+                          fontSize: 13.5,
+                          cursor: "pointer"
+                        }}
+                      >
+                        Clear Image
+                      </button>
+                    </div>
+
+                    {/* Quick Evaluator Indoor Test Buttons */}
+                    <div style={{
+                      background: "rgba(0, 0, 0, 0.35)",
+                      border: "1px solid rgba(255, 255, 255, 0.08)",
+                      borderRadius: 12,
+                      padding: 14,
+                      textAlign: "left"
+                    }}>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: "#34d399", marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}>
+                        <span>💡</span> Testing indoors? Tap any certified sample soil below to preview:
+                      </div>
+                      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: 8 }}>
+                        {SAMPLE_SOIL_TYPES.map((sample, idx) => (
+                          <button
+                            key={idx}
+                            onClick={() => handleSampleSelect(sample)}
+                            style={{
+                              background: "rgba(255, 255, 255, 0.06)",
+                              border: "1px solid rgba(52, 211, 153, 0.3)",
+                              borderRadius: 8,
+                              padding: "8px 10px",
+                              color: "white",
+                              fontSize: 12,
+                              fontWeight: 700,
+                              cursor: "pointer",
+                              textAlign: "center",
+                              transition: "all 0.2s"
+                            }}
+                          >
+                            {sample.name.split(" ")[0]} Soil
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )
               ) : (
                 <div>
                   <div className="km-soil-type-card">
@@ -836,6 +942,50 @@ export default function SoilAnalyser() {
           </div>
         )}
       </div>
+
+      {/* Native Mobile Bottom Navigation Bar */}
+      <nav className="km-mobile-bottom-bar" aria-label="Mobile Navigation">
+        <button
+          className="km-mob-nav-btn"
+          onClick={() => navigate("/dashboard")}
+          aria-label="Home Dashboard"
+        >
+          <Sun size={20} />
+          <span>Home</span>
+        </button>
+        <button
+          className="km-mob-nav-btn active"
+          onClick={() => navigate("/soil")}
+          aria-label="Soil Lab"
+        >
+          <FlaskConical size={20} />
+          <span>Soil Lab</span>
+        </button>
+        <button
+          className="km-mob-nav-btn"
+          onClick={() => navigate("/cultivation-tracker")}
+          aria-label="Cultivation Tracker"
+        >
+          <Sprout size={20} />
+          <span>Tracker</span>
+        </button>
+        <button
+          className="km-mob-nav-btn"
+          onClick={() => navigate("/mandi")}
+          aria-label="Mandi Rates"
+        >
+          <IndianRupee size={20} />
+          <span>Mandi</span>
+        </button>
+        <button
+          className="km-mob-nav-btn"
+          onClick={() => navigate("/solution")}
+          aria-label="Crop Doctor"
+        >
+          <span style={{ fontSize: 18, lineHeight: 1 }}>🌿</span>
+          <span>Doctor</span>
+        </button>
+      </nav>
     </div>
   );
 }

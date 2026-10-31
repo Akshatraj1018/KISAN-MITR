@@ -880,6 +880,50 @@ export default function MainDashboard() {
           </div>
         </div>
       )}
+
+      {/* ================= NATIVE MOBILE BOTTOM NAVIGATION BAR ================= */}
+      <nav className="km-mobile-bottom-bar" aria-label="Mobile Navigation">
+        <button
+          className={`km-mob-nav-btn ${isActive("/dashboard")}`}
+          onClick={() => navigate("/dashboard")}
+          aria-label="Home Dashboard"
+        >
+          <Sun size={20} />
+          <span>Home</span>
+        </button>
+        <button
+          className={`km-mob-nav-btn ${isActive("/soil")}`}
+          onClick={() => navigate("/soil")}
+          aria-label="Soil Lab"
+        >
+          <FlaskConical size={20} />
+          <span>Soil Lab</span>
+        </button>
+        <button
+          className={`km-mob-nav-btn ${isActive("/cultivation-tracker")}`}
+          onClick={() => navigate("/cultivation-tracker")}
+          aria-label="Cultivation Tracker"
+        >
+          <Sprout size={20} />
+          <span>Tracker</span>
+        </button>
+        <button
+          className={`km-mob-nav-btn ${isActive("/mandi")}`}
+          onClick={() => navigate("/mandi")}
+          aria-label="Mandi Rates"
+        >
+          <IndianRupee size={20} />
+          <span>Mandi</span>
+        </button>
+        <button
+          className={`km-mob-nav-btn ${isActive("/solution")}`}
+          onClick={() => navigate("/solution")}
+          aria-label="Crop Doctor"
+        >
+          <span style={{ fontSize: 18, lineHeight: 1 }}>🌿</span>
+          <span>Doctor</span>
+        </button>
+      </nav>
     </div>
   );
 }

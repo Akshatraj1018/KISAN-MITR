@@ -1,0 +1,444 @@
+/* src/styles/DiseaseSolution.css - KISAN MITRA AI Crop Doctor Design System */
+
+.km-crop-doc-page {
+  min-height: 100vh;
+  background-color: #07100b;
+  background-image: 
+    radial-gradient(circle at 10% 15%, rgba(16, 185, 129, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 90% 75%, rgba(245, 158, 11, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.06) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: #f8fafc;
+  padding-top: 86px;
+  padding-bottom: 70px;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  box-sizing: border-box;
+}
+
+.km-doc-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header Banner */
+.km-doc-header {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.km-doc-title-wrap h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: white;
+  margin: 0 0 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.km-doc-title-wrap p {
+  color: #94a3b8;
+  font-size: 14px;
+  margin: 0;
+}
+
+.km-doc-nav-back {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.km-doc-nav-back:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateX(-2px);
+}
+
+/* Main Two-Column Layout */
+.km-doc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 24px;
+  align-items: start;
+}
+
+/* Left Card: Camera & Viewfinder */
+.km-doc-card {
+  background: rgba(13, 24, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
+  padding: 26px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+}
+
+.km-viewfinder-box {
+  width: 100%;
+  min-height: 280px;
+  border: 2px dashed rgba(52, 211, 153, 0.35);
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
+
+.km-viewfinder-box:hover {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.05);
+}
+
+.km-viewfinder-box.has-preview {
+  border-style: solid;
+  border-color: rgba(52, 211, 153, 0.5);
+  padding: 0;
+}
+
+.km-preview-img {
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+}
+
+.km-preview-remove-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.km-preview-remove-btn:hover {
+  background: #ef4444;
+}
+
+/* Upload Controls */
+.km-doc-btn-group {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+  margin-bottom: 20px;
+}
+
+.km-btn-doc {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.km-btn-doc.primary {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  color: white;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+.km-btn-doc.primary:hover {
+  background: linear-gradient(135deg, #047857 0%, #059669 100%);
+  transform: translateY(-2px);
+}
+
+.km-btn-doc.secondary {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: white;
+}
+
+.km-btn-doc.secondary:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* Crop Form Controls */
+.km-form-group {
+  margin-bottom: 16px;
+}
+
+.km-form-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.km-form-select,
+.km-form-input {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.km-form-select:focus,
+.km-form-input:focus {
+  border-color: #10b981;
+}
+
+/* Submit Action Button */
+.km-btn-analyze-submit {
+  width: 100%;
+  padding: 15px 20px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+  transition: all 0.25s ease;
+}
+
+.km-btn-analyze-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+}
+
+.km-btn-analyze-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Right Card: Diagnostic Result Showcase */
+.km-diagnostic-header-box {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(20, 36, 27, 0.95) 100%);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+}
+
+.km-diag-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.km-severity-pill {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  letter-spacing: 0.04em;
+}
+
+.km-severity-pill.moderate {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.km-severity-pill.high,
+.km-severity-pill.severe {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.km-severity-pill.low,
+.km-severity-pill.none,
+.km-severity-pill.healthy,
+.km-severity-pill.clean {
+  background: rgba(16, 185, 129, 0.25);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.45);
+}
+
+.km-disease-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 4px 0;
+}
+
+.km-pathogen-meta {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* Treatment Tabs */
+.km-treatment-tabs {
+  display: flex;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 18px;
+}
+
+.km-treatment-tab-btn {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.km-treatment-tab-btn.active {
+  background: #10b981;
+  color: white;
+}
+
+/* Treatment Box Content */
+.km-treatment-box {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 18px 20px;
+  margin-bottom: 18px;
+}
+
+.km-treatment-box h4 {
+  margin: 0 0 8px 0;
+  font-size: 15px;
+  font-weight: 800;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.km-treatment-box p {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin: 0 0 14px 0;
+}
+
+.km-pills-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.km-chem-pill {
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #7dd3fc;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.km-org-pill {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #a7f3d0;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Empty State Showcase (When no image scanned yet) */
+.km-empty-doc-showcase {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.km-sample-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 16px;
+  text-align: left;
+}
+
+.km-sample-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.km-sample-card:hover {
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+  transform: translateY(-2px);
+}
+
+.km-sample-card h5 {
+  margin: 0 0 3px 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+}
+
+.km-sample-card p {
+  margin: 0;
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+@media (max-width: 900px) {
+  .km-doc-grid {
+    grid-template-columns: 1fr;
+  }
+}

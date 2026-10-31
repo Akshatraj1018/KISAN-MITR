@@ -1,0 +1,174 @@
+/* src/styles/CropManager.css - KISAN MITRA Modern Farm Crop & Field Manager */
+
+.km-crop-mgr-page {
+  min-height: 100vh;
+  background-color: #07100b;
+  background-image: 
+    radial-gradient(circle at 10% 15%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 90% 75%, rgba(245, 158, 11, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: #f8fafc;
+  padding-top: 86px;
+  padding-bottom: 70px;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  box-sizing: border-box;
+}
+
+.km-mgr-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.km-mgr-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.km-mgr-title-box h1 {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: white;
+  margin: 0 0 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.km-mgr-title-box p {
+  color: #94a3b8;
+  font-size: 14px;
+  margin: 0;
+}
+
+.km-mgr-stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.km-stat-tile {
+  background: rgba(13, 24, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  padding: 18px 20px;
+  box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(14px);
+}
+
+.km-stat-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #94a3b8;
+  letter-spacing: 0.04em;
+}
+
+.km-stat-value {
+  font-size: 26px;
+  font-weight: 800;
+  color: white;
+  margin-top: 4px;
+}
+
+.km-stat-sub {
+  font-size: 12px;
+  color: #34d399;
+  margin-top: 2px;
+}
+
+/* Crop Field Cards Grid */
+.km-crop-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+  margin-bottom: 32px;
+}
+
+.km-field-card {
+  background: rgba(13, 24, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(16px);
+  transition: all 0.25s ease;
+}
+
+.km-field-card:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+  transform: translateY(-3px);
+}
+
+.km-field-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.km-crop-tag {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: rgba(16, 185, 129, 0.18);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 3px 10px;
+  border-radius: 9999px;
+}
+
+.km-crop-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 2px 0;
+}
+
+.km-field-loc {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.km-progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  margin: 14px 0 8px 0;
+  overflow: hidden;
+}
+
+.km-progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #10b981, #f59e0b);
+}
+
+.km-field-meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #cbd5e1;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+@media (max-width: 900px) {
+  .km-mgr-stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .km-mgr-stats-row {
+    grid-template-columns: 1fr;
+  }
+}

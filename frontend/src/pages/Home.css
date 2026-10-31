@@ -1,0 +1,323 @@
+/* ==============================================================================
+   KISAN MITRA - HERO / LANDING PAGE STYLESHEET
+   Clean, Modern, Immersive Agricultural Gateway
+   ============================================================================== */
+
+.km-home-root {
+  min-height: 100vh;
+  width: 100%;
+  background: radial-gradient(circle at 50% 10%, #0d2e1f 0%, #06170e 50%, #020805 100%);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #f1f5f9;
+}
+
+.km-home-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(rgba(16, 185, 129, 0.08) 1px, transparent 1px),
+    radial-gradient(rgba(16, 185, 129, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  pointer-events: none;
+}
+
+.km-home-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  pointer-events: none;
+}
+
+.km-home-glow.glow-top {
+  width: 600px;
+  height: 600px;
+  background: rgba(16, 185, 129, 0.15);
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.km-home-glow.glow-bottom {
+  width: 500px;
+  height: 500px;
+  background: rgba(245, 158, 11, 0.08);
+  bottom: -100px;
+  right: -50px;
+}
+
+/* ---------------- Top Navbar ---------------- */
+.km-home-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
+  position: relative;
+  z-index: 20;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  background: rgba(6, 23, 14, 0.65);
+}
+
+.km-home-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.km-home-logo-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #10b981 0%, #047857 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
+}
+
+.km-home-title-brand {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  display: block;
+  line-height: 1.1;
+}
+
+.km-home-tagline {
+  font-size: 11px;
+  color: #34d399;
+  font-weight: 600;
+}
+
+.km-home-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.km-home-lang-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+  padding: 6px 12px;
+  border-radius: 20px;
+  color: #34d399;
+}
+
+.km-home-lang-pill select {
+  background: transparent;
+  border: none;
+  color: #f1f5f9;
+  font-size: 13px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+.km-home-lang-pill select option {
+  background: #091c13;
+  color: white;
+}
+
+.km-home-login-link {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.km-home-login-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #34d399;
+}
+
+/* ---------------- Main Hero ---------------- */
+.km-home-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.km-hero-card {
+  max-width: 780px;
+  background: rgba(12, 30, 20, 0.75);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid rgba(52, 211, 153, 0.22);
+  border-radius: 36px;
+  padding: 48px 40px;
+  box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.65), 0 0 45px rgba(16, 185, 129, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.km-national-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 158, 11, 0.14);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  padding: 6px 16px;
+  border-radius: 25px;
+  font-size: 12.5px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.km-hero-heading {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #ffffff;
+  margin: 0 0 16px;
+  letter-spacing: -0.02em;
+}
+
+.km-text-gradient {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.km-hero-subtitle {
+  font-size: 16px;
+  color: #94a3b8;
+  line-height: 1.55;
+  max-width: 620px;
+  margin: 0 0 32px;
+}
+
+/* Four Pillars */
+.km-hero-pillars {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 36px;
+  width: 100%;
+}
+
+.km-pillar-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.km-pillar-item:hover {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(52, 211, 153, 0.35);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.pillar-icon {
+  color: #34d399;
+}
+
+/* Action Buttons */
+.km-hero-actions {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 30px;
+  width: 100%;
+  max-width: 480px;
+  justify-content: center;
+}
+
+.km-hero-primary-btn {
+  flex: 1;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  padding: 16px 24px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
+  transition: all 0.25s ease;
+}
+
+.km-hero-primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(16, 185, 129, 0.55);
+}
+
+.km-hero-secondary-btn {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  color: #34d399;
+  padding: 16px 24px;
+  border-radius: 20px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+}
+
+.km-hero-secondary-btn:hover {
+  background: rgba(16, 185, 129, 0.15);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.km-hero-trust-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 768px) {
+  .km-hero-heading {
+    font-size: 30px;
+  }
+  .km-hero-card {
+    padding: 32px 20px;
+  }
+  .km-hero-actions {
+    flex-direction: column;
+  }
+  .km-home-navbar {
+    padding: 16px 20px;
+  }
+}

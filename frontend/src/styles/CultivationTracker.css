@@ -1,0 +1,255 @@
+/* src/styles/CultivationTracker.css - KISAN MITRA Active Cultivation & Lifecycle Tracker */
+
+.km-tracker-page {
+  min-height: 100vh;
+  background-color: #07100b;
+  background-image: 
+    radial-gradient(circle at 10% 15%, rgba(16, 185, 129, 0.15) 0%, transparent 45%),
+    radial-gradient(circle at 90% 75%, rgba(245, 158, 11, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: #f8fafc;
+  padding-top: 86px;
+  padding-bottom: 70px;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  box-sizing: border-box;
+}
+
+.km-tracker-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.km-tracker-hero {
+  background: linear-gradient(135deg, rgba(20, 36, 27, 0.95) 0%, rgba(13, 24, 18, 0.95) 100%);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+  margin-bottom: 24px;
+}
+
+.km-tracker-hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.km-tracker-crop-name {
+  font-size: 26px;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.km-tracker-meta-chips {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: #94a3b8;
+  flex-wrap: wrap;
+}
+
+.km-tracker-progress-shell {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 16px 20px;
+}
+
+.km-tracker-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.km-tracker-bar-bg {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.km-tracker-bar-fill {
+  height: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #10b981 0%, #f59e0b 100%);
+  transition: width 0.4s ease;
+}
+
+/* Active Reminder Banner */
+.km-active-reminder-box {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(20, 36, 27, 0.9) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.km-reminder-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.km-reminder-content h4 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: white;
+}
+
+.km-reminder-content p {
+  margin: 0;
+  font-size: 13px;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+/* Phase Timeline List */
+.km-phases-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.km-phase-card {
+  background: rgba(13, 24, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 22px 24px;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.km-phase-card.active {
+  border-color: #10b981;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(13, 24, 18, 0.95) 100%);
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.15);
+}
+
+.km-phase-card.completed {
+  border-color: rgba(52, 211, 153, 0.3);
+  opacity: 0.88;
+}
+
+.km-phase-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.km-phase-badge {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  letter-spacing: 0.04em;
+}
+
+.km-phase-badge.in_progress {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.km-phase-badge.completed {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.km-phase-badge.upcoming {
+  background: rgba(148, 163, 184, 0.12);
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.km-phase-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: white;
+  margin: 0;
+}
+
+.km-phase-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin: 0 0 14px 0;
+}
+
+.km-inputs-box {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #a7f3d0;
+  margin-bottom: 14px;
+  border-left: 3px solid #10b981;
+}
+
+.km-inputs-box strong {
+  color: white;
+}
+
+.km-phase-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.km-btn-lodge-progress {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  color: white;
+  font-size: 13px;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+  transition: all 0.2s ease;
+}
+
+.km-btn-lodge-progress:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
+}
+
+@media (max-width: 768px) {
+  .km-tracker-hero {
+    padding: 20px;
+  }
+  .km-tracker-crop-name {
+    font-size: 20px;
+  }
+}

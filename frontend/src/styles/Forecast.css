@@ -1,0 +1,108 @@
+/* src/styles/Forecast.css - KISAN MITRA Modern Agro-Weather Station */
+
+.km-forecast-page {
+  min-height: 100vh;
+  background-color: #07100b;
+  background-image: 
+    radial-gradient(circle at 10% 15%, rgba(56, 189, 248, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 90% 75%, rgba(16, 185, 129, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: #f8fafc;
+  padding-top: 86px;
+  padding-bottom: 70px;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  box-sizing: border-box;
+}
+
+.km-forecast-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.km-forecast-top-hero {
+  background: linear-gradient(135deg, rgba(20, 36, 27, 0.9) 0%, rgba(13, 24, 18, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.km-fc-big-temp {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: white;
+  line-height: 1;
+}
+
+.km-fc-grid-7day {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.km-day-tile {
+  background: rgba(13, 24, 18, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 14px 12px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.km-day-tile:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+}
+
+.km-day-tile.today {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.km-day-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.km-day-icon {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.km-day-temp {
+  font-size: 16px;
+  font-weight: 800;
+  color: white;
+}
+
+.km-day-pop {
+  font-size: 11px;
+  color: #38bdf8;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  .km-fc-grid-7day {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .km-fc-grid-7day {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

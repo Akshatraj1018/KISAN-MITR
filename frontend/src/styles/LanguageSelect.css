@@ -1,0 +1,125 @@
+/* src/styles/LanguageSelect.css - KISAN MITRA All-India Language Portal */
+
+.km-lang-page {
+  min-height: 100vh;
+  background-color: #07100b;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: #f8fafc;
+  padding: 40px 20px 60px;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.km-lang-shell {
+  width: 100%;
+  max-width: 1080px;
+}
+
+.km-lang-hero {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.km-lang-hero h1 {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: white;
+  margin: 0 0 8px 0;
+}
+
+.km-lang-hero p {
+  color: #94a3b8;
+  font-size: 15px;
+  margin: 0;
+}
+
+.km-lang-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.km-lang-tile {
+  background: rgba(13, 24, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 16px;
+  padding: 18px 20px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.km-lang-tile:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(16, 185, 129, 0.4);
+  transform: translateY(-2px);
+}
+
+.km-lang-tile.active {
+  border-color: #10b981;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(20, 36, 27, 0.95) 100%);
+  box-shadow: 0 8px 24px -6px rgba(16, 185, 129, 0.35);
+}
+
+.km-lang-native-name {
+  font-size: 20px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 2px;
+}
+
+.km-lang-english-name {
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.km-lang-region-tag {
+  font-size: 11px;
+  color: #34d399;
+  margin-top: 4px;
+}
+
+.km-lang-greeting-badge {
+  font-size: 13px;
+  font-weight: 700;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.12);
+  padding: 4px 10px;
+  border-radius: 9999px;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.km-lang-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .km-lang-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .km-lang-grid {
+    grid-template-columns: 1fr;
+  }
+  .km-lang-hero h1 {
+    font-size: 24px;
+  }
+}

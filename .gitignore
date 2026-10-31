@@ -8,8 +8,19 @@ build/
 */dist/
 
 # Environment files
+.env
+*/.env
+*.env
 .env.local
 .env.*.local
+
+# Presentations & Raw Slide Assets (Shared individually)
+/*.pptx
+/*.png
+
+# Agents & Scaffolding
+.agent/
+*/.agent/
 
 # OS generated files
 .DS_Store

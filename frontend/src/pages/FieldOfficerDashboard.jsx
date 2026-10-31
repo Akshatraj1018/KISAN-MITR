@@ -32,7 +32,7 @@ import { useAuth } from "../context/AuthContext";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase/firebaseConfig";
 
-const ENV_KEY = import.meta.env.VITE_WEATHERAPI_KEY || "";
+const ENV_KEY = import.meta.env.VITE_WEATHERAPI_KEY || "e1b1bc1a2e664d0cbf223204252611";
 
 function HomeIcon() {
   return <Sun />;

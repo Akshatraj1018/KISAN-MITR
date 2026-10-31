@@ -82,7 +82,7 @@ function FieldOfficerProfile() {
 
   const getLocationViaWeatherAPIOrNominatim = async (lat, lon) => {
     try {
-      const key = import.meta.env.VITE_WEATHERAPI_KEY;
+      const key = import.meta.env.VITE_WEATHERAPI_KEY || "e1b1bc1a2e664d0cbf223204252611";
       if (key) {
         const q = `${lat},${lon}`;
         const url = `https://api.weatherapi.com/v1/current.json?key=${encodeURIComponent(

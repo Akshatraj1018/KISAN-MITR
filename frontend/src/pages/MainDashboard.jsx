@@ -110,7 +110,7 @@ export default function MainDashboard() {
     };
   };
 
-  // Top Mandi highlights
+  // Top Mandi highlights (Best Offers matching Image 2 Screen 1)
   const mandiHighlights = [
     {
       mandi: "Rourkela APMC Yard",
@@ -121,6 +121,7 @@ export default function MainDashboard() {
       unit: "/quintal",
       mspDelta: "+₹80 above MSP",
       trend: "up",
+      img: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=400&auto=format&fit=crop&q=80",
     },
     {
       mandi: "Sambalpur Mandi",
@@ -131,6 +132,7 @@ export default function MainDashboard() {
       unit: "/quintal",
       mspDelta: "+₹145 above MSP",
       trend: "up",
+      img: "https://images.unsplash.com/photo-1592417817098-8f3d6eb22513?w=400&auto=format&fit=crop&q=80",
     },
     {
       mandi: "Bargarh APMC",
@@ -141,6 +143,18 @@ export default function MainDashboard() {
       unit: "/quintal",
       mspDelta: "+₹170 above MSP",
       trend: "up",
+      img: "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=400&auto=format&fit=crop&q=80",
+    },
+    {
+      mandi: "Sundargarh Nursery",
+      place: "Certified Research Station (12 km)",
+      crop: "Lime Seedlings (नींबू पौध)",
+      icon: "🍋",
+      price: "₹250",
+      unit: "/tray",
+      mspDelta: "High Yield Hybrid",
+      trend: "up",
+      img: "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=400&auto=format&fit=crop&q=80",
     },
   ];
 
@@ -317,7 +331,7 @@ export default function MainDashboard() {
           <div className="km-category-grid">
             {/* Tool 1: Soil Lab */}
             <div className="km-category-card" onClick={() => navigate("/soil")}>
-              <div className="km-category-icon-box">
+              <div className="km-category-icon-box cat-blue">
                 <FlaskConical size={24} />
               </div>
               <div className="km-category-label">
@@ -328,7 +342,7 @@ export default function MainDashboard() {
 
             {/* Tool 2: Crop Doctor */}
             <div className="km-category-card" onClick={() => navigate("/solution")}>
-              <div className="km-category-icon-box">
+              <div className="km-category-icon-box cat-peach">
                 <Stethoscope size={24} />
               </div>
               <div className="km-category-label">
@@ -339,7 +353,7 @@ export default function MainDashboard() {
 
             {/* Tool 3: Live Mandi */}
             <div className="km-category-card" onClick={() => navigate("/mandi")}>
-              <div className="km-category-icon-box">
+              <div className="km-category-icon-box cat-green">
                 <TrendingUp size={24} />
               </div>
               <div className="km-category-label">
@@ -350,7 +364,7 @@ export default function MainDashboard() {
 
             {/* Tool 4: Cultivation Tracker */}
             <div className="km-category-card" onClick={() => navigate("/cultivation-tracker")}>
-              <div className="km-category-icon-box">
+              <div className="km-category-icon-box cat-mint">
                 <Calendar size={24} />
               </div>
               <div className="km-category-label">
@@ -361,20 +375,31 @@ export default function MainDashboard() {
           </div>
         </section>
 
-        {/* 5. TODAY'S LIVE APMC MANDI BENCHMARKS */}
-        <section aria-label="Mandi Rates">
+        {/* 5. TODAY'S LIVE APMC MANDI BENCHMARKS (SCREEN 1 "BEST OFFERS") */}
+        <section aria-label="Best Offers & Mandi Rates">
           <div className="km-section-title-row">
             <h2 className="km-section-title">
-              {language === "hi" ? "आज के प्रमुख थोक मंडी भाव" : "Today's Live Mandi Highlights"}
+              {language === "hi" ? "सर्वश्रेष्ठ कृषि ऑफर एवं मंडी भाव" : "Best Offers & Mandi Highlights"}
             </h2>
             <span className="km-section-link" onClick={() => navigate("/mandi")}>
-              All Mandis <ArrowUpRight size={14} />
+              View all <ArrowUpRight size={14} />
             </span>
           </div>
 
           <div className="km-mandi-scroll-strip">
             {mandiHighlights.map((item, idx) => (
-              <div key={idx} className="km-mandi-tile" onClick={() => navigate("/mandi")}>
+              <div
+                key={idx}
+                className="km-mandi-tile"
+                onClick={() => (item.crop.includes("Seedlings") ? navigate("/farm-details") : navigate("/mandi"))}
+              >
+                {item.img && (
+                  <div className="km-mandi-thumb-wrap">
+                    <img src={item.img} alt={item.crop} className="km-mandi-thumb-img" loading="lazy" />
+                    <span className="km-mandi-thumb-badge">{item.mspDelta}</span>
+                  </div>
+                )}
+
                 <div className="km-mandi-tile-header">
                   <div>
                     <h3 className="km-mandi-crop-name">
@@ -382,7 +407,6 @@ export default function MainDashboard() {
                     </h3>
                     <div className="km-mandi-place">{item.mandi}</div>
                   </div>
-                  <span className="km-badge km-badge-emerald">{item.mspDelta}</span>
                 </div>
 
                 <div className="km-mandi-price-row">
@@ -392,7 +416,7 @@ export default function MainDashboard() {
 
                 <div className="km-mandi-tile-footer">
                   <span style={{ color: "#6B7280" }}>{item.place}</span>
-                  <span style={{ color: "#0D5C3A", fontWeight: 600 }}>Compare →</span>
+                  <span style={{ color: "#0D5C3A", fontWeight: 700 }}>View Details →</span>
                 </div>
               </div>
             ))}

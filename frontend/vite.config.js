@@ -95,11 +95,12 @@ export default defineConfig({
             }
           },
           {
-            // JS + CSS caching
+            // JS + CSS: Always NetworkFirst so new deployments update immediately
             urlPattern: /.*\.(js|css)$/i,
-            handler: 'StaleWhileRevalidate',
+            handler: 'NetworkFirst',
             options: {
-              cacheName: 'static-resources'
+              cacheName: 'static-resources',
+              networkTimeoutSeconds: 3
             }
           }
         ]

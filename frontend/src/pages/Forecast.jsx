@@ -129,7 +129,15 @@ export default function Forecast() {
           <div className="km-screen3-notes-items">
             {notes.map((note) => (
               <div key={note.id} className="km-screen3-note-row">
-                <img src={note.img} alt="Note thumbnail" className="km-screen3-note-img" />
+                <img
+                  src={note.img}
+                  alt="Note thumbnail"
+                  className="km-screen3-note-img"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.src = "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=300&auto=format&fit=crop&q=80";
+                  }}
+                />
                 <div>
                   <div className="km-screen3-note-timestamp">{note.time}</div>
                   <p className="km-screen3-note-desc">{note.desc}</p>

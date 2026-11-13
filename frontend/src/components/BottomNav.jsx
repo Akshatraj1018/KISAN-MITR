@@ -1,6 +1,7 @@
+// src/components/BottomNav.jsx
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Home, Stethoscope, TrendingUp, FlaskConical, User, PhoneCall } from "lucide-react";
+import { Home, Sprout, BarChart3, User, PhoneCall } from "lucide-react";
 
 export default function BottomNav() {
   const navigate = useNavigate();
@@ -9,17 +10,19 @@ export default function BottomNav() {
 
   const navItems = [
     { label: "Home", path: "/dashboard", icon: Home, match: ["/dashboard", "/home"] },
-    { label: "Crop Doctor", path: "/solution", icon: Stethoscope, match: ["/solution", "/scan"] },
+    { label: "All Farms", path: "/farm-details", icon: Sprout, match: ["/farm-details", "/details"] },
     { label: "Krishi Sathi", path: "/call", icon: PhoneCall, match: ["/call"], isSpecial: true },
-    { label: "Mandi Rates", path: "/mandi", icon: TrendingUp, match: ["/mandi"] },
-    { label: "My Profile", path: "/farmer-profile", icon: User, match: ["/farmer-profile"] },
+    { label: "Statistic", path: "/cultivation-tracker", icon: BarChart3, match: ["/cultivation-tracker", "/stats"] },
+    { label: "My Profile", path: "/farmer-profile", icon: User, match: ["/farmer-profile", "/profile"] },
   ];
 
   return (
     <nav className="km-bottom-dock" aria-label="Bottom Navigation">
       <div className="km-dock-container">
         {navItems.map((item) => {
-          const isActive = item.match.some((m) => path.startsWith(m));
+          const isActive =
+            (item.path === "/dashboard" && (path === "/" || path === "/dashboard" || path === "/home")) ||
+            item.match.some((m) => path.startsWith(m));
           const Icon = item.icon;
 
           if (item.isSpecial) {
@@ -28,7 +31,7 @@ export default function BottomNav() {
                 key={item.label}
                 onClick={() => navigate(item.path)}
                 className={`km-dock-special-btn ${isActive ? "active" : ""}`}
-                title="Call Krishi Sathi"
+                title="Call Krishi Sathi Helpline"
               >
                 <div className="km-special-pulse"></div>
                 <Icon size={22} className="km-special-icon" />
@@ -43,7 +46,7 @@ export default function BottomNav() {
               className={`km-dock-item ${isActive ? "active" : ""}`}
             >
               <div className="km-dock-icon-wrap">
-                <Icon size={20} strokeWidth={isActive ? 2.4 : 1.8} />
+                <Icon size={20} strokeWidth={isActive ? 2.5 : 1.8} />
               </div>
               <span className="km-dock-label">{item.label}</span>
               {isActive && <div className="km-dock-pill-indicator" />}

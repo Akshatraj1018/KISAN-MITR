@@ -357,6 +357,115 @@ export default function MandiPrice() {
               );
             })}
           </section>
+
+          {/* Farm Contracts & Opportunities (Image 1 Screen 3 Match) */}
+          <section className="km-farm-contracts-section" style={{ marginTop: 32, marginBottom: 20 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
+              <div>
+                <h2 style={{ fontSize: 20, fontWeight: 800, color: "#1A2E26", margin: 0 }}>
+                  Featured Farm Opportunities
+                </h2>
+                <p style={{ fontSize: 13, color: "#64748B", margin: "2px 0 0 0" }}>
+                  Verified forward contract farming & harvest shares
+                </p>
+              </div>
+              <button
+                onClick={() => navigate("/farm-details")}
+                style={{
+                  background: "none",
+                  border: "none",
+                  color: "#0D5C3A",
+                  fontWeight: 700,
+                  fontSize: 13,
+                  cursor: "pointer",
+                }}
+              >
+                View all
+              </button>
+            </div>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+              {[
+                {
+                  id: 1,
+                  title: "Cucumber Farm 13",
+                  earnings: "₹10,000 / share",
+                  roi: "5.5%",
+                  duration: "6 Months",
+                  img: "https://images.unsplash.com/photo-1592417817098-8f3d6eb22513?w=300&auto=format&fit=crop&q=80",
+                },
+                {
+                  id: 2,
+                  title: "Agriculture Farm 27",
+                  earnings: "₹12,500 / share",
+                  roi: "6.2%",
+                  duration: "6 Months",
+                  img: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=300&auto=format&fit=crop&q=80",
+                },
+                {
+                  id: 3,
+                  title: "Koralla Farm 18",
+                  earnings: "₹9,800 / share",
+                  roi: "5.5%",
+                  duration: "4 Months",
+                  img: "https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=300&auto=format&fit=crop&q=80",
+                },
+                {
+                  id: 4,
+                  title: "Enrichment Farm 7",
+                  earnings: "₹15,000 / share",
+                  roi: "7.0%",
+                  duration: "8 Months",
+                  img: "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=300&auto=format&fit=crop&q=80",
+                },
+              ].map((farm) => (
+                <div
+                  key={farm.id}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 16,
+                    padding: "14px 18px",
+                    background: "#FFFFFF",
+                    borderRadius: "20px",
+                    border: "1px solid rgba(13, 92, 58, 0.1)",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.03)",
+                  }}
+                >
+                  <img
+                    src={farm.img}
+                    alt={farm.title}
+                    style={{ width: 68, height: 68, borderRadius: 14, objectFit: "cover" }}
+                  />
+                  <div style={{ flex: 1 }}>
+                    <div style={{ fontSize: 16, fontWeight: 800, color: "#1A2E26" }}>{farm.title}</div>
+                    <div style={{ fontSize: 13, color: "#64748B", marginTop: 2 }}>
+                      Earnings: <strong style={{ color: "#0D5C3A" }}>{farm.earnings}</strong>
+                    </div>
+                    <div style={{ fontSize: 12, color: "#94A3B8", marginTop: 2 }}>
+                      {farm.roi} • {farm.duration}
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => navigate("/farm-details")}
+                    style={{
+                      background: "#0D5C3A",
+                      color: "#FFFFFF",
+                      border: "none",
+                      padding: "8px 18px",
+                      borderRadius: "999px",
+                      fontWeight: 700,
+                      fontSize: 13,
+                      cursor: "pointer",
+                      boxShadow: "0 4px 12px rgba(13, 92, 58, 0.2)",
+                    }}
+                  >
+                    Book Now
+                  </button>
+                </div>
+              ))}
+            </div>
+          </section>
         </div>
       </main>
 

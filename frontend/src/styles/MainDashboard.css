@@ -346,21 +346,38 @@
 }
 
 .km-category-icon-box {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--km-radius-md);
-  background: var(--km-sage);
-  color: var(--km-emerald);
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 12px;
   transition: var(--km-ease);
 }
+
+.km-category-icon-box.cat-blue {
+  background: #E0F2FE;
+  color: #0284C7;
+}
+
+.km-category-icon-box.cat-peach {
+  background: #FFF7ED;
+  color: #EA580C;
+}
+
+.km-category-icon-box.cat-green {
+  background: #ECFDF5;
+  color: #059669;
+}
+
+.km-category-icon-box.cat-mint {
+  background: #F0FDF4;
+  color: #16A34A;
+}
+
 .km-category-card:hover .km-category-icon-box {
-  background: var(--km-emerald);
-  color: #FFFFFF;
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .km-category-label {
@@ -378,15 +395,19 @@
 
 /* ================= 5. LIVE MANDI BENCHMARK CARDS ================= */
 .km-mandi-scroll-strip {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 14px;
-  margin-bottom: 28px;
+  display: flex;
+  overflow-x: auto;
+  gap: 16px;
+  padding-bottom: 12px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .km-mandi-scroll-strip {
-    grid-template-columns: repeat(3, 1fr);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    overflow-x: visible;
   }
 }
 
@@ -394,16 +415,54 @@
   background: #FFFFFF;
   border: 1px solid var(--km-border-card);
   border-radius: var(--km-radius-lg);
-  padding: 18px;
+  padding: 14px;
   box-shadow: var(--km-shadow-sm);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-width: 260px;
+  scroll-snap-align: start;
+  cursor: pointer;
   transition: var(--km-ease);
 }
 .km-mandi-tile:hover {
   box-shadow: var(--km-shadow-card);
   border-color: var(--km-sage-border);
+  transform: translateY(-2px);
+}
+
+.km-mandi-thumb-wrap {
+  width: 100%;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.km-mandi-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.km-mandi-tile:hover .km-mandi-thumb-img {
+  transform: scale(1.04);
+}
+
+.km-mandi-thumb-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(13, 92, 58, 0.92);
+  backdrop-filter: blur(4px);
+  color: #FFFFFF;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 999px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .km-mandi-tile-header {

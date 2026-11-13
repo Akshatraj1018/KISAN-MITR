@@ -24,7 +24,7 @@ function Home() {
       <header className="km-home-navbar">
         <div className="km-home-brand">
           <div className="km-home-logo-icon" style={{ background: "transparent", padding: 0 }}>
-            <img src={kisanMitrLogo} alt="Kisan Mitr" style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover", border: "2px solid #34d399" }} />
+            <img src={kisanMitrLogo} alt="Kisan Mitr" style={{ width: 40, height: 40, borderRadius: "50%", objectFit: "cover", border: "2px solid #60A5FA" }} />
           </div>
           <div>
             <span className="km-home-title-brand">KISAN MITRA</span>

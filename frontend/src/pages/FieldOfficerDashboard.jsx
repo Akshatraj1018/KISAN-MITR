@@ -988,9 +988,9 @@ export default function Home() {
               <div className="notification-item">
                 <div
                   className="notification-icon"
-                  style={{ background: "#dcfce7" }}
+                  style={{ background: "#EFF6FF" }}
                 >
-                  <DollarSign style={{ color: "#16a34a" }} />
+                  <DollarSign style={{ color: "#2563EB" }} />
                 </div>
                 <div className="notification-text">
                   <p>{text.priceUpdates}</p>

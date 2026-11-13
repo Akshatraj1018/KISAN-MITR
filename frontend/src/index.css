@@ -5,31 +5,33 @@
 
 :root {
   /* Brand Core Colors */
-  --km-primary: #10b981;
-  --km-primary-hover: #059669;
-  --km-primary-light: #34d399;
-  --km-primary-glow: rgba(16, 185, 129, 0.35);
+  --km-primary: #2563EB;
+  --km-primary-hover: #1D4ED8;
+  --km-primary-light: #60A5FA;
+  --km-primary-glow: rgba(37, 99, 235, 0.25);
   
-  --km-forest-deep: #064e3b;
-  --km-forest-dark: #042f24;
-  --km-forest-bg: #071710;
-  --km-dark-slate: #0b1e16;
+  --km-forest-deep: #1E3A8A;
+  --km-forest-dark: #1E293B;
+  --km-forest-bg: #F8FAFC;
+  --km-dark-slate: #F8FAFC;
   
   --km-harvest-gold: #f59e0b;
   --km-harvest-light: #fef3c7;
   --km-alert-red: #ef4444;
   --km-sky-blue: #38bdf8;
 
-  /* Neutrals & Text */
-  --km-text-main: #f8fafc;
-  --km-text-body: #e2e8f0;
-  --km-text-muted: #94a3b8;
-  --km-text-dim: #64748b;
+  /* Neutrals & Ultra-Legible Outdoor High-Contrast Text */
+  --km-text-main: #0F172A;
+  --km-text-title: #0F172A;
+  --km-text-body: #1E293B;
+  --km-text-muted: #64748B;
+  --km-text-dim: #94A3B8;
 
-  /* Glassmorphism & Borders */
-  --km-card-bg: rgba(13, 34, 23, 0.78);
-  --km-card-border: rgba(52, 211, 153, 0.22);
-  --km-card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 25px rgba(16, 185, 129, 0.08);
+  /* Pure White Sunlight Cards & Crisp Borders */
+  --km-card-bg: #FFFFFF;
+  --km-card-border: #E2E8F0;
+  --km-card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 1px 3px 0 rgba(15, 23, 42, 0.04);
+  --km-card-shadow-hover: 0 10px 25px -5px rgba(37, 99, 235, 0.12), 0 0 0 1px #2563EB;
 
   /* Radii & Transitions */
   --km-radius-sm: 8px;
@@ -61,14 +63,14 @@ html, body {
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(7, 23, 16, 0.8);
+  background: #F1F5F9;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(52, 211, 153, 0.3);
+  background: rgba(37, 99, 235, 0.25);
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(52, 211, 153, 0.6);
+  background: rgba(37, 99, 235, 0.25);
 }
 
 /* Headings */
@@ -85,7 +87,7 @@ a {
   transition: var(--km-transition);
 }
 a:hover {
-  color: #6ee7b7;
+  color: #93C5FD;
 }
 
 /* Glassmorphic Card Utility */
@@ -100,13 +102,13 @@ a:hover {
 }
 
 .km-glass-card:hover {
-  border-color: rgba(52, 211, 153, 0.4);
-  box-shadow: 0 24px 48px -15px rgba(0, 0, 0, 0.6), 0 0 35px rgba(16, 185, 129, 0.15);
+  border-color: rgba(37, 99, 235, 0.25);
+  box-shadow: 0 24px 48px -15px rgba(0, 0, 0, 0.6), 0 0 35px rgba(37, 99, 235, 0.08);
 }
 
 /* Standard Buttons */
 .km-btn-primary {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
   color: #ffffff;
   border: none;
   border-radius: var(--km-radius-lg);
@@ -125,14 +127,14 @@ a:hover {
 
 .km-btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.55);
-  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.45);
+  background: linear-gradient(135deg, #60A5FA 0%, #1D4ED8 100%);
 }
 
 .km-btn-secondary {
-  background: rgba(255, 255, 255, 0.07);
+  background: #F1F5F9;
   color: var(--km-text-main);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid #EFF6FF;
   border-radius: var(--km-radius-lg);
   padding: 12px 20px;
   font-size: 14px;
@@ -147,8 +149,8 @@ a:hover {
 }
 
 .km-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(52, 211, 153, 0.3);
+  background: #EFF6FF;
+  border-color: rgba(37, 99, 235, 0.25);
   color: #ffffff;
   transform: translateY(-1px);
 }
@@ -156,8 +158,8 @@ a:hover {
 /* Inputs */
 .km-input {
   width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #F1F5F9;
+  border: 1px solid #EFF6FF;
   border-radius: var(--km-radius-md);
   padding: 14px 16px;
   color: #ffffff;
@@ -169,8 +171,8 @@ a:hover {
 
 .km-input:focus {
   border-color: var(--km-primary-light);
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);
+  background: #F1F5F9;
+  box-shadow: 0 0 16px rgba(37, 99, 235, 0.15);
 }
 
 .km-input::placeholder {
@@ -190,13 +192,13 @@ a:hover {
 }
 
 .km-badge.green {
-  background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: rgba(37, 99, 235, 0.08);
+  color: #60A5FA;
+  border: 1px solid rgba(37, 99, 235, 0.25);
 }
 
 .km-badge.gold {
-  background: rgba(245, 158, 11, 0.15);
+  background: rgba(217, 119, 6, 0.12);
   color: #fbbf24;
   border: 1px solid rgba(245, 158, 11, 0.3);
 }

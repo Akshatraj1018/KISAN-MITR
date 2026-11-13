@@ -87,11 +87,11 @@ export default function Forecast() {
               style={{
                 padding: "12px 16px",
                 borderRadius: 12,
-                background: activeDay.safeSpray ? "rgba(16,185,129,0.15)" : "rgba(245,158,11,0.15)",
-                border: `1px solid ${activeDay.safeSpray ? "rgba(16,185,129,0.3)" : "rgba(245,158,11,0.3)"}`,
+                background: activeDay.safeSpray ? "#EFF6FF" : "rgba(245,158,11,0.15)",
+                border: `1px solid ${activeDay.safeSpray ? "#BFDBFE" : "rgba(245,158,11,0.3)"}`,
               }}
             >
-              <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", color: activeDay.safeSpray ? "#34d399" : "#fcd34d" }}>
+              <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", color: activeDay.safeSpray ? "#60A5FA" : "#fcd34d" }}>
                 {activeDay.safeSpray ? "Safe Spray Window Active" : "Chemical Spray Not Recommended"}
               </div>
               <div style={{ fontSize: 13, color: "white", marginTop: 2 }}>

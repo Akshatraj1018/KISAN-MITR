@@ -245,8 +245,8 @@ function SoilResult() {
             <button
               onClick={() => navigate("/soil")}
               style={{
-                background: "#10b981",
-                color: "white",
+                background: "#2563EB",
+                color: "#0F172A",
                 border: "none",
                 borderRadius: 12,
                 padding: "12px 22px",
@@ -261,7 +261,7 @@ function SoilResult() {
               onClick={() => navigate("/dashboard")}
               style={{
                 background: "rgba(255,255,255,0.08)",
-                color: "white",
+                color: "#0F172A",
                 border: "1px solid rgba(255,255,255,0.15)",
                 borderRadius: 12,
                 padding: "12px 18px",
@@ -323,7 +323,7 @@ function SoilResult() {
           justifyContent: "space-between",
           alignItems: "center",
           padding: "12px 16px",
-          background: "#166534",
+          background: "#1E3A8A",
           color: "white",
           borderRadius: "0 0 16px 16px",
           marginBottom: "16px"
@@ -333,7 +333,7 @@ function SoilResult() {
           onClick={() => navigate("/dashboard")}
           style={{
             background: "rgba(255,255,255,0.2)",
-            color: "white",
+            color: "#0F172A",
             border: "1px solid rgba(255,255,255,0.4)",
             borderRadius: "8px",
             padding: "6px 12px",
@@ -356,7 +356,7 @@ function SoilResult() {
             onChange={(e) => setLanguage(e.target.value)}
             style={{
               background: "white",
-              color: "#166534",
+              color: "#1E3A8A",
               border: "none",
               borderRadius: "8px",
               padding: "4px 8px",
@@ -385,7 +385,7 @@ function SoilResult() {
               padding: "8px 14px",
               borderRadius: "20px",
               background: "#ecfdf5",
-              color: "#065f46",
+              color: "#1E3A8A",
               fontSize: "13px",
               fontWeight: "700",
               border: "1px solid #a7f3d0"
@@ -397,12 +397,12 @@ function SoilResult() {
         )}
 
         {/* Top soil analysis bar */}
-        <section className="card card-main" style={{ background: "linear-gradient(135deg, #15803d 0%, #16a34a 100%)", color: "white" }}>
+        <section className="card card-main" style={{ background: "linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%)", color: "white" }}>
           <div className="card-main-header">
             <div className="card-main-left">
               <div className="card-main-icon" style={{ fontSize: "32px", background: "rgba(255,255,255,0.2)" }}>🌱</div>
               <div>
-                <p className="card-main-label" style={{ color: "#dcfce7", fontSize: "13px" }}>{text.analysisComplete}</p>
+                <p className="card-main-label" style={{ color: "#EFF6FF", fontSize: "13px" }}>{text.analysisComplete}</p>
                 <h2 className="card-main-title" style={{ color: "white", fontSize: "22px", margin: "4px 0 0" }}>
                   {soil_type} · {soil_moisture}
                 </h2>
@@ -425,7 +425,7 @@ function SoilResult() {
               onClick={handleListenReport}
               style={{
                 background: "#8b5cf6",
-                color: "white",
+                color: "#0F172A",
                 border: "none",
                 borderRadius: "10px",
                 padding: "8px 14px",
@@ -448,8 +448,8 @@ function SoilResult() {
           onClick={() => navigate("/call")}
           style={{
             width: "100%",
-            background: "linear-gradient(135deg, #22c55e 0%, #15803d 100%)",
-            color: "white",
+            background: "linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)",
+            color: "#0F172A",
             border: "none",
             borderRadius: "16px",
             padding: "16px",
@@ -460,7 +460,7 @@ function SoilResult() {
             justifyContent: "center",
             gap: "10px",
             cursor: "pointer",
-            boxShadow: "0 8px 20px rgba(34, 197, 94, 0.35)",
+            boxShadow: "0 8px 20px rgba(37, 99, 235, 0.35)",
             margin: "4px 0 12px"
           }}
         >
@@ -483,7 +483,7 @@ function SoilResult() {
         <section
           className="card"
           onClick={() => toggleSection("fertilizer")}
-          style={{ cursor: "pointer", border: expandedSection === "fertilizer" ? "2px solid #22c55e" : "1px solid #e2e8f0" }}
+          style={{ cursor: "pointer", border: expandedSection === "fertilizer" ? "2px solid #3B82F6" : "1px solid #e2e8f0" }}
         >
           <div className="card-row-head" style={{ justifyContent: "space-between" }}>
             <div style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
@@ -493,10 +493,10 @@ function SoilResult() {
                 <p className="card-sub">{fertilizer_line}</p>
               </div>
             </div>
-            {expandedSection === "fertilizer" ? <ChevronUp size={20} color="#15803d" /> : <ChevronDown size={20} color="#64748b" />}
+            {expandedSection === "fertilizer" ? <ChevronUp size={20} color="#1D4ED8" /> : <ChevronDown size={20} color="#64748b" />}
           </div>
 
-          <div style={{ marginTop: "8px", fontSize: "12px", color: "#16a34a", fontWeight: "600" }}>
+          <div style={{ marginTop: "8px", fontSize: "12px", color: "#2563EB", fontWeight: "600" }}>
             {expandedSection === "fertilizer" ? text.hideSteps : "👉 " + text.tapForSteps}
           </div>
 
@@ -513,14 +513,14 @@ function SoilResult() {
                       background: "#f0fdf4",
                       padding: "12px",
                       borderRadius: "10px",
-                      borderLeft: "4px solid #22c55e",
+                      borderLeft: "4px solid #3B82F6",
                       textAlign: "left"
                     }}
                   >
-                    <div style={{ fontWeight: "700", color: "#166534", fontSize: "13px" }}>
+                    <div style={{ fontWeight: "700", color: "#1E3A8A", fontSize: "13px" }}>
                       {language === "en" ? `Phase ${idx + 1}: ${item.stage}` : `चरण ${idx + 1}: ${item.stage}`}
                     </div>
-                    <div style={{ fontSize: "12px", color: "#15803d", margin: "4px 0", fontWeight: "600" }}>
+                    <div style={{ fontSize: "12px", color: "#1D4ED8", margin: "4px 0", fontWeight: "600" }}>
                       ⚖️ {text.dosageTitle}: <strong>{item.dose}</strong>
                     </div>
                     <div style={{ fontSize: "12px", color: "#475569" }}>
@@ -586,10 +586,10 @@ function SoilResult() {
                     <div style={{ fontSize: "12px", color: "#334155", margin: "4px 0" }}>
                       🌱 {text.seedRateLabel}: <strong>{c.seed_rate}</strong> | 🗓️ {text.sowingLabel}: <strong>{c.sowing}</strong>
                     </div>
-                    <div style={{ fontSize: "12px", color: "#15803d", fontWeight: "600" }}>
+                    <div style={{ fontSize: "12px", color: "#1D4ED8", fontWeight: "600" }}>
                       📈 {text.yieldLabel}: {c.yield}
                     </div>
-                    <div style={{ fontSize: "13px", color: "#047857", fontWeight: "700", marginTop: "4px" }}>
+                    <div style={{ fontSize: "13px", color: "#1D4ED8", fontWeight: "700", marginTop: "4px" }}>
                       💵 {text.profitLabel}: {c.profit}
                     </div>
                   </div>
@@ -724,18 +724,18 @@ function SoilResult() {
               <span style={{ fontSize: "28px" }}>🌾</span>
               <div>
                 <h3 style={{ margin: 0, fontSize: "18px", color: "#0f172a" }}>{activeCropModal.name}</h3>
-                <p style={{ margin: "2px 0 0", fontSize: "12px", color: "#16a34a", fontWeight: "600" }}>
+                <p style={{ margin: "2px 0 0", fontSize: "12px", color: "#2563EB", fontWeight: "600" }}>
                   {text.certifiedBadge}
                 </p>
               </div>
             </div>
 
             {/* Varieties & Codes */}
-            <div style={{ background: "#f0fdf4", border: "1px solid #bbf7d0", padding: "12px", borderRadius: "12px", marginBottom: "12px" }}>
-              <div style={{ fontWeight: "700", color: "#166534", fontSize: "13px" }}>
+            <div style={{ background: "#f0fdf4", border: "1px solid #BFDBFE", padding: "12px", borderRadius: "12px", marginBottom: "12px" }}>
+              <div style={{ fontWeight: "700", color: "#1E3A8A", fontSize: "13px" }}>
                 {text.seedCodesTitle}
               </div>
-              <div style={{ fontSize: "14px", fontWeight: "700", color: "#15803d", margin: "4px 0" }}>
+              <div style={{ fontSize: "14px", fontWeight: "700", color: "#1D4ED8", margin: "4px 0" }}>
                 {activeCropModal.varieties}
               </div>
               <div style={{ fontSize: "12px", color: "#334155" }}>
@@ -788,7 +788,7 @@ function SoilResult() {
                 • {text.yieldLabel}: <strong>{activeCropModal.expectedYield}</strong>
               </div>
               <div style={{ fontSize: "13px", color: "#78350f" }}>
-                • {text.profitLabel}: <strong style={{ color: "#15803d" }}>{activeCropModal.netProfit}</strong>
+                • {text.profitLabel}: <strong style={{ color: "#1D4ED8" }}>{activeCropModal.netProfit}</strong>
               </div>
             </div>
 
@@ -805,8 +805,8 @@ function SoilResult() {
               }}
               style={{
                 width: "100%",
-                background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
-                color: "white",
+                background: "linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)",
+                color: "#0F172A",
                 border: "none",
                 borderRadius: "12px",
                 padding: "14px",
@@ -817,7 +817,7 @@ function SoilResult() {
                 justifyContent: "center",
                 gap: "8px",
                 marginBottom: "10px",
-                boxShadow: "0 4px 14px rgba(16, 185, 129, 0.35)",
+                boxShadow: "0 4px 14px #BFDBFE",
               }}
             >
               <Sprout size={18} />
@@ -831,8 +831,8 @@ function SoilResult() {
               }}
               style={{
                 width: "100%",
-                background: "linear-gradient(135deg, #22c55e 0%, #15803d 100%)",
-                color: "white",
+                background: "linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%)",
+                color: "#0F172A",
                 border: "none",
                 borderRadius: "12px",
                 padding: "14px",

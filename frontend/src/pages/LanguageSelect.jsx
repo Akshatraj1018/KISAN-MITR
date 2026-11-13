@@ -44,7 +44,7 @@ export default function LanguageSelect() {
             <span>Back to Dashboard</span>
           </button>
 
-          <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "#34d399", fontWeight: 700 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "#60A5FA", fontWeight: 700 }}>
             <Sparkles style={{ width: 14, height: 14 }} />
             <span>12 Official Native Languages</span>
           </div>
@@ -81,7 +81,7 @@ export default function LanguageSelect() {
                         width: 24,
                         height: 24,
                         borderRadius: "50%",
-                        background: "#10b981",
+                        background: "#2563EB",
                         color: "white",
                         display: "flex",
                         alignItems: "center",

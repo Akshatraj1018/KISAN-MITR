@@ -2,13 +2,13 @@
 
 .km-profile-page {
   min-height: 100vh;
-  background-color: #07100b;
+  background-color: #F8FAFC;
   background-image: 
-    radial-gradient(circle at 10% 15%, rgba(16, 185, 129, 0.14) 0%, transparent 45%),
-    radial-gradient(circle at 90% 75%, rgba(245, 158, 11, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 10% 15%, rgba(37, 99, 235, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 90% 75%, rgba(217, 119, 6, 0.08) 0%, transparent 40%),
     radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
   background-attachment: fixed;
-  color: #f8fafc;
+  color: #0F172A;
   padding-top: 86px;
   padding-bottom: 70px;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -22,8 +22,8 @@
 }
 
 .km-profile-card-shell {
-  background: rgba(13, 24, 18, 0.85);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: #FFFFFF;
+  border: 1px solid #F1F5F9;
   border-radius: 24px;
   padding: 32px;
   box-shadow: 0 12px 35px -10px rgba(0, 0, 0, 0.6);
@@ -34,7 +34,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid #F1F5F9;
   padding-bottom: 24px;
   margin-bottom: 24px;
   flex-wrap: wrap;
@@ -63,8 +63,8 @@
 }
 
 .km-field-box {
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #F8FAFC;
+  border: 1px solid #F1F5F9;
   border-radius: 14px;
   padding: 16px 18px;
 }
@@ -87,8 +87,8 @@
 .km-field-box input {
   width: 100%;
   padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: #F1F5F9;
+  border: 1px solid #EFF6FF;
   border-radius: 8px;
   color: white;
   font-size: 14px;

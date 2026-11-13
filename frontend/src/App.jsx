@@ -45,9 +45,10 @@ function App() {
           </header>
 
           <Routes>
-            {/* Public routes */}
-            <Route path="/" element={<Login />} />
-            <Route path="/home" element={<Home />} />
+            {/* Public routes - Direct access to MainDashboard */}
+            <Route path="/" element={<MainDashboard />} />
+            <Route path="/dashboard" element={<MainDashboard />} />
+            <Route path="/home" element={<MainDashboard />} />
             <Route path="/landing" element={<Home />} />
             <Route path="/language" element={<LanguageSelect />} />
             <Route path="/login" element={<Login />} />

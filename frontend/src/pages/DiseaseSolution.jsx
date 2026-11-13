@@ -308,8 +308,8 @@ export default function DiseaseSolution() {
                       width: 60,
                       height: 60,
                       borderRadius: "50%",
-                      background: "rgba(16,185,129,0.18)",
-                      color: "#34d399",
+                      background: "#EFF6FF",
+                      color: "#60A5FA",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -419,7 +419,7 @@ export default function DiseaseSolution() {
                         </span>
                       );
                     })()}
-                    <span style={{ fontSize: 12, color: "#34d399", fontWeight: 700 }}>
+                    <span style={{ fontSize: 12, color: "#60A5FA", fontWeight: 700 }}>
                       ● {Math.round((diagnosis.confidence || 0.96) * 100)}% Match Confidence
                     </span>
                     <span style={{ fontSize: 12, color: "#94a3b8" }}>
@@ -465,7 +465,7 @@ export default function DiseaseSolution() {
                               <h4>🌿 Recommended Foliar Nutrition & Micronutrients</h4>
                               <p>{diagnosis.recommendation?.advice}</p>
 
-                              <div style={{ background: "rgba(16, 185, 129, 0.14)", border: "1px solid rgba(16, 185, 129, 0.3)", borderRadius: 10, padding: "8px 12px", marginBottom: 14, fontSize: 13, color: "#a7f3d0", display: "flex", alignItems: "center", gap: 8 }}>
+                              <div style={{ background: "#EFF6FF", border: "1px solid #BFDBFE", borderRadius: 10, padding: "8px 12px", marginBottom: 14, fontSize: 13, color: "#1D4ED8", display: "flex", alignItems: "center", gap: 8 }}>
                                 <span>✅</span>
                                 <span><strong>Foliage is 100% Healthy:</strong> Zero chemical fungicides required. Maintain vegetative vigor with foliar sprays.</span>
                               </div>
@@ -481,7 +481,7 @@ export default function DiseaseSolution() {
                                 </div>
                               </div>
 
-                              <div style={{ fontSize: 12, color: "#34d399", fontWeight: 700 }}>
+                              <div style={{ fontSize: 12, color: "#60A5FA", fontWeight: 700 }}>
                                 Application Dosage: {diagnosis.recommendation?.dosage}
                               </div>
                             </>
@@ -560,7 +560,7 @@ export default function DiseaseSolution() {
               /* Empty State Showcase */
               <div className="km-empty-doc-showcase">
                 <div style={{ fontSize: 40, marginBottom: 10 }}>🔬</div>
-                <h4 style={{ margin: 0, color: "white", fontSize: 16, fontWeight: 700 }}>
+                <h4 style={{ margin: 0, color: "#0F172A", fontSize: 16, fontWeight: 700 }}>
                   Ready to Diagnose Your Crop Sample
                 </h4>
                 <p style={{ color: "#94a3b8", fontSize: 13, marginTop: 6, marginBottom: 20 }}>
@@ -578,7 +578,7 @@ export default function DiseaseSolution() {
                         <h5>{sample.crop}</h5>
                         <span className={`km-severity-pill ${sample.severity}`}>{sample.severity}</span>
                       </div>
-                      <div style={{ fontSize: 12, color: "#34d399", fontWeight: 700, margin: "2px 0" }}>
+                      <div style={{ fontSize: 12, color: "#60A5FA", fontWeight: 700, margin: "2px 0" }}>
                         {sample.disease}
                       </div>
                       <p>{sample.symptoms}</p>

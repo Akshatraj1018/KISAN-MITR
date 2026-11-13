@@ -1,29 +1,29 @@
 /* src/styles/MainDashboard.css - KISAN MITRA Modern Dashboard Design System */
 
 :root {
-  --km-bg-dark: #07100b;
-  --km-surface-dark: rgba(13, 24, 18, 0.78);
-  --km-surface-elevated: rgba(20, 36, 27, 0.85);
+  --km-bg-dark: #F8FAFC;
+  --km-surface-dark: #FFFFFF;
+  --km-surface-elevated: #FFFFFF;
   --km-surface-light: #ffffff;
-  --km-surface-light-tint: rgba(255, 255, 255, 0.05);
+  --km-surface-light-tint: #F1F5F9;
   --km-surface-card-white: rgba(255, 255, 255, 0.96);
-  --km-border: rgba(255, 255, 255, 0.09);
-  --km-border-focus: rgba(16, 185, 129, 0.45);
-  --km-primary: #10b981;
-  --km-primary-glow: rgba(16, 185, 129, 0.28);
-  --km-primary-deep: #059669;
-  --km-harvest-gold: #f59e0b;
-  --km-harvest-glow: rgba(245, 158, 11, 0.22);
-  --km-sky-blue: #38bdf8;
-  --km-text-main: #f8fafc;
-  --km-text-muted: #94a3b8;
-  --km-text-dim: #64748b;
+  --km-border: #E2E8F0;
+  --km-border-focus: rgba(37, 99, 235, 0.5);
+  --km-primary: #2563EB;
+  --km-primary-glow: rgba(37, 99, 235, 0.15);
+  --km-primary-deep: #1D4ED8;
+  --km-harvest-gold: #D97706;
+  --km-harvest-glow: rgba(217, 119, 6, 0.18);
+  --km-sky-blue: #0284C7;
+  --km-text-main: #0F172A;
+  --km-text-muted: #475569;
+  --km-text-dim: #64748B;
   --km-radius-sm: 10px;
   --km-radius-md: 16px;
   --km-radius-lg: 22px;
   --km-radius-pill: 9999px;
-  --km-shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
-  --km-shadow-glow: 0 12px 35px -8px var(--km-primary-glow);
+  --km-shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 1px 3px 0 rgba(15, 23, 42, 0.04);
+  --km-shadow-glow: 0 8px 25px -4px var(--km-primary-glow);
 }
 
 /* Base Dashboard Container */
@@ -31,8 +31,8 @@
   min-height: 100vh;
   background-color: var(--km-bg-dark);
   background-image: 
-    radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
-    radial-gradient(circle at 85% 65%, rgba(245, 158, 11, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 15% 15%, rgba(37, 99, 235, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 85% 65%, rgba(217, 119, 6, 0.08) 0%, transparent 40%),
     radial-gradient(circle at 50% 90%, rgba(56, 189, 248, 0.06) 0%, transparent 50%);
   background-attachment: fixed;
   color: var(--km-text-main);
@@ -56,7 +56,7 @@
   left: 0;
   right: 0;
   height: 72px;
-  background: rgba(7, 16, 11, 0.85);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--km-border);
@@ -80,7 +80,7 @@
   width: 44px;
   height: 44px;
   border-radius: var(--km-radius-md);
-  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -98,9 +98,7 @@
   font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  background: linear-gradient(135deg, #ffffff 40%, #a7f3d0 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #0F172A;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -111,12 +109,12 @@
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  background: rgba(16, 185, 129, 0.18);
-  color: #34d399;
-  border: 1px solid rgba(52, 211, 153, 0.3);
+  background: rgba(37, 99, 235, 0.08);
+  color: #60A5FA;
+  border: 1px solid rgba(37, 99, 235, 0.25);
   padding: 2px 7px;
   border-radius: var(--km-radius-pill);
-  -webkit-text-fill-color: #34d399;
+  -webkit-text-fill-color: #60A5FA;
 }
 
 .km-brand-subtitle {
@@ -129,7 +127,7 @@
 .km-nav-pill-group {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.05);
+  background: #F1F5F9;
   border: 1px solid var(--km-border);
   padding: 4px;
   border-radius: var(--km-radius-pill);
@@ -159,11 +157,11 @@
 
 .km-nav-btn:hover {
   color: white;
-  background: rgba(255, 255, 255, 0.08);
+  background: #F1F5F9;
 }
 
 .km-nav-btn.active {
-  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%);
   color: #ffffff;
   box-shadow: 0 4px 14px var(--km-primary-glow);
 }
@@ -217,7 +215,7 @@
   align-items: center;
   gap: 10px;
   padding: 6px 14px 6px 8px;
-  background: rgba(255, 255, 255, 0.05);
+  background: #F1F5F9;
   border: 1px solid var(--km-border);
   border-radius: var(--km-radius-pill);
   cursor: pointer;
@@ -225,7 +223,7 @@
 }
 
 .km-farmer-badge:hover {
-  background: rgba(255, 255, 255, 0.09);
+  background: #F1F5F9;
   border-color: var(--km-border-focus);
 }
 
@@ -252,7 +250,7 @@
 .km-farmer-name {
   font-size: 13px;
   font-weight: 700;
-  color: white;
+  color: #0F172A;
   line-height: 1.2;
 }
 
@@ -265,7 +263,7 @@
 .km-hero-cockpit {
   margin-top: 18px;
   margin-bottom: 24px;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(13, 24, 18, 0.8) 50%, rgba(245, 158, 11, 0.06) 100%);
+  background: #FFFFFF;
   border: 1px solid var(--km-border);
   border-radius: var(--km-radius-lg);
   padding: 24px 28px;
@@ -286,7 +284,7 @@
   left: 0;
   width: 4px;
   height: 100%;
-  background: linear-gradient(to bottom, #10b981, #f59e0b);
+  background: linear-gradient(to bottom, #2563EB, #f59e0b);
 }
 
 .km-greeting-row {
@@ -305,10 +303,11 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  color: #0F172A;
 }
 
 .km-greeting-title span.name {
-  color: #34d399;
+  color: #2563EB;
 }
 
 /* Compact Kisan Mitra AI Voice Block directly beside Namaste */
@@ -354,10 +353,10 @@
   right: 0;
   width: 9px;
   height: 9px;
-  background: #10b981;
-  border: 1.5px solid #07100b;
+  background: #2563EB;
+  border: 1.5px solid #F8FAFC;
   border-radius: 50%;
-  box-shadow: 0 0 8px #10b981;
+  box-shadow: 0 0 8px #2563EB;
 }
 
 .km-voice-inline-text {
@@ -372,7 +371,7 @@
   gap: 5px;
   font-size: 13px;
   font-weight: 800;
-  color: #ffffff;
+  color: #0F172A;
 }
 
 .km-voice-tag {
@@ -452,7 +451,7 @@
 }
 
 .km-pulse-pill {
-  background: rgba(255, 255, 255, 0.06);
+  background: #F1F5F9;
   border: 1px solid var(--km-border);
   border-radius: var(--km-radius-md);
   padding: 10px 16px;
@@ -463,13 +462,13 @@
 }
 
 .km-pulse-pill.optimal {
-  border-color: rgba(16, 185, 129, 0.3);
-  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(37, 99, 235, 0.25);
+  background: rgba(37, 99, 235, 0.08);
 }
 
 .km-pulse-pill.alert {
   border-color: rgba(245, 158, 11, 0.35);
-  background: rgba(245, 158, 11, 0.1);
+  background: rgba(217, 119, 6, 0.12);
 }
 
 .km-pulse-icon {
@@ -487,13 +486,13 @@
 .km-pulse-val {
   font-size: 14px;
   font-weight: 700;
-  color: white;
+  color: #0F172A;
 }
 
 /* ================= 2. SMART WEATHER & SPRAY STATION ================= */
 .km-weather-station {
   margin-bottom: 24px;
-  background: linear-gradient(135deg, rgba(20, 36, 27, 0.85) 0%, rgba(13, 24, 18, 0.95) 100%);
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 100%);
   border: 1px solid var(--km-border);
   border-radius: var(--km-radius-lg);
   padding: 24px 28px;
@@ -518,7 +517,7 @@
   width: 72px;
   height: 72px;
   border-radius: var(--km-radius-md);
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(16, 185, 129, 0.15) 100%);
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(37, 99, 235, 0.08) 100%);
   border: 1px solid rgba(56, 189, 248, 0.3);
   display: flex;
   align-items: center;
@@ -536,14 +535,14 @@
   font-size: 44px;
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: white;
+  color: #0F172A;
   line-height: 1;
 }
 
 .km-condition-text {
   font-size: 16px;
   font-weight: 600;
-  color: #e2e8f0;
+  color: #334155;
   margin-top: 4px;
 }
 
@@ -560,7 +559,7 @@
 }
 
 .km-metric-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: #F1F5F9;
   border: 1px solid var(--km-border);
   border-radius: var(--km-radius-md);
   padding: 14px 16px;
@@ -568,8 +567,8 @@
 }
 
 .km-metric-card:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.18);
+  background: #F1F5F9;
+  border-color: #EFF6FF;
   transform: translateY(-2px);
 }
 
@@ -592,7 +591,7 @@
 .km-metric-card-val {
   font-size: 17px;
   font-weight: 800;
-  color: white;
+  color: #0F172A;
 }
 
 /* Advisory Alert Row */
@@ -613,13 +612,13 @@
 }
 
 .km-advisory-card.warning {
-  background: rgba(245, 158, 11, 0.1);
-  border: 1px solid rgba(245, 158, 11, 0.28);
+  background: rgba(217, 119, 6, 0.12);
+  border: 1px solid rgba(217, 119, 6, 0.18);
 }
 
 .km-advisory-card.safe {
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.28);
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.15);
 }
 
 .km-advisory-icon {
@@ -631,7 +630,7 @@
   margin: 0 0 3px 0;
   font-size: 14px;
   font-weight: 700;
-  color: white;
+  color: #0F172A;
 }
 
 .km-advisory-content p {
@@ -671,13 +670,13 @@
 
 /* Vision Card Accents */
 .km-action-hero-card.vision-card {
-  background: radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.16) 0%, rgba(13, 24, 18, 0.95) 70%);
-  border-color: rgba(16, 185, 129, 0.3);
+  background: radial-gradient(circle at 10% 10%, rgba(37, 99, 235, 0.08) 0%, #FFFFFF 70%);
+  border-color: rgba(37, 99, 235, 0.25);
 }
 
 /* Voice Card Accents */
 .km-action-hero-card.voice-card {
-  background: radial-gradient(circle at 90% 10%, rgba(56, 189, 248, 0.14) 0%, rgba(13, 24, 18, 0.95) 70%);
+  background: radial-gradient(circle at 90% 10%, rgba(56, 189, 248, 0.14) 0%, #FFFFFF 70%);
   border-color: rgba(56, 189, 248, 0.3);
 }
 
@@ -695,9 +694,9 @@
 }
 
 .vision-badge {
-  background: rgba(16, 185, 129, 0.2);
-  color: #34d399;
-  border: 1px solid rgba(52, 211, 153, 0.35);
+  background: rgba(37, 99, 235, 0.15);
+  color: #60A5FA;
+  border: 1px solid rgba(37, 99, 235, 0.25);
 }
 
 .voice-badge {
@@ -710,7 +709,7 @@
   font-size: 18px;
   font-weight: 800;
   margin: 0 0 4px 0;
-  color: white;
+  color: #0F172A;
   letter-spacing: -0.01em;
 }
 
@@ -723,8 +722,8 @@
 
 /* Viewfinder Area for Scanner */
 .km-viewfinder-preview {
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px dashed rgba(52, 211, 153, 0.4);
+  background: #F8FAFC;
+  border: 1px dashed rgba(37, 99, 235, 0.25);
   border-radius: var(--km-radius-md);
   padding: 10px 14px;
   display: flex;
@@ -737,13 +736,13 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(16, 185, 129, 0.2);
-  color: #34d399;
+  background: rgba(37, 99, 235, 0.15);
+  color: #60A5FA;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 20px;
-  box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.25);
 }
 
 .km-viewfinder-specs {
@@ -754,7 +753,7 @@
 .km-viewfinder-specs span.title {
   font-size: 13px;
   font-weight: 700;
-  color: white;
+  color: #0F172A;
 }
 
 .km-viewfinder-specs span.sub {
@@ -764,7 +763,7 @@
 
 /* Soundwave Area for Voice */
 .km-voice-soundwave-box {
-  background: rgba(0, 0, 0, 0.35);
+  background: #F8FAFC;
   border: 1px solid rgba(56, 189, 248, 0.25);
   border-radius: var(--km-radius-md);
   padding: 10px 14px;
@@ -838,15 +837,15 @@
 }
 
 .km-btn-hero-primary.green {
-  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%);
   color: white;
   box-shadow: 0 4px 18px var(--km-primary-glow);
 }
 
 .km-btn-hero-primary.green:hover {
-  background: linear-gradient(135deg, #047857 0%, #059669 100%);
+  background: linear-gradient(135deg, #1D4ED8 0%, #1D4ED8 100%);
   transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 6px 22px rgba(37, 99, 235, 0.35);
 }
 
 .km-btn-hero-primary.blue {
@@ -870,16 +869,16 @@
   border-radius: var(--km-radius-md);
   font-size: 13px;
   font-weight: 600;
-  background: rgba(255, 255, 255, 0.08);
+  background: #F1F5F9;
   border: 1px solid var(--km-border);
-  color: white;
+  color: #0F172A;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .km-btn-hero-secondary:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.25);
+  background: #EFF6FF;
+  border-color: #DBEAFE;
 }
 
 /* ================= 4. LIVE MANDI PRICES & 3-DAY TREND TABLE ================= */
@@ -905,7 +904,7 @@
   font-size: 20px;
   font-weight: 800;
   margin: 0 0 4px 0;
-  color: white;
+  color: #0F172A;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -921,7 +920,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.05);
+  background: #F1F5F9;
   padding: 4px;
   border-radius: var(--km-radius-pill);
   border: 1px solid var(--km-border);
@@ -950,7 +949,7 @@
   overflow-x: auto;
   border-radius: var(--km-radius-md);
   border: 1px solid var(--km-border);
-  background: rgba(0, 0, 0, 0.25);
+  background: #FFFFFF;
 }
 
 .km-mandi-table {
@@ -962,7 +961,7 @@
 
 .km-mandi-table th {
   padding: 14px 18px;
-  background: rgba(255, 255, 255, 0.04);
+  background: #F1F5F9;
   color: var(--km-text-muted);
   font-weight: 700;
   font-size: 12px;
@@ -973,8 +972,8 @@
 
 .km-mandi-table td {
   padding: 16px 18px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  color: white;
+  border-bottom: 1px solid #F1F5F9;
+  color: #0F172A;
   vertical-align: middle;
 }
 
@@ -983,7 +982,7 @@
 }
 
 .km-mandi-table tr:hover td {
-  background: rgba(255, 255, 255, 0.03);
+  background: #F8FAFC;
 }
 
 .km-crop-cell {
@@ -997,7 +996,7 @@
   width: 38px;
   height: 38px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.08);
+  background: #F1F5F9;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1007,7 +1006,7 @@
 .km-price-today {
   font-size: 16px;
   font-weight: 800;
-  color: #34d399;
+  color: #60A5FA;
 }
 
 .km-price-history {
@@ -1027,14 +1026,14 @@
 }
 
 .km-trend-badge.up {
-  background: rgba(16, 185, 129, 0.18);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  background: rgba(37, 99, 235, 0.08);
+  color: #60A5FA;
+  border: 1px solid rgba(37, 99, 235, 0.25);
 }
 
 .km-trend-badge.down {
   background: rgba(239, 68, 68, 0.18);
-  color: #f87171;
+  color: #DC2626;
   border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
@@ -1068,7 +1067,7 @@
 }
 
 .km-soil-kpi {
-  background: rgba(255, 255, 255, 0.05);
+  background: #F1F5F9;
   border: 1px solid var(--km-border);
   border-radius: var(--km-radius-md);
   padding: 12px;
@@ -1085,7 +1084,7 @@
 .km-soil-kpi-val {
   font-size: 16px;
   font-weight: 800;
-  color: white;
+  color: #0F172A;
   margin-top: 4px;
 }
 
@@ -1101,15 +1100,15 @@
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
-  background: rgba(255, 255, 255, 0.05);
+  background: #F1F5F9;
   border: 1px solid var(--km-border);
   border-radius: var(--km-radius-md);
   transition: all 0.2s ease;
 }
 
 .km-rec-crop-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(16, 185, 129, 0.3);
+  background: #F1F5F9;
+  border-color: rgba(37, 99, 235, 0.25);
   transform: translateX(3px);
 }
 
@@ -1126,7 +1125,7 @@
 .km-rec-crop-name {
   font-size: 14px;
   font-weight: 700;
-  color: white;
+  color: #0F172A;
 }
 
 .km-rec-crop-sub {
@@ -1137,8 +1136,8 @@
 .km-match-badge {
   font-size: 12px;
   font-weight: 800;
-  color: #34d399;
-  background: rgba(16, 185, 129, 0.15);
+  color: #60A5FA;
+  background: rgba(37, 99, 235, 0.08);
   padding: 4px 10px;
   border-radius: var(--km-radius-pill);
 }
@@ -1152,7 +1151,7 @@
 }
 
 .km-pest-banner {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(13, 24, 18, 0.9) 70%);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, #FFFFFF 70%);
   border: 1px solid rgba(239, 68, 68, 0.3);
   border-radius: var(--km-radius-lg);
   padding: 24px 26px;
@@ -1168,7 +1167,7 @@
 
 .km-pest-pill {
   background: rgba(239, 68, 68, 0.2);
-  color: #f87171;
+  color: #DC2626;
   font-size: 11px;
   font-weight: 800;
   padding: 3px 10px;
@@ -1179,7 +1178,7 @@
 .km-pest-content h4 {
   font-size: 16px;
   font-weight: 800;
-  color: white;
+  color: #0F172A;
   margin: 0 0 6px 0;
 }
 
@@ -1191,12 +1190,12 @@
 }
 
 .km-remedy-box {
-  background: rgba(0, 0, 0, 0.3);
+  background: #FEF2F2;
   border-left: 3px solid #f87171;
   padding: 10px 14px;
   border-radius: 6px;
   font-size: 12px;
-  color: #fecaca;
+  color: #991B1B;
   margin-bottom: 16px;
 }
 
@@ -1213,16 +1212,16 @@
   align-items: flex-start;
   gap: 12px;
   padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.04);
+  background: #F1F5F9;
   border-radius: var(--km-radius-md);
-  border-left: 3px solid #10b981;
+  border-left: 3px solid #2563EB;
 }
 
 .km-timeline-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #10b981;
+  background: #2563EB;
   margin-top: 5px;
 }
 
@@ -1230,7 +1229,7 @@
   margin: 0 0 3px 0;
   font-size: 14px;
   font-weight: 700;
-  color: white;
+  color: #0F172A;
 }
 
 .km-timeline-content p {
@@ -1273,12 +1272,15 @@
     padding-bottom: 84px !important;
     overflow-x: hidden;
     width: 100%;
+    background-color: #F8FAFC !important;
   }
 
   .km-topbar {
     padding: 0 14px;
     height: 60px;
-    background: #081a11 !important;
+    background: #FFFFFF !important;
+    border-bottom: 1px solid #E2E8F0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
 
   .km-nav-pill-group {
@@ -1293,13 +1295,13 @@
     left: 0;
     right: 0;
     height: 64px;
-    background: #081a11;
-    border-top: 1px solid rgba(52, 211, 153, 0.25);
+    background: #FFFFFF;
+    border-top: 1px solid #E2E8F0;
     z-index: 1000;
     align-items: center;
     justify-content: space-around;
     padding-bottom: env(safe-area-inset-bottom, 0px);
-    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
   }
 
   .km-mob-nav-btn {
@@ -1312,7 +1314,7 @@
     gap: 4px;
     background: none;
     border: none;
-    color: #94a3b8;
+    color: #64748B;
     cursor: pointer;
     padding: 6px 0;
     transition: all 0.2s ease;
@@ -1327,12 +1329,12 @@
 
   .km-mob-nav-btn.active,
   .km-mob-nav-btn:active {
-    color: #34d399;
+    color: #2563EB;
   }
 
   .km-mob-nav-btn.active svg {
-    color: #34d399;
-    filter: drop-shadow(0 0 8px rgba(52, 211, 153, 0.6));
+    color: #2563EB;
+    filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.25));
   }
 
   .km-container {
@@ -1353,23 +1355,30 @@
   .km-hero-cockpit {
     padding: 16px;
     border-radius: 16px;
-    background: #0c1f16 !important;
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
   }
 
   .km-greeting-title {
     font-size: 19px;
+    color: #0F172A;
   }
 
   .km-weather-station {
     padding: 16px;
     border-radius: 16px;
-    background: #0c1f16 !important;
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
   }
 
   .km-action-hero-card {
     padding: 16px;
     border-radius: 16px;
-    background: #0c1f16 !important;
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
   }
 
   .km-hero-actions-grid {

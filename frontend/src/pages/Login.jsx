@@ -352,8 +352,8 @@ export default function Login() {
                 height: "48px",
                 borderRadius: "50%",
                 objectFit: "cover",
-                boxShadow: "0 0 16px rgba(16, 185, 129, 0.4)",
-                border: "2px solid rgba(52, 211, 153, 0.5)"
+                boxShadow: "0 0 16px rgba(37, 99, 235, 0.4)",
+                border: "2px solid #BFDBFE"
               }}
             />
             <div>
@@ -392,8 +392,8 @@ export default function Login() {
                   height: "160px",
                   borderRadius: "50%",
                   objectFit: "cover",
-                  boxShadow: "0 20px 45px rgba(0,0,0,0.6), 0 0 35px rgba(16, 185, 129, 0.35)",
-                  border: "3px solid rgba(52, 211, 153, 0.5)"
+                  boxShadow: "0 20px 45px rgba(0,0,0,0.6), 0 0 35px #BFDBFE",
+                  border: "3px solid #BFDBFE"
                 }}
               />
             </div>
@@ -479,7 +479,7 @@ export default function Login() {
                 border: "1px solid rgba(255, 255, 255, 0.2)",
                 borderRadius: "14px",
                 padding: "13px 18px",
-                color: "#ffffff",
+                color: "#0F172A",
                 fontWeight: "700",
                 fontSize: "14px",
                 cursor: "pointer",
@@ -508,7 +508,7 @@ export default function Login() {
               </div>
             )}
             {successMsg && (
-              <div style={{ display: "flex", alignItems: "center", gap: 8, background: "rgba(16,185,129,0.15)", border: "1px solid #10b981", color: "#34d399", padding: "10px 14px", borderRadius: "10px", fontSize: "13px", marginBottom: "16px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, background: "#EFF6FF", border: "1px solid #2563EB", color: "#60A5FA", padding: "10px 14px", borderRadius: "10px", fontSize: "13px", marginBottom: "16px" }}>
                 <CheckCircle size={15} />
                 <span>{successMsg}</span>
               </div>
@@ -526,7 +526,7 @@ export default function Login() {
                         Enter 10-Digit Mobile Number (मोबाइल नंबर):
                       </label>
                       <div className="km-phone-input-row">
-                        <div className="km-country-code-pill" style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "12px", padding: "0 14px", color: "white", fontWeight: "800" }}>
+                        <div className="km-country-code-pill" style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "12px", padding: "0 14px", color: "#0F172A", fontWeight: "800" }}>
                           <span>🇮🇳 +91</span>
                         </div>
                         <div className="km-input-wrapper" style={{ flex: 1, position: "relative" }}>
@@ -538,7 +538,7 @@ export default function Login() {
                             value={phone}
                             onChange={(e) => setPhone(e.target.value)}
                             disabled={loading}
-                            style={{ width: "100%", padding: "14px 14px 14px 40px", background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "12px", color: "white", fontSize: "15px", fontWeight: "600", outline: "none", boxSizing: "border-box" }}
+                            style={{ width: "100%", padding: "14px 14px 14px 40px", background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "12px", color: "#0F172A", fontSize: "15px", fontWeight: "600", outline: "none", boxSizing: "border-box" }}
                             autoFocus
                           />
                         </div>
@@ -596,8 +596,8 @@ export default function Login() {
                     </div>
 
                     {isNewPhoneUser && (
-                      <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(52,211,153,0.3)", borderRadius: "12px", padding: "14px", marginBottom: "16px" }}>
-                        <span style={{ display: "block", fontSize: "12px", color: "#34d399", fontWeight: "800", marginBottom: "10px" }}>
+                      <div style={{ background: "rgba(255,255,255,0.04)", border: "1px solid #BFDBFE", borderRadius: "12px", padding: "14px", marginBottom: "16px" }}>
+                        <span style={{ display: "block", fontSize: "12px", color: "#60A5FA", fontWeight: "800", marginBottom: "10px" }}>
                           🌾 Quick Account Setup: What is your name & age?
                         </span>
                         <div className="km-form-row-2col">

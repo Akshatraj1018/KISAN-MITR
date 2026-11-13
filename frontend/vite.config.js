@@ -64,8 +64,11 @@ export default defineConfig({
         ]
       },
 
-      // Offline caching rules
+      // Offline caching rules with instant cache invalidation
       workbox: {
+        cleanupOutdatedCaches: true,
+        clientsClaim: true,
+        skipWaiting: true,
         runtimeCaching: [
           {
             // Weather API cache strategy
@@ -92,11 +95,12 @@ export default defineConfig({
             }
           },
           {
-            // JS + CSS caching
+            // JS + CSS: NetworkFirst ensures latest build is served immediately
             urlPattern: /.*\.(js|css)$/i,
-            handler: 'StaleWhileRevalidate',
+            handler: 'NetworkFirst',
             options: {
-              cacheName: 'static-resources'
+              cacheName: 'static-resources',
+              networkTimeoutSeconds: 3
             }
           }
         ]

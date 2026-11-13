@@ -108,14 +108,14 @@ export default function FarmerProfile() {
                   {farmerData.name}
                 </h1>
                 <div style={{ display: "flex", alignItems: "center", gap: 8, color: "#94a3b8", fontSize: 13 }}>
-                  <MapPin style={{ width: 14, height: 14, color: "#10b981" }} />
+                  <MapPin style={{ width: 14, height: 14, color: "#2563EB" }} />
                   <span>{farmerData.location}</span>
                 </div>
               </div>
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 6 }}>
-              <span className="km-brand-badge" style={{ background: "rgba(16,185,129,0.2)" }}>
+              <span className="km-brand-badge" style={{ background: "#EFF6FF" }}>
                 Verified Farmer (Kisan Mitra ID: KM-7842)
               </span>
               <span style={{ fontSize: 12, color: "#f59e0b", fontWeight: 700 }}>
@@ -185,9 +185,9 @@ export default function FarmerProfile() {
               <span className="val">{farmerData.primaryCrops}</span>
             </div>
 
-            <div className="km-field-box" style={{ borderColor: "rgba(16,185,129,0.3)" }}>
+            <div className="km-field-box" style={{ borderColor: "#BFDBFE" }}>
               <label>Kisan Credit Card (KCC) Status:</label>
-              <span className="val" style={{ color: "#34d399" }}>{farmerData.kccStatus}</span>
+              <span className="val" style={{ color: "#60A5FA" }}>{farmerData.kccStatus}</span>
             </div>
 
             <div className="km-field-box" style={{ borderColor: "rgba(245,158,11,0.3)" }}>

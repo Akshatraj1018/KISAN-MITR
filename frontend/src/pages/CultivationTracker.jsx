@@ -125,7 +125,7 @@ export default function CultivationTracker() {
 
             <div style={{ textAlign: "right" }}>
               <div style={{ fontSize: 12, color: "#94a3b8", fontWeight: 700 }}>Overall Lifecycle Progress</div>
-              <div style={{ fontSize: 32, fontWeight: 800, color: "#34d399", marginTop: 2 }}>
+              <div style={{ fontSize: 32, fontWeight: 800, color: "#60A5FA", marginTop: 2 }}>
                 {project.progressPercent}%
               </div>
             </div>
@@ -204,7 +204,7 @@ export default function CultivationTracker() {
                 </div>
 
                 {isCompleted && phase.completedDate && (
-                  <div style={{ fontSize: 12, color: "#34d399", marginBottom: 12 }}>
+                  <div style={{ fontSize: 12, color: "#60A5FA", marginBottom: 12 }}>
                     ✓ Logged on {phase.completedDate} • Farmer Note: "{phase.farmerNotes || "Done"}"
                   </div>
                 )}
@@ -253,7 +253,7 @@ export default function CultivationTracker() {
               style={{ width: "100%", maxWidth: 480 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 style={{ margin: "0 0 8px 0", color: "white", fontSize: 20, fontWeight: 800 }}>
+              <h3 style={{ margin: "0 0 8px 0", color: "#0F172A", fontSize: 20, fontWeight: 800 }}>
                 Lodge Progress for {activeModalPhase.title}
               </h3>
               <p style={{ color: "#94a3b8", fontSize: 13, margin: "0 0 16px 0" }}>

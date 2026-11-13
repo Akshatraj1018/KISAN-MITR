@@ -11,42 +11,42 @@
 }
 
 .farmer-text {
-  color: #16a34a;
+  color: #2563EB;
   font-size: 2.7rem;
   margin-bottom: 12px;
 }
 
 .farmer-icon-bg {
-  background-color: #dcfce7;
+  background-color: #EFF6FF;
 }
 
 .farmer-icon {
-  color: #16a34a;
+  color: #2563EB;
 }
 
 .farmer-badge {
-  background: #dcfce7;
-  color: #16a34a;
-  border: 1px solid #22c55e;
+  background: #EFF6FF;
+  color: #2563EB;
+  border: 1px solid #3B82F6;
 }
 
 .farmer-overlay {
-  background: linear-gradient(to right, #16a34a90, #0f9a4790);
+  background: linear-gradient(to right, #2563EB90, #0f9a4790);
 }
 
 .farmer-border {
-  border: 1px solid #22c55e;
+  border: 1px solid #3B82F6;
 }
 
 .farmer-btn {
-  background: #16a34a;
+  background: #2563EB;
 }
 .farmer-btn:hover {
-  background: #15803d;
+  background: #1D4ED8;
 }
 
 .farmer-link {
-  color: #16a34a;
+  color: #2563EB;
 }
 
 /* ============ HEADER ============ */
@@ -218,7 +218,7 @@
 }
 
 .farmer-active {
-  background: #16a34a;
+  background: #2563EB;
   color: white;
 }
 
@@ -267,14 +267,14 @@
 }
 
 .farmer-forgot-link {
-  color: #16a34a;
+  color: #2563EB;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .farmer-forgot-link:hover {
-  color: #15803d;
+  color: #1D4ED8;
   text-decoration: underline;
 }
 

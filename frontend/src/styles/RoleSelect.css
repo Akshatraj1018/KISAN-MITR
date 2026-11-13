@@ -23,7 +23,7 @@ body {
 
 /* Header Styles */
 .header-section {
-  background: linear-gradient(to right, #16a34a, #059669);
+  background: linear-gradient(to right, #2563EB, #1D4ED8);
   color: white;
   padding: 2rem 1.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -55,7 +55,7 @@ body {
 }
 
 .subtitle {
-  color: #bbf7d0;
+  color: #BFDBFE;
 }
 
 /* Button Styles */
@@ -75,16 +75,16 @@ body {
 }
 
 .btn-ghost:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: #DBEAFE;
 }
 
 .btn-primary {
-  background: #16a34a;
+  background: #2563EB;
   color: white;
 }
 
 .btn-primary:hover {
-  background: #15803d;
+  background: #1D4ED8;
 }
 
 /* Content Wrapper */
@@ -137,7 +137,7 @@ body {
 }
 
 .farmer-card:hover {
-  border-color: #22c55e;
+  border-color: #3B82F6;
 }
 
 .officer-card:hover {
@@ -175,7 +175,7 @@ body {
 }
 
 .farmer-icon {
-  background-color: #dcfce7;
+  background-color: #EFF6FF;
 }
 
 .officer-icon {
@@ -188,7 +188,7 @@ body {
 }
 
 .farmer-icon .icon {
-  color: #16a34a;
+  color: #2563EB;
 }
 
 .officer-icon .icon {
@@ -255,11 +255,11 @@ body {
 }
 
 .farmer-btn {
-  background-color: #16a34a;
+  background-color: #2563EB;
 }
 
 .farmer-btn:hover {
-  background-color: #15803d; /* Darker green on hover */
+  background-color: #1D4ED8; /* Darker green on hover */
 }
 
 .officer-btn {
@@ -280,7 +280,7 @@ body {
 }
 
 .farmer-check {
-  color: #16a34a;
+  color: #2563EB;
 }
 
 .officer-check {

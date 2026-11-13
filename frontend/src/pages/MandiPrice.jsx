@@ -230,7 +230,7 @@ export default function MandiPrice() {
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
                       <span className="km-hub-name">{hub.mandi.split("(")[0]}</span>
                       {isBest && (
-                        <span className="km-brand-badge" style={{ background: "rgba(16,185,129,0.25)", fontSize: 9 }}>
+                        <span className="km-brand-badge" style={{ background: "#EFF6FF", fontSize: 9 }}>
                           Highest Net
                         </span>
                       )}

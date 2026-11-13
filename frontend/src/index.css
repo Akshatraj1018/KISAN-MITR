@@ -1,42 +1,61 @@
 /* ==============================================================================
-   KISAN MITRA (किसान मित्र) - UNIFIED GLOBAL DESIGN SYSTEM
-   Modern, Ultra-Smooth, Responsive Agricultural Operating System UI
+   🌾 KISAN MITRA (किसान मित्र) - MODERN HUMAN-CRAFTED LIGHT DESIGN SYSTEM
+   Palette: Rich Forest Emerald (#0D5C3A) • Pure White (#FFFFFF) • Sage (#EAF4EF)
+   Canvas: Fresh Off-White (#F5F7F6) • Slate Charcoal (#111827)
+   Fully Responsive for Mobile PWA, Tablet, Windows & macOS Desktop
    ============================================================================== */
 
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Oriya:wght@400;500;600;700&display=swap');
+
 :root {
-  /* Brand Core Colors */
-  --km-primary: #10b981;
-  --km-primary-hover: #059669;
-  --km-primary-light: #34d399;
-  --km-primary-glow: rgba(16, 185, 129, 0.35);
-  
-  --km-forest-deep: #064e3b;
-  --km-forest-dark: #042f24;
-  --km-forest-bg: #071710;
-  --km-dark-slate: #0b1e16;
-  
-  --km-harvest-gold: #f59e0b;
-  --km-harvest-light: #fef3c7;
-  --km-alert-red: #ef4444;
-  --km-sky-blue: #38bdf8;
+  /* Core Brand Colors (Matched to Reference Screenshot) */
+  --km-emerald: #0D5C3A;
+  --km-emerald-hover: #09442A;
+  --km-emerald-dark: #06331F;
+  --km-emerald-light: #15803D;
+  --km-emerald-glow: rgba(13, 92, 58, 0.15);
 
-  /* Neutrals & Text */
-  --km-text-main: #f8fafc;
-  --km-text-body: #e2e8f0;
-  --km-text-muted: #94a3b8;
-  --km-text-dim: #64748b;
+  /* Soft Pastels & Fills */
+  --km-sage: #EAF4EF;
+  --km-sage-light: #F2F8F4;
+  --km-sage-border: #D1E5DA;
+  --km-canvas: #F5F7F6;
+  --km-canvas-alt: #F0F3F1;
+  --km-card-bg: #FFFFFF;
 
-  /* Glassmorphism & Borders */
-  --km-card-bg: rgba(13, 34, 23, 0.78);
-  --km-card-border: rgba(52, 211, 153, 0.22);
-  --km-card-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5), 0 0 25px rgba(16, 185, 129, 0.08);
+  /* Typography / Neutrals */
+  --km-text-title: #111827;
+  --km-text-body: #374151;
+  --km-text-muted: #6B7280;
+  --km-text-light: #9CA3AF;
+  --km-text-white: #FFFFFF;
 
-  /* Radii & Transitions */
-  --km-radius-sm: 8px;
-  --km-radius-md: 14px;
-  --km-radius-lg: 20px;
-  --km-radius-xl: 32px;
-  --km-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Functional Accents */
+  --km-gold: #F59E0B;
+  --km-gold-bg: #FEF3C7;
+  --km-gold-border: #FDE68A;
+  --km-alert: #EF4444;
+  --km-alert-bg: #FEE2E2;
+  --km-sky: #0284C7;
+  --km-sky-bg: #E0F2FE;
+
+  /* Elevation & Borders */
+  --km-border-subtle: #E5EBE7;
+  --km-border-card: rgba(13, 92, 58, 0.08);
+  --km-shadow-sm: 0 2px 6px -1px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+  --km-shadow-card: 0 10px 30px -4px rgba(13, 92, 58, 0.06), 0 2px 8px -2px rgba(0, 0, 0, 0.03);
+  --km-shadow-hover: 0 18px 40px -6px rgba(13, 92, 58, 0.10), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+  --km-shadow-dock: 0 -4px 24px -2px rgba(0, 0, 0, 0.06);
+
+  /* Border Radii */
+  --km-radius-sm: 10px;
+  --km-radius-md: 16px;
+  --km-radius-lg: 22px;
+  --km-radius-xl: 28px;
+  --km-radius-pill: 9999px;
+
+  /* Transitions */
+  --km-ease: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 *, *::before, *::after {
@@ -46,8 +65,8 @@
 html, body {
   margin: 0;
   padding: 0;
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background-color: var(--km-forest-bg);
+  font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', 'Noto Sans Oriya', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--km-canvas);
   color: var(--km-text-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -55,164 +74,148 @@ html, body {
   min-height: 100vh;
 }
 
-/* Modern Sleek Scrollbar */
+/* Elegant Clean Scrollbar for PC / Mac */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 ::-webkit-scrollbar-track {
-  background: rgba(7, 23, 16, 0.8);
+  background: var(--km-canvas);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(52, 211, 153, 0.3);
+  background: #CBD5E1;
   border-radius: 10px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(52, 211, 153, 0.6);
+  background: #94A3B8;
 }
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--km-text-main);
+  color: var(--km-text-title);
   font-weight: 700;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
   line-height: 1.25;
+  margin: 0 0 8px 0;
+}
+
+p {
+  line-height: 1.6;
+  margin: 0 0 12px 0;
 }
 
 a {
-  color: var(--km-primary-light);
+  color: var(--km-emerald);
   text-decoration: none;
-  transition: var(--km-transition);
+  transition: var(--km-ease);
 }
 a:hover {
-  color: #6ee7b7;
+  color: var(--km-emerald-hover);
 }
 
-/* Glassmorphic Card Utility */
-.km-glass-card {
-  background: var(--km-card-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--km-card-border);
-  border-radius: var(--km-radius-xl);
-  box-shadow: var(--km-card-shadow);
-  transition: var(--km-transition);
-}
-
-.km-glass-card:hover {
-  border-color: rgba(52, 211, 153, 0.4);
-  box-shadow: 0 24px 48px -15px rgba(0, 0, 0, 0.6), 0 0 35px rgba(16, 185, 129, 0.15);
-}
-
-/* Standard Buttons */
-.km-btn-primary {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: #ffffff;
-  border: none;
-  border-radius: var(--km-radius-lg);
-  padding: 14px 24px;
-  font-size: 15px;
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+button {
+  font-family: inherit;
   cursor: pointer;
-  box-shadow: 0 8px 24px var(--km-primary-glow);
-  transition: var(--km-transition);
-  text-decoration: none;
 }
 
-.km-btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.55);
-  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+/* Clean Card Utility */
+.km-card {
+  background: var(--km-card-bg);
+  border: 1px solid var(--km-border-card);
+  border-radius: var(--km-radius-xl);
+  box-shadow: var(--km-shadow-card);
+  transition: var(--km-ease);
+}
+.km-card:hover {
+  box-shadow: var(--km-shadow-hover);
 }
 
-.km-btn-secondary {
-  background: rgba(255, 255, 255, 0.07);
-  color: var(--km-text-main);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--km-radius-lg);
-  padding: 12px 20px;
-  font-size: 14px;
+/* Pill Button */
+.km-btn-primary {
+  background: var(--km-emerald);
+  color: #FFFFFF;
+  border: none;
+  border-radius: var(--km-radius-pill);
+  padding: 14px 28px;
   font-weight: 600;
+  font-size: 15px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  cursor: pointer;
-  transition: var(--km-transition);
-  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(13, 92, 58, 0.25);
+  transition: var(--km-ease);
 }
-
-.km-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(52, 211, 153, 0.3);
-  color: #ffffff;
+.km-btn-primary:hover {
+  background: var(--km-emerald-hover);
   transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(13, 92, 58, 0.35);
+}
+.km-btn-primary:active {
+  transform: translateY(0);
 }
 
-/* Inputs */
-.km-input {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: var(--km-radius-md);
-  padding: 14px 16px;
-  color: #ffffff;
+/* Soft Secondary Button */
+.km-btn-secondary {
+  background: var(--km-sage);
+  color: var(--km-emerald);
+  border: 1px solid var(--km-sage-border);
+  border-radius: var(--km-radius-pill);
+  padding: 12px 24px;
+  font-weight: 600;
   font-size: 14px;
-  font-family: inherit;
-  outline: none;
-  transition: var(--km-transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: var(--km-ease);
+}
+.km-btn-secondary:hover {
+  background: #DCEDE3;
+  color: var(--km-emerald-dark);
 }
 
-.km-input:focus {
-  border-color: var(--km-primary-light);
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);
-}
-
-.km-input::placeholder {
-  color: var(--km-text-dim);
-}
-
-/* Badges */
+/* Badge Tags */
 .km-badge {
   display: inline-flex;
   align-items: center;
   gap: 6px;
   padding: 4px 12px;
-  border-radius: 50px;
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.3px;
+  border-radius: var(--km-radius-pill);
+  font-size: 12px;
+  font-weight: 600;
+}
+.km-badge-emerald {
+  background: var(--km-sage);
+  color: var(--km-emerald);
+}
+.km-badge-gold {
+  background: var(--km-gold-bg);
+  color: #B45309;
+}
+.km-badge-alert {
+  background: var(--km-alert-bg);
+  color: var(--km-alert);
 }
 
-.km-badge.green {
-  background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
-  border: 1px solid rgba(16, 185, 129, 0.3);
+/* Layout Container for Desktop Centering & Responsive Spacing */
+.km-app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--km-canvas);
 }
 
-.km-badge.gold {
-  background: rgba(245, 158, 11, 0.15);
-  color: #fbbf24;
-  border: 1px solid rgba(245, 158, 11, 0.3);
+.km-content-wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px 90px 16px;
+  box-sizing: border-box;
 }
 
-/* Smooth Fade In Animation */
-@keyframes kmFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
+@media (min-width: 768px) {
+  .km-content-wrap {
+    padding: 24px 28px 60px 28px;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.km-animated-entry {
-  animation: kmFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

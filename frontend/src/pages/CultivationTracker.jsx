@@ -22,6 +22,7 @@ import {
   lodgePhaseProgress,
   CULTIVATION_BLUEPRINTS,
 } from "../utils/cultivationTracker";
+import BottomNav from "../components/BottomNav";
 import "../styles/CultivationTracker.css";
 
 export default function CultivationTracker() {
@@ -293,6 +294,7 @@ export default function CultivationTracker() {
           </div>
         )}
       </div>
+      <BottomNav />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { MapPin, Mail, User, Edit2, Check, X, ArrowLeft, ShieldCheck, Phone, Sprout, Layers, LogOut } from "lucide-react";
+import BottomNav from "../components/BottomNav";
 import "../styles/FarmerProfile.css";
 
 export default function FarmerProfile() {
@@ -213,6 +214,7 @@ export default function FarmerProfile() {
           </div>
         </div>
       </div>
+      <BottomNav />
     </div>
   );
 }

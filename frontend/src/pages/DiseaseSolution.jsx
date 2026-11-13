@@ -19,6 +19,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
+import BottomNav from "../components/BottomNav";
 import "../styles/DiseaseSolution.css";
 
 const BACKEND_URL = "http://127.0.0.1:8000";
@@ -590,6 +591,7 @@ export default function DiseaseSolution() {
           </div>
         </div>
       </div>
+      <BottomNav />
     </div>
   );
 }

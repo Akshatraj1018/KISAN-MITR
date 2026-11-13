@@ -30,6 +30,7 @@ import {
   lodgePhaseProgress,
 } from "../utils/cultivationTracker";
 import "../styles/SoilAnalyser.css";
+import BottomNav from "../components/BottomNav";
 
 const BACKEND_URL = "http://127.0.0.1:8000";
 
@@ -943,49 +944,8 @@ export default function SoilAnalyser() {
         )}
       </div>
 
-      {/* Native Mobile Bottom Navigation Bar */}
-      <nav className="km-mobile-bottom-bar" aria-label="Mobile Navigation">
-        <button
-          className="km-mob-nav-btn"
-          onClick={() => navigate("/dashboard")}
-          aria-label="Home Dashboard"
-        >
-          <Sun size={20} />
-          <span>Home</span>
-        </button>
-        <button
-          className="km-mob-nav-btn active"
-          onClick={() => navigate("/soil")}
-          aria-label="Soil Lab"
-        >
-          <FlaskConical size={20} />
-          <span>Soil Lab</span>
-        </button>
-        <button
-          className="km-mob-nav-btn"
-          onClick={() => navigate("/cultivation-tracker")}
-          aria-label="Cultivation Tracker"
-        >
-          <Sprout size={20} />
-          <span>Tracker</span>
-        </button>
-        <button
-          className="km-mob-nav-btn"
-          onClick={() => navigate("/mandi")}
-          aria-label="Mandi Rates"
-        >
-          <IndianRupee size={20} />
-          <span>Mandi</span>
-        </button>
-        <button
-          className="km-mob-nav-btn"
-          onClick={() => navigate("/solution")}
-          aria-label="Crop Doctor"
-        >
-          <span style={{ fontSize: 18, lineHeight: 1 }}>🌿</span>
-          <span>Doctor</span>
-        </button>
-      </nav>
+      {/* DOCKED BOTTOM NAVIGATION BAR */}
+      <BottomNav />
     </div>
   );
 }

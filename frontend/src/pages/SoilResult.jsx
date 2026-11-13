@@ -24,6 +24,7 @@ import {
   getDetailedSoilReport
 } from "../utils/offlineAgronomy";
 import { startCultivationProject } from "../utils/cultivationTracker";
+import BottomNav from "../components/BottomNav";
 
 const soilResultTexts = {
   en: {
@@ -850,6 +851,7 @@ function SoilResult() {
           </div>
         </div>
       )}
+      <BottomNav />
     </div>
   );
 }

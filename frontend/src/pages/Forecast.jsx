@@ -1,226 +1,148 @@
 // src/pages/Forecast.jsx
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Bell, ArrowRight, Plus, ShieldCheck, Sparkles, PhoneCall } from "lucide-react";
+import {
+  ArrowLeft,
+  Sun,
+  CloudRain,
+  Wind,
+  Droplets,
+  Cloud,
+  Compass,
+  AlertTriangle,
+  ShieldCheck,
+  Calendar,
+  Sparkles,
+} from "lucide-react";
 import "../styles/Forecast.css";
-import BottomNav from "../components/BottomNav";
+
+const SEVEN_DAY_FORECAST = [
+  { day: "Today", date: "29 Oct", icon: "🌧️", tempMax: 26, tempMin: 19, pop: "85% Rain", condition: "Moderate Rain", safeSpray: false },
+  { day: "Fri", date: "30 Oct", icon: "⛅", tempMax: 28, tempMin: 18, pop: "20% Rain", condition: "Partly Cloudy", safeSpray: true },
+  { day: "Sat", date: "31 Oct", icon: "☀️", tempMax: 29, tempMin: 17, pop: "5% Rain", condition: "Clear Sunny", safeSpray: true },
+  { day: "Sun", date: "01 Nov", icon: "☀️", tempMax: 30, tempMin: 17, pop: "0% Rain", condition: "Sunny & Dry", safeSpray: true },
+  { day: "Mon", date: "02 Nov", icon: "🌤️", tempMax: 29, tempMin: 18, pop: "10% Rain", condition: "Passing Clouds", safeSpray: true },
+  { day: "Tue", date: "03 Nov", icon: "⛅", tempMax: 28, tempMin: 19, pop: "25% Rain", condition: "Scattered Clouds", safeSpray: true },
+  { day: "Wed", date: "04 Nov", icon: "🌧️", tempMax: 27, tempMin: 18, pop: "60% Rain", condition: "Light Showers", safeSpray: false },
+];
 
 export default function Forecast() {
   const navigate = useNavigate();
+  const [selectedDayIndex, setSelectedDayIndex] = useState(0);
 
-  const [weatherData, setWeatherData] = useState({
-    city: "Rourkela, Sundargarh",
-    date: new Date().toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }),
-    temp: 27,
-    humidity: "58%",
-    condition: "Sunny / Clear Sky",
-    sprayAdvisory: "Today is an optimal day to apply foliar nutrients and bio-pesticides. Calm wind prevents drift.",
-  });
-
-  const [notes, setNotes] = useState([
-    {
-      id: 1,
-      img: "https://images.unsplash.com/photo-1592417817098-8f3d6eb22513?w=300&auto=format&fit=crop&q=80",
-      time: "Today · 3:00 PM",
-      desc: "Foliar spray completed on Plot 1. Applied micronutrient Zinc Sulphate solution during low-wind window.",
-    },
-    {
-      id: 2,
-      img: "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=300&auto=format&fit=crop&q=80",
-      time: "Yesterday · 5:15 PM",
-      desc: "Inspected wheat field edges for yellow rust pustules. Leaves appear clean, green, and disease-free.",
-    },
-    {
-      id: 3,
-      img: "https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=300&auto=format&fit=crop&q=80",
-      time: "May 24 · 5:43 PM",
-      desc: "Excellent crop vigor observed in vegetative phase. Crown roots established with uniform tillering.",
-    },
-  ]);
-
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [newNoteText, setNewNoteText] = useState("");
-
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/weather?city=Rourkela&state=Odisha")
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (data) {
-          setWeatherData({
-            city: data.location || "Rourkela, Sundargarh",
-            date: new Date().toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }),
-            temp: Math.round(data.temperature_celsius) || 27,
-            humidity: `${data.humidity_percent || 58}%`,
-            condition: "Sunny / Clear",
-            sprayAdvisory: data.agro_advisories?.spray_window_advisory || "Today is an optimal day to apply bio-pesticides.",
-          });
-        }
-      })
-      .catch(() => {});
-  }, []);
-
-  const handleAddNote = () => {
-    if (!newNoteText.trim()) return;
-    const newEntry = {
-      id: Date.now(),
-      img: "https://images.unsplash.com/photo-1592417817098-8f3d6eb22513?w=300&auto=format&fit=crop&q=80",
-      time: "Just now",
-      desc: newNoteText.trim(),
-    };
-    setNotes([newEntry, ...notes]);
-    setNewNoteText("");
-    setShowAddModal(false);
-  };
+  const activeDay = SEVEN_DAY_FORECAST[selectedDayIndex];
 
   return (
     <div className="km-forecast-page">
-      <main className="km-fc-main-container">
-        {/* Top App Bar (Matches Screen 3) */}
-        <div className="km-fc-nav-bar">
-          <button className="km-fc-nav-btn" onClick={() => navigate("/dashboard")} aria-label="Back">
-            <ArrowLeft size={18} />
-          </button>
-          <h1 className="km-fc-nav-title">Todays Weather</h1>
-          <button className="km-fc-nav-btn" onClick={() => navigate("/call")} aria-label="Notifications">
-            <Bell size={18} />
-          </button>
-        </div>
-
-        {/* Screen 3 Hero Green Card */}
-        <section className="km-screen3-weather-card">
-          <div className="km-screen3-top-row">
-            <div className="km-screen3-location-date">
-              {weatherData.city}, {weatherData.date}
-            </div>
+      <div className="km-forecast-container">
+        {/* Header Bar */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
+          <div>
+            <h1 style={{ fontSize: 28, fontWeight: 800, color: "white", margin: "0 0 4px 0" }}>
+              🌦️ 7-Day Agricultural Weather & Spray Station
+            </h1>
+            <p style={{ color: "#94a3b8", fontSize: 14, margin: 0 }}>
+              Actionable micro-climate forecasts, evapotranspiration rates, and pesticide spray safety windows.
+            </p>
           </div>
 
-          <div className="km-screen3-temp-row">
-            <div>
-              <div className="km-screen3-temp-num">{weatherData.temp}°C</div>
-              <div className="km-screen3-humidity-text">Humidity {weatherData.humidity}</div>
-            </div>
-
-            <div className="km-screen3-condition-wrap">
-              <span className="km-screen3-weather-icon">☀️</span>
-              <span className="km-screen3-condition-name">Sunny</span>
-            </div>
-          </div>
-
-          {/* Translucent Spray Advisory Pill */}
-          <div className="km-screen3-spray-pill">
-            <Sparkles size={16} />
-            <span>{weatherData.sprayAdvisory}</span>
-          </div>
-        </section>
-
-        {/* Screen 3 Notes List */}
-        <section className="km-screen3-notes-section">
-          <div className="km-screen3-notes-header">
-            <h2 className="km-screen3-notes-title">Notes</h2>
-            <button
-              className="km-screen3-notes-arrow-btn"
-              onClick={() => navigate("/cultivation-tracker")}
-              aria-label="View All Notes"
-            >
-              <ArrowRight size={16} />
-            </button>
-          </div>
-
-          <div className="km-screen3-notes-items">
-            {notes.map((note) => (
-              <div key={note.id} className="km-screen3-note-row">
-                <img
-                  src={note.img}
-                  alt="Note thumbnail"
-                  className="km-screen3-note-img"
-                  loading="lazy"
-                  onError={(e) => {
-                    e.currentTarget.src = "https://images.unsplash.com/photo-1574943320219-553eb213f72d?w=300&auto=format&fit=crop&q=80";
-                  }}
-                />
-                <div>
-                  <div className="km-screen3-note-timestamp">{note.time}</div>
-                  <p className="km-screen3-note-desc">{note.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Screen 3 Sticky "+ Add New Note" Button */}
-          <button className="km-screen3-sticky-cta" onClick={() => setShowAddModal(true)}>
-            <Plus size={18} />
-            <span>Add New Note</span>
-          </button>
-        </section>
-      </main>
-
-      {/* Add Note Modal */}
-      {showAddModal && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.5)",
-            backdropFilter: "blur(6px)",
-            zIndex: 2000,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 16,
-          }}
-        >
-          <div
+          <button
+            className="km-doc-nav-back"
+            onClick={() => navigate("/dashboard")}
             style={{
-              background: "#FFFFFF",
-              borderRadius: "24px",
-              padding: "24px",
-              maxWidth: "420px",
-              width: "100%",
-              boxShadow: "0 20px 40px rgba(0,0,0,0.2)",
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              borderRadius: "9999px",
+              padding: "10px 18px",
+              color: "white",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              cursor: "pointer",
             }}
           >
-            <h3 style={{ margin: "0 0 12px 0", fontSize: "18px", fontWeight: 800, color: "#111827" }}>
-              Add Field Observation Note
-            </h3>
-            <textarea
-              rows={4}
+            <ArrowLeft style={{ width: 16, height: 16 }} />
+            <span>Back to Dashboard</span>
+          </button>
+        </div>
+
+        {/* Current Active Day Hero Card */}
+        <div className="km-forecast-top-hero">
+          <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
+            <div style={{ fontSize: 64 }}>{activeDay.icon}</div>
+            <div>
+              <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <span className="km-brand-badge">{activeDay.day} ({activeDay.date})</span>
+                <span style={{ fontSize: 13, color: "#94a3b8" }}>Rourkela, Sundargarh, Odisha</span>
+              </div>
+              <div className="km-fc-big-temp">{activeDay.tempMax}°C</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: "#e2e8f0" }}>
+                {activeDay.condition} • Low: {activeDay.tempMin}°C
+              </div>
+            </div>
+          </div>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 10, minWidth: 280 }}>
+            <div
               style={{
-                width: "100%",
-                padding: "12px",
-                borderRadius: "14px",
-                border: "1px solid #E5EBE7",
-                background: "#F5F7F6",
-                fontSize: "14px",
-                outline: "none",
-                boxSizing: "border-box",
-                marginBottom: "16px",
+                padding: "12px 16px",
+                borderRadius: 12,
+                background: activeDay.safeSpray ? "rgba(16,185,129,0.15)" : "rgba(245,158,11,0.15)",
+                border: `1px solid ${activeDay.safeSpray ? "rgba(16,185,129,0.3)" : "rgba(245,158,11,0.3)"}`,
               }}
-              placeholder="e.g. Completed weeding on Plot 2; foliage color is dark healthy green."
-              value={newNoteText}
-              onChange={(e) => setNewNoteText(e.target.value)}
-            />
-            <div style={{ display: "flex", gap: "10px" }}>
-              <button
-                className="km-btn-secondary"
-                style={{ flex: 1 }}
-                onClick={() => setShowAddModal(false)}
-              >
-                Cancel
-              </button>
-              <button
-                className="km-btn-primary"
-                style={{ flex: 1 }}
-                onClick={handleAddNote}
-              >
-                Save Note
-              </button>
+            >
+              <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", color: activeDay.safeSpray ? "#34d399" : "#fcd34d" }}>
+                {activeDay.safeSpray ? "Safe Spray Window Active" : "Chemical Spray Not Recommended"}
+              </div>
+              <div style={{ fontSize: 13, color: "white", marginTop: 2 }}>
+                {activeDay.safeSpray
+                  ? "Wind speed < 12 km/h and dry conditions. Excellent time for foliar sprays."
+                  : "High rain probability & wind will wash away chemicals and cause drift."}
+              </div>
+            </div>
+
+            <div style={{ display: "flex", gap: 10 }}>
+              <div style={{ flex: 1, padding: "10px", background: "rgba(255,255,255,0.05)", borderRadius: 10, textAlign: "center" }}>
+                <div style={{ fontSize: 11, color: "#94a3b8" }}>Rain Probability</div>
+                <div style={{ fontSize: 15, fontWeight: 800, color: "#38bdf8", marginTop: 2 }}>{activeDay.pop}</div>
+              </div>
+              <div style={{ flex: 1, padding: "10px", background: "rgba(255,255,255,0.05)", borderRadius: 10, textAlign: "center" }}>
+                <div style={{ fontSize: 11, color: "#94a3b8" }}>Humidity</div>
+                <div style={{ fontSize: 15, fontWeight: 800, color: "white", marginTop: 2 }}>92%</div>
+              </div>
+              <div style={{ flex: 1, padding: "10px", background: "rgba(255,255,255,0.05)", borderRadius: 10, textAlign: "center" }}>
+                <div style={{ fontSize: 11, color: "#94a3b8" }}>Wind</div>
+                <div style={{ fontSize: 15, fontWeight: 800, color: "white", marginTop: 2 }}>14 km/h</div>
+              </div>
             </div>
           </div>
         </div>
-      )}
 
-      {/* Docked Bottom Navigation Bar */}
-      <BottomNav />
+        {/* 7-Day Forecast Grid */}
+        <h3 style={{ fontSize: 18, fontWeight: 800, color: "white", margin: "0 0 14px 0" }}>
+          Weekly Agronomic Calendar
+        </h3>
+
+        <div className="km-fc-grid-7day">
+          {SEVEN_DAY_FORECAST.map((item, idx) => {
+            const isSelected = selectedDayIndex === idx;
+
+            return (
+              <div
+                key={idx}
+                className={`km-day-tile ${isSelected ? "today" : ""}`}
+                onClick={() => setSelectedDayIndex(idx)}
+                style={{ cursor: "pointer" }}
+              >
+                <div className="km-day-name">{item.day}</div>
+                <div className="km-day-icon">{item.icon}</div>
+                <div className="km-day-temp">{item.tempMax}° / {item.tempMin}°</div>
+                <div className="km-day-pop">{item.pop}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

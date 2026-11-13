@@ -34,7 +34,6 @@ import ImageScanner from "./pages/ImageScanner";
 import CombinedResult from "./pages/CombinedResult";
 import SoilResult from "./pages/SoilResult";
 import CultivationTracker from "./pages/CultivationTracker";
-import FarmDetails from "./pages/FarmDetails";
 
 function App() {
   return (
@@ -46,10 +45,9 @@ function App() {
           </header>
 
           <Routes>
-            {/* Public routes - Root opens directly to the Main Agritech Dashboard */}
-            <Route path="/" element={<MainDashboard />} />
-            <Route path="/home" element={<MainDashboard />} />
-            <Route path="/dashboard" element={<MainDashboard />} />
+            {/* Public routes */}
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={<Home />} />
             <Route path="/landing" element={<Home />} />
             <Route path="/language" element={<LanguageSelect />} />
             <Route path="/login" element={<Login />} />
@@ -61,8 +59,6 @@ function App() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/weather" element={<Forecast />} />
             <Route path="/mandi" element={<MandiPrice />} />
-            <Route path="/farm-details" element={<FarmDetails />} />
-            <Route path="/details" element={<FarmDetails />} />
             <Route path="/get-started" element={<GetStarted />} />
 
             {/* AI Diagnostics & Helplines (Directly accessible) */}
@@ -76,7 +72,15 @@ function App() {
             <Route path="/assistant" element={<KisanMitra />} />
             <Route path="/cultivation-tracker" element={<CultivationTracker />} />
 
-            {/* Farmer manager route */}
+            {/* Farmer protected routes */}
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <MainDashboard />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/manager"
               element={

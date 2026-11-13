@@ -1,245 +1,108 @@
-/* ==============================================================================
-   🌾 KISAN MITRA (किसान मित्र) - TODAY'S WEATHER & AGRO RADAR (SCREEN 3 MATCH)
-   Light Theme • Forest Emerald (#0D5C3A) • Pure White (#FFFFFF) • Sage (#EAF4EF)
-   ============================================================================== */
+/* src/styles/Forecast.css - KISAN MITRA Modern Agro-Weather Station */
 
 .km-forecast-page {
   min-height: 100vh;
-  background-color: var(--km-canvas);
-  color: var(--km-text-body);
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 90px;
-}
-
-/* Container */
-.km-fc-main-container {
-  max-width: 680px;
-  margin: 0 auto;
-  padding: 16px 16px 30px 16px;
-  width: 100%;
+  background-color: #07100b;
+  background-image: 
+    radial-gradient(circle at 10% 15%, rgba(56, 189, 248, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 90% 75%, rgba(16, 185, 129, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.05) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: #f8fafc;
+  padding-top: 86px;
+  padding-bottom: 70px;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   box-sizing: border-box;
 }
 
-/* Top App Bar */
-.km-fc-nav-bar {
+.km-forecast-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.km-forecast-top-hero {
+  background: linear-gradient(135deg, rgba(20, 36, 27, 0.9) 0%, rgba(13, 24, 18, 0.95) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  margin-bottom: 24px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
-  padding: 8px 4px;
-}
-
-.km-fc-nav-btn {
-  width: 40px;
-  height: 40px;
-  border-radius: var(--km-radius-pill);
-  background: #FFFFFF;
-  border: 1px solid var(--km-border-card);
-  color: var(--km-text-title);
-  display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: var(--km-shadow-sm);
-  transition: var(--km-ease);
-}
-.km-fc-nav-btn:hover {
-  background: var(--km-sage);
-  color: var(--km-emerald);
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.km-fc-nav-title {
-  font-size: 18px;
+.km-fc-big-temp {
+  font-size: 56px;
   font-weight: 800;
-  color: var(--km-text-title);
-  margin: 0;
-}
-
-/* Screen 3 Hero Weather Card */
-.km-screen3-weather-card {
-  background: linear-gradient(160deg, #0D5C3A 0%, #09442A 100%);
-  color: #FFFFFF;
-  border-radius: var(--km-radius-xl);
-  padding: 24px 22px;
-  box-shadow: 0 14px 35px -5px rgba(13, 92, 58, 0.28);
-  margin-bottom: 26px;
-  position: relative;
-  overflow: hidden;
-}
-
-.km-screen3-top-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 12px;
-}
-
-.km-screen3-location-date {
-  font-size: 13px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.88);
-}
-
-.km-screen3-temp-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.km-screen3-temp-num {
-  font-size: 52px;
-  font-weight: 800;
-  line-height: 1;
   letter-spacing: -0.03em;
-  color: #FFFFFF;
-}
-
-.km-screen3-humidity-text {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 500;
-  margin-top: 6px;
-}
-
-.km-screen3-condition-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.km-screen3-weather-icon {
-  font-size: 46px;
+  color: white;
   line-height: 1;
-  filter: drop-shadow(0 4px 12px rgba(245, 158, 11, 0.35));
 }
 
-.km-screen3-condition-name {
+.km-fc-grid-7day {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.km-day-tile {
+  background: rgba(13, 24, 18, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 14px 12px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.km-day-tile:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+}
+
+.km-day-tile.today {
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.km-day-name {
   font-size: 13px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
+  font-weight: 700;
+  color: #94a3b8;
+  margin-bottom: 8px;
+}
+
+.km-day-icon {
+  font-size: 26px;
+  margin-bottom: 8px;
+}
+
+.km-day-temp {
+  font-size: 16px;
+  font-weight: 800;
+  color: white;
+}
+
+.km-day-pop {
+  font-size: 11px;
+  color: #38bdf8;
+  font-weight: 700;
   margin-top: 4px;
 }
 
-/* Translucent Spray Advisory Pill */
-.km-screen3-spray-pill {
-  background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: var(--km-radius-pill);
-  padding: 10px 18px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+@media (max-width: 900px) {
+  .km-fc-grid-7day {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 
-/* Screen 3 Notes List */
-.km-screen3-notes-section {
-  background: #FFFFFF;
-  border: 1px solid var(--km-border-card);
-  border-radius: var(--km-radius-xl);
-  padding: 22px;
-  box-shadow: var(--km-shadow-card);
-  margin-bottom: 24px;
-}
-
-.km-screen3-notes-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 18px;
-}
-
-.km-screen3-notes-title {
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--km-text-title);
-  margin: 0;
-}
-
-.km-screen3-notes-arrow-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--km-radius-pill);
-  background: var(--km-canvas);
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--km-emerald);
-  cursor: pointer;
-  transition: var(--km-ease);
-}
-.km-screen3-notes-arrow-btn:hover {
-  background: var(--km-sage);
-}
-
-.km-screen3-notes-items {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.km-screen3-note-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--km-border-subtle);
-}
-.km-screen3-note-row:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.km-screen3-note-img {
-  width: 60px;
-  height: 60px;
-  border-radius: var(--km-radius-md);
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-.km-screen3-note-timestamp {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--km-text-title);
-  margin-bottom: 3px;
-}
-
-.km-screen3-note-desc {
-  font-size: 13px;
-  color: var(--km-text-muted);
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* Screen 3 Bottom Sticky "+ Add New Note" Button */
-.km-screen3-sticky-cta {
-  width: 100%;
-  background: var(--km-emerald);
-  color: #FFFFFF;
-  border: none;
-  border-radius: var(--km-radius-pill);
-  padding: 16px 24px;
-  font-size: 15px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  cursor: pointer;
-  box-shadow: 0 6px 20px rgba(13, 92, 58, 0.35);
-  transition: var(--km-ease);
-  margin-top: 14px;
-}
-.km-screen3-sticky-cta:hover {
-  background: var(--km-emerald-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(13, 92, 58, 0.45);
+@media (max-width: 600px) {
+  .km-fc-grid-7day {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

@@ -1,68 +1,32 @@
-/* ==============================================================================
-   🌾 KISAN MITRA (किसान मित्र) - CULTIVATION LIFECYCLE & STAGE TRACKER
-   Light Theme • Forest Emerald (#0D5C3A) • Pure White (#FFFFFF) • Sage (#EAF4EF)
-   ============================================================================== */
+/* src/styles/CultivationTracker.css - KISAN MITRA Active Cultivation & Lifecycle Tracker */
 
 .km-tracker-page {
   min-height: 100vh;
-  background-color: var(--km-canvas);
-  color: var(--km-text-body);
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 90px;
-}
-
-/* Header Banner */
-.km-tracker-header-banner {
-  background: linear-gradient(160deg, #0D5C3A 0%, #09442A 100%);
-  color: #FFFFFF;
-  padding: 20px 20px 48px 20px;
-  border-radius: 0 0 28px 28px;
-  box-shadow: 0 8px 24px -4px rgba(13, 92, 58, 0.20);
-}
-
-.km-tracker-header-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.km-tracker-nav-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-
-.km-tracker-header-title {
-  font-size: 24px;
-  font-weight: 800;
-  color: #FFFFFF;
-  margin: 0 0 4px 0;
-  letter-spacing: -0.02em;
-}
-
-.km-tracker-header-subtitle {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.82);
-  margin: 0;
-}
-
-/* Main Content Area */
-.km-tracker-main-content {
-  max-width: 1100px;
-  margin: -24px auto 0 auto;
-  padding: 0 16px;
-  width: 100%;
+  background-color: #07100b;
+  background-image: 
+    radial-gradient(circle at 10% 15%, rgba(16, 185, 129, 0.15) 0%, transparent 45%),
+    radial-gradient(circle at 90% 75%, rgba(245, 158, 11, 0.1) 0%, transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: #f8fafc;
+  padding-top: 86px;
+  padding-bottom: 70px;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   box-sizing: border-box;
 }
 
-/* Active Project Hero Card */
+.km-tracker-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
 .km-tracker-hero {
-  background: #FFFFFF;
-  border: 1px solid var(--km-border-card);
-  border-radius: var(--km-radius-xl);
-  padding: 24px;
-  box-shadow: var(--km-shadow-card);
+  background: linear-gradient(135deg, rgba(20, 36, 27, 0.95) 0%, rgba(13, 24, 18, 0.95) 100%);
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
   margin-bottom: 24px;
 }
 
@@ -70,16 +34,16 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 16px;
 }
 
 .km-tracker-crop-name {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 800;
-  color: var(--km-text-title);
-  margin: 0 0 4px 0;
+  color: white;
+  margin: 0 0 6px 0;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -88,483 +52,204 @@
 .km-tracker-meta-chips {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-size: 13px;
-  color: var(--km-text-muted);
+  color: #94a3b8;
   flex-wrap: wrap;
 }
 
-/* Progress Shell */
 .km-tracker-progress-shell {
-  background: var(--km-canvas);
-  border: 1px solid var(--km-border-subtle);
-  border-radius: var(--km-radius-md);
-  padding: 16px;
-  margin-top: 14px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 16px 20px;
 }
 
 .km-tracker-progress-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   font-size: 13px;
   font-weight: 700;
-  color: var(--km-text-title);
 }
 
 .km-tracker-bar-bg {
   width: 100%;
-  height: 8px;
-  background: #E5EBE7;
-  border-radius: var(--km-radius-pill);
+  height: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
   overflow: hidden;
 }
 
 .km-tracker-bar-fill {
   height: 100%;
-  background: var(--km-emerald);
-  border-radius: var(--km-radius-pill);
-  transition: width 0.6s ease;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #10b981 0%, #f59e0b 100%);
+  transition: width 0.4s ease;
 }
 
-/* Timeline Cards */
-.km-timeline-list {
+/* Active Reminder Banner */
+.km-active-reminder-box {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(20, 36, 27, 0.9) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.km-reminder-icon {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.km-reminder-content h4 {
+  margin: 0 0 4px 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: white;
+}
+
+.km-reminder-content p {
+  margin: 0;
+  font-size: 13px;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+/* Phase Timeline List */
+.km-phases-list {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 18px;
+  margin-bottom: 32px;
 }
 
 .km-phase-card {
-  background: #FFFFFF;
-  border: 1px solid var(--km-border-card);
-  border-radius: var(--km-radius-lg);
-  padding: 20px;
-  box-shadow: var(--km-shadow-sm);
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  transition: var(--km-ease);
+  background: rgba(13, 24, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 22px 24px;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
 }
-.km-phase-card:hover {
-  box-shadow: var(--km-shadow-card);
-  border-color: var(--km-sage-border);
-}
-.km-phase-card.completed {
-  border-left: 4px solid var(--km-emerald);
-}
+
 .km-phase-card.active {
-  border-left: 4px solid var(--km-gold);
-  background: #FEFDF9;
+  border-color: #10b981;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(13, 24, 18, 0.95) 100%);
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.15);
 }
 
-.km-phase-icon-circle {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--km-radius-pill);
-  background: var(--km-sage);
-  color: var(--km-emerald);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
+.km-phase-card.completed {
+  border-color: rgba(52, 211, 153, 0.3);
+  opacity: 0.88;
 }
 
-.km-phase-content {
-  flex: 1;
-}
-
-.km-phase-title-row {
+.km-phase-card-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 4px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.km-phase-badge {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  letter-spacing: 0.04em;
+}
+
+.km-phase-badge.in_progress {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.km-phase-badge.completed {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.km-phase-badge.upcoming {
+  background: rgba(148, 163, 184, 0.12);
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
 .km-phase-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--km-text-title);
+  font-size: 18px;
+  font-weight: 800;
+  color: white;
   margin: 0;
 }
 
 .km-phase-desc {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin: 0 0 14px 0;
+}
+
+.km-inputs-box {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 12px 16px;
   font-size: 13px;
-  color: var(--km-text-muted);
-  line-height: 1.5;
-  margin: 0 0 10px 0;
+  color: #a7f3d0;
+  margin-bottom: 14px;
+  border-left: 3px solid #10b981;
 }
 
-/* Growth Curve Card (Image 1 Screen 1 Match) */
-.km-growth-chart-card {
-  background: #FFFFFF;
-  border: 1px solid var(--km-border-card);
-  border-radius: var(--km-radius-xl);
-  padding: 22px;
-  box-shadow: var(--km-shadow-card);
-  margin-bottom: 22px;
+.km-inputs-box strong {
+  color: white;
 }
 
-.km-chart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 16px;
-}
-
-.km-chart-badge {
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: #0D5C3A;
-  background: #EAF4EF;
-  padding: 3px 8px;
-  border-radius: 999px;
-  display: inline-block;
-  margin-bottom: 6px;
-}
-
-.km-chart-title {
-  font-size: 18px;
-  font-weight: 800;
-  color: #1A2E26;
-  margin: 0;
-}
-
-.km-chart-stat-right {
-  text-align: right;
-}
-
-.km-chart-stat-label {
-  font-size: 11px;
-  color: #64748B;
-  display: block;
-}
-
-.km-chart-stat-val {
-  font-size: 16px;
-  font-weight: 800;
-  color: #0D5C3A;
-}
-
-.km-svg-curve-wrapper {
-  position: relative;
-  width: 100%;
-}
-
-.km-growth-svg {
-  width: 100%;
-  height: 90px;
-  overflow: visible;
-}
-
-.km-chart-timeline-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  font-weight: 600;
-  color: #64748B;
-  margin-top: 10px;
-}
-
-/* Community Section (Image 1 Screen 1 Match) */
-.km-community-section {
-  background: #FFFFFF;
-  border: 1px solid var(--km-border-card);
-  border-radius: var(--km-radius-xl);
-  padding: 22px;
-  box-shadow: var(--km-shadow-card);
-  margin-bottom: 22px;
-}
-
-.km-community-header {
+.km-phase-footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
-}
-
-.km-community-title {
-  font-size: 18px;
-  font-weight: 800;
-  color: #1A2E26;
-  margin: 0;
-}
-
-.km-community-viewall {
-  background: none;
-  border: none;
-  color: #0D5C3A;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.km-community-list {
-  display: flex;
-  flex-direction: column;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  flex-wrap: wrap;
   gap: 12px;
 }
 
-.km-community-card {
-  display: flex;
+.km-btn-lodge-progress {
+  display: inline-flex;
   align-items: center;
-  gap: 14px;
-  padding: 12px 14px;
-  background: #F8FAF9;
-  border-radius: 16px;
-  border: 1px solid rgba(13, 92, 58, 0.08);
-  transition: transform 0.2s;
-}
-
-.km-community-card:hover {
-  transform: translateY(-1px);
-}
-
-.km-comm-thumb {
-  width: 44px;
-  height: 44px;
+  gap: 8px;
+  padding: 10px 20px;
   border-radius: 12px;
-  overflow: hidden;
-  flex-shrink: 0;
-}
-
-.km-comm-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.km-comm-info {
-  flex: 1;
-}
-
-.km-comm-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: #1A2E26;
-}
-
-.km-comm-region {
-  font-size: 11px;
-  color: #64748B;
-  margin-top: 2px;
-}
-
-.km-comm-members {
-  font-size: 10px;
-  font-weight: 600;
-  color: #0D5C3A;
-  margin-top: 1px;
-}
-
-.km-comm-join-btn {
-  background: #EAF4EF;
-  color: #0D5C3A;
-  border: 1px solid #0D5C3A;
-  border-radius: 999px;
-  padding: 6px 16px;
-  font-size: 12px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.km-comm-join-btn:hover {
-  background: #0D5C3A;
-  color: #FFFFFF;
-}
-
-/* Crop Select in Header */
-.km-tracker-crop-select {
-  background: #FFFFFF;
-  color: #0D5C3A;
-  border: none;
-  font-weight: 700;
-  font-size: 13px;
-  border-radius: 999px;
-  padding: 8px 16px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  outline: none;
-}
-
-/* Stages section */
-.km-stages-section {
-  background: #FFFFFF;
-  border: 1px solid var(--km-border-card);
-  border-radius: var(--km-radius-xl);
-  padding: 22px;
-  box-shadow: var(--km-shadow-card);
-  margin-bottom: 24px;
-}
-
-.km-stages-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.km-stage-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px;
-  background: #F8FAF9;
-  border-radius: 14px;
-  border: 1px solid rgba(13, 92, 58, 0.08);
-}
-
-.km-stage-card.completed {
-  border-left: 4px solid #0D5C3A;
-}
-
-.km-stage-card.active {
-  border-left: 4px solid #F59E0B;
-  background: #FFFDF8;
-}
-
-.km-stage-left {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-
-.km-stage-idx {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #EAF4EF;
-  color: #0D5C3A;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  color: white;
   font-size: 13px;
   font-weight: 800;
-  flex-shrink: 0;
-}
-
-.km-stage-name {
-  font-size: 14px;
-  font-weight: 700;
-  color: #1A2E26;
-}
-
-.km-stage-desc {
-  font-size: 12px;
-  color: #64748B;
-  margin-top: 2px;
-}
-
-.km-badge-done {
-  background: #EAF4EF;
-  color: #0D5C3A;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 999px;
-}
-
-.km-badge-pending {
-  background: #F1F5F9;
-  color: #94A3B8;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 4px 10px;
-  border-radius: 999px;
-}
-
-.km-mark-complete-btn {
-  background: #0D5C3A;
-  color: white;
   border: none;
-  font-size: 12px;
-  font-weight: 700;
-  padding: 6px 14px;
-  border-radius: 999px;
   cursor: pointer;
-  transition: opacity 0.2s;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+  transition: all 0.2s ease;
 }
 
-.km-mark-complete-btn:hover {
-  opacity: 0.9;
+.km-btn-lodge-progress:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
 }
 
-/* Modal */
-.km-modal-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  padding: 20px;
-}
-
-.km-modal-sheet {
-  background: #FFFFFF;
-  border-radius: 24px;
-  padding: 24px;
-  max-width: 420px;
-  width: 100%;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
-
-.km-modal-title {
-  font-size: 18px;
-  font-weight: 800;
-  color: #1A2E26;
-  margin: 0 0 6px 0;
-}
-
-.km-modal-sub {
-  font-size: 13px;
-  color: #64748B;
-  margin: 0 0 16px 0;
-}
-
-.km-modal-textarea {
-  width: 100%;
-  box-sizing: border-box;
-  border: 1px solid rgba(13, 92, 58, 0.2);
-  border-radius: 12px;
-  padding: 12px;
-  font-family: inherit;
-  font-size: 13px;
-  outline: none;
-  margin-bottom: 16px;
-}
-
-.km-modal-textarea:focus {
-  border-color: #0D5C3A;
-}
-
-.km-modal-actions {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
-}
-
-.km-modal-cancel {
-  background: #F1F5F9;
-  border: none;
-  color: #64748B;
-  font-weight: 700;
-  font-size: 13px;
-  padding: 8px 16px;
-  border-radius: 999px;
-  cursor: pointer;
-}
-
-.km-modal-confirm {
-  background: #0D5C3A;
-  border: none;
-  color: white;
-  font-weight: 700;
-  font-size: 13px;
-  padding: 8px 18px;
-  border-radius: 999px;
-  cursor: pointer;
+@media (max-width: 768px) {
+  .km-tracker-hero {
+    padding: 20px;
+  }
+  .km-tracker-crop-name {
+    font-size: 20px;
+  }
 }

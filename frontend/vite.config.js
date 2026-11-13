@@ -27,8 +27,8 @@ export default defineConfig({
         description: 'Next-Gen Edge-First AI Agricultural Operating System for Farmers',
         start_url: '/',
         display: 'standalone',
-        theme_color: '#0D5C3A',
-        background_color: '#F5F7F6',
+        theme_color: '#4CAF50',
+        background_color: '#ffffff',
 
         icons: [
           {
@@ -64,11 +64,8 @@ export default defineConfig({
         ]
       },
 
-      // Offline caching rules with instant cache invalidation
+      // Offline caching rules
       workbox: {
-        cleanupOutdatedCaches: true,
-        clientsClaim: true,
-        skipWaiting: true,
         runtimeCaching: [
           {
             // Weather API cache strategy
@@ -95,12 +92,11 @@ export default defineConfig({
             }
           },
           {
-            // JS + CSS: Always NetworkFirst so new deployments update immediately
+            // JS + CSS caching
             urlPattern: /.*\.(js|css)$/i,
-            handler: 'NetworkFirst',
+            handler: 'StaleWhileRevalidate',
             options: {
-              cacheName: 'static-resources',
-              networkTimeoutSeconds: 3
+              cacheName: 'static-resources'
             }
           }
         ]

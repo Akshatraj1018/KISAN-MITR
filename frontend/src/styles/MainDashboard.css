@@ -1,692 +1,1379 @@
-/* ==============================================================================
-   🌾 KISAN MITRA (किसान मित्र) - MODERN LIGHT DASHBOARD STYLES
-   Aesthetic: Human-Crafted Light Agritech (Emerald Green, Pure White, Soft Sage)
-   Fully Responsive: Mobile PWA, Tablet, Windows & macOS Desktop
-   ============================================================================== */
+/* src/styles/MainDashboard.css - KISAN MITRA Modern Dashboard Design System */
 
-.km-dashboard-page {
+:root {
+  --km-bg-dark: #07100b;
+  --km-surface-dark: rgba(13, 24, 18, 0.78);
+  --km-surface-elevated: rgba(20, 36, 27, 0.85);
+  --km-surface-light: #ffffff;
+  --km-surface-light-tint: rgba(255, 255, 255, 0.05);
+  --km-surface-card-white: rgba(255, 255, 255, 0.96);
+  --km-border: rgba(255, 255, 255, 0.09);
+  --km-border-focus: rgba(16, 185, 129, 0.45);
+  --km-primary: #10b981;
+  --km-primary-glow: rgba(16, 185, 129, 0.28);
+  --km-primary-deep: #059669;
+  --km-harvest-gold: #f59e0b;
+  --km-harvest-glow: rgba(245, 158, 11, 0.22);
+  --km-sky-blue: #38bdf8;
+  --km-text-main: #f8fafc;
+  --km-text-muted: #94a3b8;
+  --km-text-dim: #64748b;
+  --km-radius-sm: 10px;
+  --km-radius-md: 16px;
+  --km-radius-lg: 22px;
+  --km-radius-pill: 9999px;
+  --km-shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --km-shadow-glow: 0 12px 35px -8px var(--km-primary-glow);
+}
+
+/* Base Dashboard Container */
+.km-dashboard {
   min-height: 100vh;
-  background-color: var(--km-canvas);
-  color: var(--km-text-body);
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 90px;
+  background-color: var(--km-bg-dark);
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 65%, rgba(245, 158, 11, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(56, 189, 248, 0.06) 0%, transparent 50%);
+  background-attachment: fixed;
+  color: var(--km-text-main);
+  padding-top: 86px;
+  padding-bottom: 70px;
+  box-sizing: border-box;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* ================= 1. DEEP FOREST GREEN HEADER BANNER ================= */
-.km-hero-banner {
-  background: linear-gradient(160deg, #0D5C3A 0%, #09442A 100%);
-  color: #FFFFFF;
-  padding: 24px 20px 70px 20px;
-  border-radius: 0 0 32px 32px;
-  box-shadow: 0 10px 25px -5px rgba(13, 92, 58, 0.25);
-  position: relative;
-}
-
-.km-banner-inner {
-  max-width: 1100px;
+.km-container {
+  max-width: 1400px;
   margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
-.km-header-top-row {
+/* ================= MODERN FROSTED TOPBAR ================= */
+.km-topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: rgba(7, 16, 11, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--km-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  padding: 0 28px;
+  z-index: 1000;
+  transition: all 0.25s ease;
 }
 
-.km-greeting-wrap {
+.km-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.km-brand-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--km-radius-md);
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 4px 16px var(--km-primary-glow);
+  font-size: 22px;
+}
+
+.km-brand-text {
   display: flex;
   flex-direction: column;
 }
 
-.km-greeting-title {
-  font-size: 24px;
-  font-weight: 700;
-  color: #FFFFFF;
-  margin: 0;
+.km-brand-title {
+  font-size: 20px;
+  font-weight: 800;
   letter-spacing: -0.02em;
-}
-
-.km-greeting-subtitle {
-  font-size: 13px;
-  color: rgba(255, 255, 255, 0.82);
-  margin-top: 3px;
+  background: linear-gradient(135deg, #ffffff 40%, #a7f3d0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
 }
 
-.km-header-actions {
+.km-brand-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(16, 185, 129, 0.18);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  padding: 2px 7px;
+  border-radius: var(--km-radius-pill);
+  -webkit-text-fill-color: #34d399;
+}
+
+.km-brand-subtitle {
+  font-size: 12px;
+  color: var(--km-text-muted);
+  font-weight: 500;
+}
+
+/* Nav Pills */
+.km-nav-pill-group {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--km-border);
+  padding: 4px;
+  border-radius: var(--km-radius-pill);
+  gap: 4px;
+}
+
+.km-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: var(--km-radius-pill);
+  border: none;
+  background: transparent;
+  color: var(--km-text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.km-nav-btn svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.km-nav-btn:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.km-nav-btn.active {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px var(--km-primary-glow);
+}
+
+.km-nav-btn.active svg {
+  transform: scale(1.1);
+}
+
+/* Topbar Right Tools */
+.km-topbar-tools {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.km-header-icon-btn {
-  width: 42px;
-  height: 42px;
-  border-radius: var(--km-radius-pill);
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #FFFFFF;
+.km-helpline-pill-top {
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: var(--km-ease);
-}
-.km-header-icon-btn:hover {
-  background: rgba(255, 255, 255, 0.25);
-  transform: translateY(-1px);
-}
-
-.km-avatar-btn {
-  width: 44px;
-  height: 44px;
+  gap: 8px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.16) 0%, rgba(14, 165, 233, 0.28) 100%);
+  border: 1.5px solid rgba(56, 189, 248, 0.45);
   border-radius: var(--km-radius-pill);
-  border: 2px solid #FFFFFF;
-  background: #EAF4EF;
-  color: var(--km-emerald);
+  padding: 6px 14px;
+  color: #e0f2fe;
+  font-size: 13px;
   font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.25);
+  transition: all 0.2s ease;
+}
+
+.km-helpline-pill-top:hover {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.25) 0%, rgba(14, 165, 233, 0.4) 100%);
+  border-color: #38bdf8;
+  transform: translateY(-1px);
+  box-shadow: 0 0 22px rgba(56, 189, 248, 0.4);
+}
+
+.km-free-tag {
+  background: #38bdf8;
+  color: #032b43;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: var(--km-radius-pill);
+  letter-spacing: 0.04em;
+}
+
+.km-farmer-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius-pill);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.km-farmer-badge:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: var(--km-border-focus);
+}
+
+.km-farmer-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-weight: 700;
+  font-size: 13px;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
 }
 
-.km-avatar-img {
+.km-farmer-meta {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.km-farmer-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.2;
+}
+
+.km-farmer-loc {
+  font-size: 11px;
+  color: var(--km-text-muted);
+}
+
+/* ================= 1. HERO COCKPIT (Greeting + Pulse Badges) ================= */
+.km-hero-cockpit {
+  margin-top: 18px;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(13, 24, 18, 0.8) 50%, rgba(245, 158, 11, 0.06) 100%);
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius-lg);
+  padding: 24px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  box-shadow: var(--km-shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.km-hero-cockpit::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #10b981, #f59e0b);
+}
+
+.km-greeting-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.km-greeting-title {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.km-greeting-title span.name {
+  color: #34d399;
+}
+
+/* Compact Kisan Mitra AI Voice Block directly beside Namaste */
+.km-voice-hero-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.16) 0%, rgba(14, 165, 233, 0.26) 100%);
+  border: 1.5px solid rgba(56, 189, 248, 0.45);
+  border-radius: var(--km-radius-pill);
+  padding: 5px 14px 5px 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(56, 189, 248, 0.22);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(8px);
+}
+
+.km-voice-hero-inline:hover {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.28) 0%, rgba(14, 165, 233, 0.42) 100%);
+  border-color: #38bdf8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(56, 189, 248, 0.38);
+}
+
+.km-voice-avatar-mini {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.km-voice-avatar-mini img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #38bdf8;
+}
+
+.km-online-dot {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 9px;
+  height: 9px;
+  background: #10b981;
+  border: 1.5px solid #07100b;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.km-voice-inline-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.km-voice-inline-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.km-voice-tag {
+  background: rgba(56, 189, 248, 0.25);
+  color: #38bdf8;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 8px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.km-voice-inline-sub {
+  font-size: 11px;
+  color: #7dd3fc;
+  font-weight: 600;
+}
+
+/* Prominent Mini Soundwave Bars */
+.km-soundwave-bars-mini {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 18px;
+  padding: 0 4px;
+}
+
+.km-soundwave-bars-mini .km-wave-bar {
+  width: 3px;
+  height: 100%;
+  background: #38bdf8;
+  border-radius: 2px;
+  box-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
+  animation: wavePulse 1.1s ease-in-out infinite alternate;
+}
+
+.km-soundwave-bars-mini .km-wave-bar:nth-child(1) { height: 40%; animation-delay: 0.1s; }
+.km-soundwave-bars-mini .km-wave-bar:nth-child(2) { height: 85%; animation-delay: 0.35s; }
+.km-soundwave-bars-mini .km-wave-bar:nth-child(3) { height: 100%; animation-delay: 0.5s; }
+.km-soundwave-bars-mini .km-wave-bar:nth-child(4) { height: 65%; animation-delay: 0.2s; }
+.km-soundwave-bars-mini .km-wave-bar:nth-child(5) { height: 90%; animation-delay: 0.4s; }
+.km-soundwave-bars-mini .km-wave-bar:nth-child(6) { height: 45%; animation-delay: 0.65s; }
+
+@keyframes wavePulse {
+  0% { transform: scaleY(0.3); opacity: 0.6; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+.km-greeting-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--km-text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  flex-wrap: wrap;
+}
+
+.km-meta-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.km-meta-chip svg {
+  width: 14px;
+  height: 14px;
+  color: var(--km-primary);
+}
+
+.km-cockpit-pulses {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.km-pulse-pill {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius-md);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.km-pulse-pill.optimal {
+  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.km-pulse-pill.alert {
+  border-color: rgba(245, 158, 11, 0.35);
+  background: rgba(245, 158, 11, 0.1);
+}
+
+.km-pulse-icon {
+  font-size: 18px;
+}
+
+.km-pulse-label {
+  font-size: 11px;
+  color: var(--km-text-muted);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.km-pulse-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+
+/* ================= 2. SMART WEATHER & SPRAY STATION ================= */
+.km-weather-station {
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, rgba(20, 36, 27, 0.85) 0%, rgba(13, 24, 18, 0.95) 100%);
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius-lg);
+  padding: 24px 28px;
+  box-shadow: var(--km-shadow-card);
+}
+
+.km-weather-top-row {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 24px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.km-weather-primary {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.km-weather-icon-badge {
+  width: 72px;
+  height: 72px;
+  border-radius: var(--km-radius-md);
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2) 0%, rgba(16, 185, 129, 0.15) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #38bdf8;
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.15);
+}
+
+.km-weather-icon-badge svg {
+  width: 38px;
+  height: 38px;
+}
+
+.km-temp-val {
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: white;
+  line-height: 1;
+}
+
+.km-condition-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-top: 4px;
+}
+
+.km-temp-range {
+  font-size: 12px;
+  color: var(--km-text-muted);
+}
+
+/* Metric Pills Grid (Fusion of Dark and Crisp Light) */
+.km-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.km-metric-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius-md);
+  padding: 14px 16px;
+  transition: all 0.2s ease;
+}
+
+.km-metric-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+.km-metric-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--km-text-muted);
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.km-metric-card-header svg {
+  width: 15px;
+  height: 15px;
+  color: var(--km-sky-blue);
+}
+
+.km-metric-card-val {
+  font-size: 17px;
+  font-weight: 800;
+  color: white;
+}
+
+/* Advisory Alert Row */
+.km-advisory-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding-top: 18px;
+  border-top: 1px solid var(--km-border);
+}
+
+.km-advisory-card {
+  padding: 14px 18px;
+  border-radius: var(--km-radius-md);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.km-advisory-card.warning {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+}
+
+.km-advisory-card.safe {
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+}
+
+.km-advisory-icon {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.km-advisory-content h4 {
+  margin: 0 0 3px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+
+.km-advisory-content p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--km-text-muted);
+  line-height: 1.4;
+}
+
+/* ================= 3. HERO ACTION HUB (Vision Scanner + Kisan Mitra Voice AI Side-by-Side) ================= */
+.km-hero-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.km-action-hero-card {
+  background: var(--km-surface-dark);
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius-lg);
+  padding: 20px 22px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--km-shadow-card);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.km-action-hero-card:hover {
+  border-color: var(--km-border-focus);
+  transform: translateY(-3px);
+  box-shadow: var(--km-shadow-glow);
+}
+
+/* Vision Card Accents */
+.km-action-hero-card.vision-card {
+  background: radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.16) 0%, rgba(13, 24, 18, 0.95) 70%);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+/* Voice Card Accents */
+.km-action-hero-card.voice-card {
+  background: radial-gradient(circle at 90% 10%, rgba(56, 189, 248, 0.14) 0%, rgba(13, 24, 18, 0.95) 70%);
+  border-color: rgba(56, 189, 248, 0.3);
+}
+
+.km-hero-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border-radius: var(--km-radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+
+.vision-badge {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(52, 211, 153, 0.35);
+}
+
+.voice-badge {
+  background: rgba(56, 189, 248, 0.2);
+  color: #7dd3fc;
+  border: 1px solid rgba(125, 211, 252, 0.35);
+}
+
+.km-action-hero-card h2 {
+  font-size: 18px;
+  font-weight: 800;
+  margin: 0 0 4px 0;
+  color: white;
+  letter-spacing: -0.01em;
+}
+
+.km-action-hero-card p {
+  color: var(--km-text-muted);
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0 0 14px 0;
+}
+
+/* Viewfinder Area for Scanner */
+.km-viewfinder-preview {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px dashed rgba(52, 211, 153, 0.4);
+  border-radius: var(--km-radius-md);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.km-viewfinder-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
+}
+
+.km-viewfinder-specs {
+  display: flex;
+  flex-direction: column;
+}
+
+.km-viewfinder-specs span.title {
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+}
+
+.km-viewfinder-specs span.sub {
+  font-size: 11px;
+  color: var(--km-text-muted);
+}
+
+/* Soundwave Area for Voice */
+.km-voice-soundwave-box {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: var(--km-radius-md);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.km-voice-avatar-ring {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #38bdf8;
+  overflow: hidden;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
+}
+
+.km-voice-avatar-ring img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Translucent Voice Search Bar */
-.km-search-bar {
-  background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: var(--km-radius-pill);
-  padding: 10px 18px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  transition: var(--km-ease);
-}
-.km-search-bar:focus-within {
-  background: rgba(255, 255, 255, 0.24);
-  border-color: rgba(255, 255, 255, 0.45);
-}
-
-.km-search-input {
-  flex: 1;
-  background: transparent;
-  border: none;
-  outline: none;
-  color: #FFFFFF;
-  font-size: 14px;
-}
-.km-search-input::placeholder {
-  color: rgba(255, 255, 255, 0.70);
-}
-
-.km-search-mic-btn {
-  background: transparent;
-  border: none;
-  color: rgba(255, 255, 255, 0.90);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px;
-  border-radius: var(--km-radius-pill);
-  transition: var(--km-ease);
-}
-.km-search-mic-btn:hover {
-  color: #FFFFFF;
-  transform: scale(1.1);
-}
-
-/* ================= 2. MAIN CONTENT WRAPPER ================= */
-.km-dashboard-content {
-  max-width: 1100px;
-  margin: -50px auto 0 auto;
-  padding: 0 16px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* ================= 3. FLOATING WEATHER & STATUS HERO CARD ================= */
-.km-weather-hero-card {
-  background: #FFFFFF;
-  border-radius: var(--km-radius-xl);
-  padding: 24px;
-  box-shadow: 0 12px 36px -4px rgba(13, 92, 58, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(13, 92, 58, 0.08);
-  margin-bottom: 28px;
-  transition: var(--km-ease);
-}
-
-.km-weather-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-
-.km-location-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--km-text-title);
-  background: var(--km-sage);
-  padding: 6px 14px;
-  border-radius: var(--km-radius-pill);
-  border: 1px solid var(--km-sage-border);
-}
-
-.km-temp-main-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-.km-temp-number {
-  font-size: 48px;
-  font-weight: 800;
-  color: var(--km-text-title);
-  letter-spacing: -0.03em;
-  line-height: 1;
-}
-
-.km-temp-range {
-  font-size: 14px;
-  color: var(--km-text-muted);
-  font-weight: 500;
-  margin-top: 4px;
-}
-
-.km-weather-illustration {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.km-weather-badge-icon {
-  font-size: 44px;
-  line-height: 1;
-  filter: drop-shadow(0 4px 10px rgba(245, 158, 11, 0.25));
-}
-
-.km-weather-condition-label {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--km-text-muted);
-  margin-top: 4px;
-}
-
-/* 4-Metric Grid */
-.km-weather-metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  padding-top: 18px;
-  border-top: 1px solid var(--km-border-subtle);
-  margin-bottom: 18px;
-}
-
-.km-metric-col {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-.km-metric-col-title {
-  font-size: 11px;
-  color: var(--km-text-muted);
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  margin-bottom: 2px;
-}
-
-.km-metric-col-value {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--km-text-title);
-}
-
-/* Sunrise / Sunset Dotted Arc */
-.km-sun-arc-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: var(--km-canvas);
-  border-radius: var(--km-radius-md);
-  padding: 10px 16px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--km-text-muted);
-}
-
-.km-sun-arc-line {
-  flex: 1;
-  height: 2px;
-  border-top: 2px dashed #CBD5E1;
-  margin: 0 14px;
-  position: relative;
-}
-
-.km-sun-arc-sun {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 16px;
-}
-
-/* ================= 4. CATEGORIES QUICK ACTION GRID ================= */
-.km-section-title-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-
-.km-section-title {
-  font-size: 18px;
-  font-weight: 700;
-  color: var(--km-text-title);
-  margin: 0;
-}
-
-.km-section-link {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--km-emerald);
-  cursor: pointer;
+.km-soundwave-bars {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.km-category-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  margin-bottom: 28px;
+.km-wave-bar {
+  width: 4px;
+  height: 20px;
+  background: #38bdf8;
+  border-radius: 4px;
+  animation: kmWavePulse 1.2s ease-in-out infinite alternate;
 }
 
-@media (min-width: 640px) {
-  .km-category-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
+.km-wave-bar:nth-child(2) { height: 32px; animation-delay: 0.2s; }
+.km-wave-bar:nth-child(3) { height: 16px; animation-delay: 0.4s; }
+.km-wave-bar:nth-child(4) { height: 28px; animation-delay: 0.1s; }
+.km-wave-bar:nth-child(5) { height: 22px; animation-delay: 0.3s; }
+
+@keyframes kmWavePulse {
+  0% { transform: scaleY(0.4); opacity: 0.6; }
+  100% { transform: scaleY(1.2); opacity: 1; }
 }
 
-.km-category-card {
-  background: #FFFFFF;
-  border: 1px solid var(--km-border-card);
-  border-radius: var(--km-radius-lg);
-  padding: 20px 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  box-shadow: var(--km-shadow-sm);
-  cursor: pointer;
-  transition: var(--km-ease);
-}
-.km-category-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--km-shadow-card);
-  border-color: var(--km-sage-border);
-}
-
-.km-category-icon-box {
-  width: 54px;
-  height: 54px;
-  border-radius: 16px;
+/* Button Clusters */
+.km-action-btn-group {
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-bottom: 12px;
-  transition: var(--km-ease);
+  gap: 12px;
+  flex-wrap: wrap;
 }
 
-.km-category-icon-box.cat-blue {
-  background: #E0F2FE;
-  color: #0284C7;
-}
-
-.km-category-icon-box.cat-peach {
-  background: #FFF7ED;
-  color: #EA580C;
-}
-
-.km-category-icon-box.cat-green {
-  background: #ECFDF5;
-  color: #059669;
-}
-
-.km-category-icon-box.cat-mint {
-  background: #F0FDF4;
-  color: #16A34A;
-}
-
-.km-category-card:hover .km-category-icon-box {
-  transform: scale(1.08);
-}
-
-.km-category-label {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--km-text-title);
-  margin-bottom: 2px;
-}
-
-.km-category-sublabel {
-  font-size: 11px;
-  color: var(--km-text-muted);
-  font-weight: 500;
-}
-
-/* ================= 5. LIVE MANDI BENCHMARK CARDS ================= */
-.km-mandi-scroll-strip {
-  display: flex;
-  overflow-x: auto;
-  gap: 16px;
-  padding-bottom: 12px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-}
-
-@media (min-width: 1024px) {
-  .km-mandi-scroll-strip {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    overflow-x: visible;
-  }
-}
-
-.km-mandi-tile {
-  background: #FFFFFF;
-  border: 1px solid var(--km-border-card);
-  border-radius: var(--km-radius-lg);
-  padding: 14px;
-  box-shadow: var(--km-shadow-sm);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-width: 260px;
-  scroll-snap-align: start;
-  cursor: pointer;
-  transition: var(--km-ease);
-}
-.km-mandi-tile:hover {
-  box-shadow: var(--km-shadow-card);
-  border-color: var(--km-sage-border);
-  transform: translateY(-2px);
-}
-
-.km-mandi-thumb-wrap {
-  width: 100%;
-  height: 120px;
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 12px;
-  position: relative;
-}
-
-.km-mandi-thumb-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.km-mandi-tile:hover .km-mandi-thumb-img {
-  transform: scale(1.04);
-}
-
-.km-mandi-thumb-badge {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: rgba(13, 92, 58, 0.92);
-  backdrop-filter: blur(4px);
-  color: #FFFFFF;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 3px 8px;
-  border-radius: 999px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-}
-
-.km-mandi-tile-header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.km-mandi-crop-name {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--km-text-title);
-  margin: 0;
-}
-
-.km-mandi-place {
-  font-size: 12px;
-  color: var(--km-text-muted);
-}
-
-.km-mandi-price-row {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  margin: 8px 0;
-}
-
-.km-mandi-price-val {
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--km-emerald);
-}
-
-.km-mandi-unit {
-  font-size: 13px;
-  color: var(--km-text-muted);
-  font-weight: 600;
-}
-
-.km-mandi-tile-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 10px;
-  border-top: 1px solid var(--km-border-subtle);
-  font-size: 12px;
-}
-
-/* ================= 6. FIELD NOTES & ACTIVITY FEED (MATCHING SCREEN 3) ================= */
-.km-notes-card {
-  background: #FFFFFF;
-  border: 1px solid var(--km-border-card);
-  border-radius: var(--km-radius-xl);
-  padding: 22px;
-  box-shadow: var(--km-shadow-card);
-  margin-bottom: 28px;
-}
-
-.km-notes-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.km-note-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--km-border-subtle);
-}
-.km-note-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-.km-note-thumb {
-  width: 58px;
-  height: 58px;
-  border-radius: var(--km-radius-md);
-  object-fit: cover;
-  flex-shrink: 0;
-}
-
-.km-note-content {
+.km-btn-hero-primary {
   flex: 1;
-}
-
-.km-note-timestamp {
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--km-text-title);
-  margin-bottom: 3px;
-}
-
-.km-note-desc {
-  font-size: 13px;
-  color: var(--km-text-muted);
-  line-height: 1.5;
-  margin: 0;
-}
-
-/* Sticky Action Pill Button */
-.km-bottom-action-bar {
-  margin-top: 16px;
-  display: flex;
-  justify-content: center;
-}
-
-.km-pill-btn-wide {
-  width: 100%;
-  max-width: 480px;
-  background: var(--km-emerald);
-  color: #FFFFFF;
-  border: none;
-  border-radius: var(--km-radius-pill);
-  padding: 16px 28px;
-  font-size: 15px;
-  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  box-shadow: 0 6px 18px rgba(13, 92, 58, 0.28);
-  transition: var(--km-ease);
-}
-.km-pill-btn-wide:hover {
-  background: var(--km-emerald-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(13, 92, 58, 0.38);
-}
-
-/* ================= 7. BOTTOM NAVIGATION DOCK ================= */
-.km-bottom-dock {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 68px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-top: 1px solid var(--km-border-card);
-  box-shadow: var(--km-shadow-dock);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.km-dock-container {
-  width: 100%;
-  max-width: 600px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 0 12px;
-}
-
-.km-dock-item {
-  background: transparent;
+  padding: 13px 20px;
+  border-radius: var(--km-radius-md);
+  font-size: 14px;
+  font-weight: 700;
   border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 160px;
+}
+
+.km-btn-hero-primary.green {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  color: white;
+  box-shadow: 0 4px 18px var(--km-primary-glow);
+}
+
+.km-btn-hero-primary.green:hover {
+  background: linear-gradient(135deg, #047857 0%, #059669 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(16, 185, 129, 0.4);
+}
+
+.km-btn-hero-primary.blue {
+  background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+  color: white;
+  box-shadow: 0 4px 18px rgba(56, 189, 248, 0.3);
+}
+
+.km-btn-hero-primary.blue:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(56, 189, 248, 0.45);
+}
+
+.km-btn-hero-secondary {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: var(--km-text-light);
-  font-size: 11px;
+  gap: 8px;
+  padding: 13px 18px;
+  border-radius: var(--km-radius-md);
+  font-size: 13px;
   font-weight: 600;
-  gap: 3px;
-  position: relative;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--km-border);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.km-btn-hero-secondary:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* ================= 4. LIVE MANDI PRICES & 3-DAY TREND TABLE ================= */
+.km-mandi-section {
+  margin-bottom: 28px;
+  background: var(--km-surface-dark);
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius-lg);
+  padding: 26px 28px;
+  box-shadow: var(--km-shadow-card);
+}
+
+.km-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.km-section-title-wrap h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin: 0 0 4px 0;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.km-section-title-wrap p {
+  font-size: 13px;
+  color: var(--km-text-muted);
+  margin: 0;
+}
+
+.km-mandi-filter-chips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 4px;
+  border-radius: var(--km-radius-pill);
+  border: 1px solid var(--km-border);
+}
+
+.km-chip {
   padding: 6px 14px;
   border-radius: var(--km-radius-pill);
-  transition: var(--km-ease);
+  font-size: 12px;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  color: var(--km-text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
-.km-dock-item:hover {
-  color: var(--km-emerald);
-}
-.km-dock-item.active {
-  color: var(--km-emerald);
+
+.km-chip.active {
+  background: var(--km-harvest-gold);
+  color: #111827;
   font-weight: 700;
 }
 
-.km-dock-pill-indicator {
-  width: 5px;
-  height: 5px;
-  border-radius: var(--km-radius-pill);
-  background: var(--km-emerald);
-  position: absolute;
-  bottom: 2px;
+/* Mandi Table Styling (Modern Neo-Bento Table) */
+.km-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--km-radius-md);
+  border: 1px solid var(--km-border);
+  background: rgba(0, 0, 0, 0.25);
 }
 
-.km-dock-special-btn {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--km-radius-pill);
-  background: var(--km-emerald);
-  color: #FFFFFF;
-  border: 3px solid #FFFFFF;
-  box-shadow: 0 6px 18px rgba(13, 92, 58, 0.35);
+.km-mandi-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 14px;
+}
+
+.km-mandi-table th {
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--km-text-muted);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--km-border);
+}
+
+.km-mandi-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: white;
+  vertical-align: middle;
+}
+
+.km-mandi-table tr:last-child td {
+  border-bottom: none;
+}
+
+.km-mandi-table tr:hover td {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.km-crop-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+}
+
+.km-crop-icon-chip {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.08);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: -24px;
-  position: relative;
-  transition: var(--km-ease);
-}
-.km-dock-special-btn:hover {
-  transform: scale(1.08);
-  background: var(--km-emerald-hover);
+  font-size: 20px;
 }
 
-.km-special-pulse {
-  position: absolute;
-  inset: -4px;
+.km-price-today {
+  font-size: 16px;
+  font-weight: 800;
+  color: #34d399;
+}
+
+.km-price-history {
+  color: var(--km-text-muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.km-trend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
   border-radius: var(--km-radius-pill);
-  background: rgba(13, 92, 58, 0.20);
-  animation: kmPulse 2s infinite ease-out;
-  z-index: -1;
+  font-size: 12px;
+  font-weight: 700;
 }
 
-@keyframes kmPulse {
-  0% { transform: scale(0.95); opacity: 0.8; }
-  100% { transform: scale(1.35); opacity: 0; }
+.km-trend-badge.up {
+  background: rgba(16, 185, 129, 0.18);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.km-trend-badge.down {
+  background: rgba(239, 68, 68, 0.18);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.km-trend-badge.stable {
+  background: rgba(148, 163, 184, 0.18);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+/* ================= 5. LOCATION SOIL & RECOMMENDED CROPS (2 Columns) ================= */
+.km-soil-crops-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.km-info-card {
+  background: var(--km-surface-dark);
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius-lg);
+  padding: 24px 26px;
+  box-shadow: var(--km-shadow-card);
+}
+
+.km-soil-radar-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.km-soil-kpi {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius-md);
+  padding: 12px;
+  text-align: center;
+}
+
+.km-soil-kpi-label {
+  font-size: 11px;
+  color: var(--km-text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.km-soil-kpi-val {
+  font-size: 16px;
+  font-weight: 800;
+  color: white;
+  margin-top: 4px;
+}
+
+.km-recommended-crops-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.km-rec-crop-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--km-border);
+  border-radius: var(--km-radius-md);
+  transition: all 0.2s ease;
+}
+
+.km-rec-crop-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(16, 185, 129, 0.3);
+  transform: translateX(3px);
+}
+
+.km-rec-crop-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.km-rec-crop-left span.icon {
+  font-size: 22px;
+}
+
+.km-rec-crop-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+
+.km-rec-crop-sub {
+  font-size: 12px;
+  color: var(--km-text-muted);
+}
+
+.km-match-badge {
+  font-size: 12px;
+  font-weight: 800;
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.15);
+  padding: 4px 10px;
+  border-radius: var(--km-radius-pill);
+}
+
+/* ================= 6. PEST ALERT & CROP HISTORY (2 Columns) ================= */
+.km-pest-history-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.km-pest-banner {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(13, 24, 18, 0.9) 70%);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--km-radius-lg);
+  padding: 24px 26px;
+  box-shadow: var(--km-shadow-card);
+}
+
+.km-pest-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.km-pest-pill {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: var(--km-radius-pill);
+  text-transform: uppercase;
+}
+
+.km-pest-content h4 {
+  font-size: 16px;
+  font-weight: 800;
+  color: white;
+  margin: 0 0 6px 0;
+}
+
+.km-pest-content p {
+  font-size: 13px;
+  color: var(--km-text-muted);
+  line-height: 1.5;
+  margin: 0 0 16px 0;
+}
+
+.km-remedy-box {
+  background: rgba(0, 0, 0, 0.3);
+  border-left: 3px solid #f87171;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #fecaca;
+  margin-bottom: 16px;
+}
+
+/* Crop History Timeline */
+.km-history-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.km-timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--km-radius-md);
+  border-left: 3px solid #10b981;
+}
+
+.km-timeline-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #10b981;
+  margin-top: 5px;
+}
+
+.km-timeline-content h5 {
+  margin: 0 0 3px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+}
+
+.km-timeline-content p {
+  margin: 0;
+  font-size: 12px;
+  color: var(--km-text-muted);
+}
+
+/* ================= RESPONSIVE MEDIA QUERIES ================= */
+@media (max-width: 1024px) {
+  .km-weather-top-row {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .km-hero-actions-grid {
+    grid-template-columns: 1fr;
+  }
+  .km-soil-crops-grid {
+    grid-template-columns: 1fr;
+  }
+  .km-pest-history-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Native Mobile Bottom Navigation Bar */
+.km-mobile-bottom-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* Disable expensive backdrop blurs on mobile GPUs for smooth 60fps scrolling */
+  * {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .km-dashboard {
+    padding-top: 68px;
+    padding-bottom: 84px !important;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  .km-topbar {
+    padding: 0 14px;
+    height: 60px;
+    background: #081a11 !important;
+  }
+
+  .km-nav-pill-group {
+    display: none;
+  }
+
+  /* Native Mobile Bottom Navigation Bar */
+  .km-mobile-bottom-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    background: #081a11;
+    border-top: 1px solid rgba(52, 211, 153, 0.25);
+    z-index: 1000;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.6);
+  }
+
+  .km-mob-nav-btn {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 6px 0;
+    transition: all 0.2s ease;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .km-mob-nav-btn span {
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .km-mob-nav-btn.active,
+  .km-mob-nav-btn:active {
+    color: #34d399;
+  }
+
+  .km-mob-nav-btn.active svg {
+    color: #34d399;
+    filter: drop-shadow(0 0 8px rgba(52, 211, 153, 0.6));
+  }
+
+  .km-container {
+    padding: 0 12px;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .km-metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .km-advisory-row {
+    grid-template-columns: 1fr;
+  }
+
+  .km-hero-cockpit {
+    padding: 16px;
+    border-radius: 16px;
+    background: #0c1f16 !important;
+  }
+
+  .km-greeting-title {
+    font-size: 19px;
+  }
+
+  .km-weather-station {
+    padding: 16px;
+    border-radius: 16px;
+    background: #0c1f16 !important;
+  }
+
+  .km-action-hero-card {
+    padding: 16px;
+    border-radius: 16px;
+    background: #0c1f16 !important;
+  }
+
+  .km-hero-actions-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
 }

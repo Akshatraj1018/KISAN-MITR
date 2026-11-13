@@ -17,7 +17,7 @@
 
 .km-login-shell {
   width: 100%;
-  max-width: 980px;
+  max-width: 1080px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -38,12 +38,23 @@
   gap: 12px;
 }
 
+.km-brand-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--km-radius-md);
+  background: var(--km-emerald);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(13, 92, 58, 0.25);
+}
+
 .km-brand-logo-img {
   width: 44px;
   height: 44px;
   border-radius: var(--km-radius-md);
   object-fit: cover;
-  box-shadow: 0 4px 12px rgba(13, 92, 58, 0.15);
 }
 
 .km-brand-text h2 {
@@ -61,19 +72,42 @@
   margin: 0;
 }
 
-/* ---------------- Main Auth Split Card ---------------- */
-.km-login-card {
+.km-login-lang-select {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #FFFFFF;
+  border: 1px solid var(--km-border-card);
+  padding: 6px 14px;
+  border-radius: var(--km-radius-pill);
+  color: var(--km-text-title);
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: var(--km-shadow-sm);
+}
+.km-login-lang-select select {
+  background: transparent;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--km-text-title);
+  outline: none;
+  cursor: pointer;
+}
+
+/* ---------------- Main Auth Split Grid ---------------- */
+.km-login-grid {
+  display: grid;
+  grid-template-columns: 1fr;
   background: #FFFFFF;
   border: 1px solid var(--km-border-card);
   border-radius: var(--km-radius-xl);
   box-shadow: var(--km-shadow-card);
-  display: grid;
-  grid-template-columns: 1fr;
   overflow: hidden;
 }
 
-@media (min-width: 820px) {
-  .km-login-card {
+@media (min-width: 860px) {
+  .km-login-grid {
     grid-template-columns: 1fr 1.15fr;
   }
 }
@@ -88,11 +122,27 @@
   justify-content: space-between;
 }
 
+.km-showcase-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--km-radius-pill);
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #FFFFFF;
+  width: fit-content;
+  margin-bottom: 16px;
+}
+
 .km-showcase-title {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 800;
-  line-height: 1.25;
+  line-height: 1.3;
   margin-bottom: 14px;
+  color: #FFFFFF;
   letter-spacing: -0.02em;
 }
 
@@ -103,46 +153,62 @@
   margin-bottom: 24px;
 }
 
-.km-showcase-features {
+.km-feature-cards {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-.km-showcase-feat-item {
+.km-feature-item {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 13px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--km-radius-md);
+  padding: 12px 14px;
 }
 
-.km-showcase-feat-icon {
-  width: 32px;
-  height: 32px;
+.km-feat-icon {
+  font-size: 20px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--km-radius-pill);
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.18);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
-/* Right Interactive Form Pane */
-.km-login-form-pane {
+.km-feature-item h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 2px 0;
+}
+
+.km-feature-item p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.80);
+  margin: 0;
+}
+
+/* Right Interactive Login & Register Console */
+.km-login-card {
   padding: 36px 32px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background: #FFFFFF;
 }
 
-.km-auth-tabs {
+.km-auth-mode-tabs {
   display: flex;
   background: var(--km-canvas);
   border-radius: var(--km-radius-pill);
   padding: 4px;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
   gap: 4px;
 }
 
@@ -151,51 +217,92 @@
   background: transparent;
   border: none;
   border-radius: var(--km-radius-pill);
-  padding: 10px 14px;
+  padding: 10px 12px;
   font-size: 13px;
   font-weight: 600;
   color: var(--km-text-muted);
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   transition: var(--km-ease);
 }
 .km-auth-tab-btn.active {
   background: #FFFFFF;
   color: var(--km-emerald);
   font-weight: 700;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
-.km-input-wrap {
+.km-btn-google-login {
+  background: var(--km-canvas) !important;
+  color: var(--km-text-title) !important;
+  border: 1px solid var(--km-border-subtle) !important;
+  border-radius: var(--km-radius-pill) !important;
+  box-shadow: var(--km-shadow-sm) !important;
+  transition: var(--km-ease);
+}
+.km-btn-google-login:hover {
+  background: var(--km-sage) !important;
+  border-color: var(--km-sage-border) !important;
+}
+
+.km-divider-row {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--km-text-light);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin: 18px 0;
+}
+.km-divider-row::before,
+.km-divider-row::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--km-border-subtle);
+}
+.km-divider-row span {
+  padding: 0 10px;
+}
+
+.km-phone-input-row {
+  display: flex;
+  gap: 10px;
   margin-bottom: 16px;
 }
 
-.km-input-label {
-  display: block;
-  font-size: 12px;
+.km-country-code {
+  padding: 12px 14px;
+  border-radius: var(--km-radius-md);
+  border: 1px solid var(--km-border-subtle);
+  background: var(--km-canvas);
   font-weight: 700;
   color: var(--km-text-title);
-  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
 }
 
-.km-input-box {
-  width: 100%;
-  padding: 13px 16px;
+.km-phone-field {
+  flex: 1;
+  padding: 12px 14px;
   border-radius: var(--km-radius-md);
   border: 1px solid var(--km-border-subtle);
   background: var(--km-canvas);
   font-size: 14px;
   color: var(--km-text-title);
   outline: none;
-  box-sizing: border-box;
   transition: var(--km-ease);
 }
-.km-input-box:focus {
+.km-phone-field:focus {
   background: #FFFFFF;
   border-color: var(--km-emerald);
-  box-shadow: 0 0 0 3px rgba(13, 92, 58, 0.10);
+  box-shadow: 0 0 0 3px rgba(13, 92, 58, 0.12);
 }
 
-.km-submit-btn {
+.km-btn-auth-primary {
   width: 100%;
   background: var(--km-emerald);
   color: #FFFFFF;
@@ -208,24 +315,72 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 4px 14px rgba(13, 92, 58, 0.30);
   cursor: pointer;
-  margin-top: 10px;
+  box-shadow: 0 4px 14px rgba(13, 92, 58, 0.30);
   transition: var(--km-ease);
 }
-.km-submit-btn:hover {
+.km-btn-auth-primary:hover {
   background: var(--km-emerald-hover);
   transform: translateY(-1px);
   box-shadow: 0 6px 18px rgba(13, 92, 58, 0.40);
 }
 
-.km-otp-code-display {
+.km-otp-banner {
   background: var(--km-sage);
   border: 1px solid var(--km-sage-border);
   border-radius: var(--km-radius-md);
   padding: 12px 16px;
   margin-bottom: 16px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+}
+
+.km-otp-input-field {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--km-radius-md);
+  border: 1px solid var(--km-border-subtle);
+  background: var(--km-canvas);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-align: center;
+  color: var(--km-text-title);
+  outline: none;
+  box-sizing: border-box;
+  margin-bottom: 14px;
+}
+.km-otp-input-field:focus {
+  background: #FFFFFF;
+  border-color: var(--km-emerald);
+  box-shadow: 0 0 0 3px rgba(13, 92, 58, 0.12);
+}
+
+.km-form-field {
+  margin-bottom: 14px;
+}
+.km-form-field label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--km-text-title);
+  margin-bottom: 6px;
+}
+.km-form-field input,
+.km-form-field select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--km-radius-md);
+  border: 1px solid var(--km-border-subtle);
+  background: var(--km-canvas);
+  font-size: 14px;
+  color: var(--km-text-title);
+  outline: none;
+  box-sizing: border-box;
+}
+.km-form-field input:focus,
+.km-form-field select:focus {
+  background: #FFFFFF;
+  border-color: var(--km-emerald);
 }

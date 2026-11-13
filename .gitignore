@@ -48,3 +48,5 @@ __pycache__/
 .idea/
 *.sublime-project
 *.sublime-workspace
+.vercel
+.env*

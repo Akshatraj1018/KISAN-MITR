@@ -129,7 +129,7 @@ const initialMandiData = [
 ];
 
 export default function MainDashboard() {
-  const { language } = useLanguage();
+  const { language, setLanguage, languages, t } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -216,8 +216,31 @@ export default function MainDashboard() {
           </button>
         </nav>
 
-        {/* Topbar Right Tools: Farmer Profile Badge */}
+        {/* Topbar Right Tools: Quick Language Selector + Farmer Profile Badge */}
         <div className="km-topbar-tools">
+          <div className="km-quick-lang-picker" style={{ display: "flex", alignItems: "center", gap: 6, background: "#EFF6FF", border: "1px solid #BFDBFE", borderRadius: "9999px", padding: "6px 12px" }}>
+            <Globe style={{ width: 14, height: 14, color: "#2563EB" }} />
+            <select
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+              style={{
+                background: "transparent",
+                border: "none",
+                color: "#1D4ED8",
+                fontWeight: 700,
+                fontSize: 13,
+                outline: "none",
+                cursor: "pointer"
+              }}
+            >
+              {(languages || []).map((l) => (
+                <option key={l.code} value={l.code} style={{ color: "#0F172A", background: "#FFFFFF" }}>
+                  {l.native} ({l.name})
+                </option>
+              ))}
+            </select>
+          </div>
+
           <div className="km-farmer-badge" onClick={() => setSheetOpen(true)}>
             <div className="km-farmer-avatar">{farmerName.charAt(0)}</div>
             <div className="km-farmer-meta">

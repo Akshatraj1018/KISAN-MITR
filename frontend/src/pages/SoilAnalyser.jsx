@@ -248,7 +248,7 @@ export default function SoilAnalyser() {
         <div className="km-soil-grid">
           {/* Left Column: Viewfinder & Input Form */}
           <div className="km-soil-card">
-            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "#0F172A" }}>
+            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "white" }}>
               1. Photograph Soil Sample
             </h3>
 
@@ -286,8 +286,8 @@ export default function SoilAnalyser() {
                       width: 60,
                       height: 60,
                       borderRadius: "50%",
-                      background: "#EFF6FF",
-                      color: "#60A5FA",
+                      background: "rgba(16,185,129,0.18)",
+                      color: "#34d399",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -297,7 +297,7 @@ export default function SoilAnalyser() {
                   >
                     🌱
                   </div>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: "#0F172A", marginBottom: 4 }}>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: "white", marginBottom: 4 }}>
                     Tap to Capture or Upload Farm Soil
                   </div>
                   <div style={{ fontSize: 12, color: "#94a3b8" }}>
@@ -356,7 +356,7 @@ export default function SoilAnalyser() {
 
           {/* Right Column: Diagnostic Report & Cultivars */}
           <div className="km-soil-card">
-            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "#0F172A" }}>
+            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "white" }}>
               2. Soil Diagnostic & Cultivar Roadmap
             </h3>
 
@@ -381,8 +381,8 @@ export default function SoilAnalyser() {
                       <button
                         onClick={() => navigate("/solution")}
                         style={{
-                          background: "#2563EB",
-                          color: "#0F172A",
+                          background: "#10b981",
+                          color: "white",
                           border: "none",
                           borderRadius: 12,
                           padding: "12px 22px",
@@ -392,7 +392,7 @@ export default function SoilAnalyser() {
                           display: "flex",
                           alignItems: "center",
                           gap: 8,
-                          boxShadow: "0 4px 14px #BFDBFE"
+                          boxShadow: "0 4px 14px rgba(16,185,129,0.3)"
                         }}
                       >
                         <span>🌿</span> Launch Crop Doctor (फसल डॉक्टर)
@@ -401,7 +401,7 @@ export default function SoilAnalyser() {
                         onClick={handleClearImage}
                         style={{
                           background: "rgba(255,255,255,0.08)",
-                          color: "#0F172A",
+                          color: "white",
                           border: "1px solid rgba(255,255,255,0.15)",
                           borderRadius: 12,
                           padding: "12px 18px",
@@ -449,8 +449,8 @@ export default function SoilAnalyser() {
                       <button
                         onClick={() => fileInputRef.current?.click()}
                         style={{
-                          background: "#2563EB",
-                          color: "#0F172A",
+                          background: "#10b981",
+                          color: "white",
                           border: "none",
                           borderRadius: 12,
                           padding: "12px 20px",
@@ -460,7 +460,7 @@ export default function SoilAnalyser() {
                           display: "flex",
                           alignItems: "center",
                           gap: 6,
-                          boxShadow: "0 4px 14px #BFDBFE"
+                          boxShadow: "0 4px 14px rgba(16,185,129,0.3)"
                         }}
                       >
                         <span>📸</span> Retake Farm Soil Photo
@@ -469,7 +469,7 @@ export default function SoilAnalyser() {
                         onClick={handleClearImage}
                         style={{
                           background: "rgba(255,255,255,0.08)",
-                          color: "#0F172A",
+                          color: "white",
                           border: "1px solid rgba(255,255,255,0.15)",
                           borderRadius: 12,
                           padding: "12px 16px",
@@ -490,7 +490,7 @@ export default function SoilAnalyser() {
                       padding: 14,
                       textAlign: "left"
                     }}>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: "#60A5FA", marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}>
+                      <div style={{ fontSize: 12, fontWeight: 700, color: "#34d399", marginBottom: 8, display: "flex", alignItems: "center", gap: 6 }}>
                         <span>💡</span> Testing indoors? Tap any certified sample soil below to preview:
                       </div>
                       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: 8 }}>
@@ -500,10 +500,10 @@ export default function SoilAnalyser() {
                             onClick={() => handleSampleSelect(sample)}
                             style={{
                               background: "rgba(255, 255, 255, 0.06)",
-                              border: "1px solid #BFDBFE",
+                              border: "1px solid rgba(52, 211, 153, 0.3)",
                               borderRadius: 8,
                               padding: "8px 10px",
-                              color: "#0F172A",
+                              color: "white",
                               fontSize: 12,
                               fontWeight: 700,
                               cursor: "pointer",
@@ -522,7 +522,7 @@ export default function SoilAnalyser() {
                 <div>
                   <div className="km-soil-type-card">
                   <div className="km-soil-result-badge-row">
-                    <span className="km-brand-badge" style={{ background: "#EFF6FF" }}>
+                    <span className="km-brand-badge" style={{ background: "rgba(16,185,129,0.2)" }}>
                       PyTorch CNN Verified
                     </span>
                     <span style={{ fontSize: 12, color: "#38bdf8", fontWeight: 700 }}>
@@ -538,7 +538,7 @@ export default function SoilAnalyser() {
                 <div className="km-soil-metrics-quad">
                   <div className="km-soil-quad-box">
                     <div className="km-soil-quad-label">Soil pH</div>
-                    <div className="km-soil-quad-val" style={{ color: "#60A5FA" }}>
+                    <div className="km-soil-quad-val" style={{ color: "#34d399" }}>
                       {report.ph || 6.5} (Optimal)
                     </div>
                   </div>
@@ -559,10 +559,10 @@ export default function SoilAnalyser() {
                 {/* Recommended Crops - INTERACTIVE CLICKABLE */}
                 <div style={{ marginBottom: 20 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-                    <h4 style={{ fontSize: 15, fontWeight: 800, color: "#0F172A", margin: 0 }}>
+                    <h4 style={{ fontSize: 15, fontWeight: 800, color: "white", margin: 0 }}>
                       🌾 High-ROI Recommended Crops (Tap to View Growing Process):
                     </h4>
-                    <span style={{ fontSize: 11, color: "#60A5FA", fontWeight: 700 }}>
+                    <span style={{ fontSize: 11, color: "#34d399", fontWeight: 700 }}>
                       👉 Tap any crop to load ICAR roadmap
                     </span>
                   </div>
@@ -582,8 +582,8 @@ export default function SoilAnalyser() {
                           onClick={() => setSelectedCropKey(cropItem.key)}
                           style={{
                             cursor: "pointer",
-                            background: isSelected ? "#EFF6FF" : "rgba(255, 255, 255, 0.04)",
-                            border: `1.5px solid ${isSelected ? "#2563EB" : "rgba(255, 255, 255, 0.08)"}`,
+                            background: isSelected ? "rgba(16, 185, 129, 0.22)" : "rgba(255, 255, 255, 0.04)",
+                            border: `1.5px solid ${isSelected ? "#10b981" : "rgba(255, 255, 255, 0.08)"}`,
                             transform: isSelected ? "scale(1.01)" : "none",
                             transition: "all 0.2s ease",
                             display: "flex",
@@ -603,11 +603,11 @@ export default function SoilAnalyser() {
                             </div>
                           </div>
                           <div style={{ textAlign: "right" }}>
-                            <span className="km-match-badge" style={{ background: isSelected ? "#1D4ED8" : undefined }}>
+                            <span className="km-match-badge" style={{ background: isSelected ? "#059669" : undefined }}>
                               {cropItem.match}
                             </span>
                             {isSelected && (
-                              <div style={{ fontSize: 11, color: "#60A5FA", fontWeight: 700, marginTop: 4 }}>
+                              <div style={{ fontSize: 11, color: "#34d399", fontWeight: 700, marginTop: 4 }}>
                                 ● Blueprint Active
                               </div>
                             )}
@@ -623,7 +623,7 @@ export default function SoilAnalyser() {
                   <div
                     style={{
                       background: "rgba(0, 0, 0, 0.45)",
-                      border: "1.5px solid #BFDBFE",
+                      border: "1.5px solid rgba(52, 211, 153, 0.4)",
                       borderRadius: 16,
                       padding: 20,
                       marginBottom: 20,
@@ -631,7 +631,7 @@ export default function SoilAnalyser() {
                   >
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 }}>
                       <div>
-                        <h4 style={{ margin: 0, fontSize: 16, fontWeight: 800, color: "#0F172A", display: "flex", alignItems: "center", gap: 6 }}>
+                        <h4 style={{ margin: 0, fontSize: 16, fontWeight: 800, color: "white", display: "flex", alignItems: "center", gap: 6 }}>
                           <span>📘</span> ICAR Cultivation Process: {CULTIVATION_BLUEPRINTS[selectedCropKey].name}
                         </h4>
                         <div style={{ fontSize: 12, color: "#94a3b8", marginTop: 3 }}>
@@ -640,7 +640,7 @@ export default function SoilAnalyser() {
                       </div>
                       <div style={{ textAlign: "right" }}>
                         <div style={{ fontSize: 11, color: "#94a3b8" }}>Estimated Profit:</div>
-                        <div style={{ fontSize: 16, fontWeight: 800, color: "#60A5FA" }}>
+                        <div style={{ fontSize: 16, fontWeight: 800, color: "#34d399" }}>
                           {CULTIVATION_BLUEPRINTS[selectedCropKey].estimatedProfit}
                         </div>
                       </div>
@@ -659,13 +659,13 @@ export default function SoilAnalyser() {
                           }}
                         >
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
-                            <span style={{ fontWeight: 700, color: "#0F172A", fontSize: 13 }}>{ph.title}</span>
+                            <span style={{ fontWeight: 700, color: "white", fontSize: 13 }}>{ph.title}</span>
                             <span style={{ fontSize: 11, color: "#f59e0b", fontWeight: 700 }}>{ph.dayRange}</span>
                           </div>
                           <p style={{ margin: "0 0 4px 0", fontSize: 12, color: "#cbd5e1", lineHeight: 1.4 }}>
                             {ph.description}
                           </p>
-                          <div style={{ fontSize: 11, color: "#1D4ED8" }}>
+                          <div style={{ fontSize: 11, color: "#a7f3d0" }}>
                             <strong>Inputs / Fertilizer:</strong> {ph.inputsRequired}
                           </div>
                         </div>
@@ -676,8 +676,8 @@ export default function SoilAnalyser() {
                     {activeProject && activeProject.cropKey === selectedCropKey ? (
                       <div
                         style={{
-                          background: "linear-gradient(135deg, #EFF6FF 0%, rgba(6, 78, 59, 0.35) 100%)",
-                          border: "1.5px solid #2563EB",
+                          background: "linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(6, 78, 59, 0.35) 100%)",
+                          border: "1.5px solid #10b981",
                           borderRadius: 14,
                           padding: 18,
                           marginTop: 14,
@@ -685,15 +685,15 @@ export default function SoilAnalyser() {
                       >
                         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12, flexWrap: "wrap", gap: 8 }}>
                           <div>
-                            <span className="km-brand-badge" style={{ background: "#BFDBFE", color: "#1D4ED8" }}>
+                            <span className="km-brand-badge" style={{ background: "rgba(16, 185, 129, 0.3)", color: "#a7f3d0" }}>
                               ⚡ Live Field Cultivation Progress Tracker
                             </span>
-                            <h4 style={{ margin: "6px 0 0 0", color: "#0F172A", fontSize: 16, fontWeight: 800 }}>
+                            <h4 style={{ margin: "6px 0 0 0", color: "white", fontSize: 16, fontWeight: 800 }}>
                               Active Execution: {activeProject.cropName} ({activeProject.plotName})
                             </h4>
                           </div>
                           <div style={{ textAlign: "right" }}>
-                            <div style={{ fontSize: 20, fontWeight: 800, color: "#60A5FA" }}>
+                            <div style={{ fontSize: 20, fontWeight: 800, color: "#34d399" }}>
                               {activeProject.progressPercent}%
                             </div>
                             <div style={{ fontSize: 11, color: "#94a3b8" }}>Field Completion</div>
@@ -706,7 +706,7 @@ export default function SoilAnalyser() {
                             style={{
                               width: `${activeProject.progressPercent}%`,
                               height: "100%",
-                              background: "linear-gradient(90deg, #2563EB, #60A5FA)",
+                              background: "linear-gradient(90deg, #10b981, #34d399)",
                               transition: "width 0.4s ease",
                             }}
                           />
@@ -717,7 +717,7 @@ export default function SoilAnalyser() {
                           <div style={{ fontSize: 12, color: "#fbbf24", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}>
                             <span>⚡</span> IMMEDIATE ACTION REMINDER:
                           </div>
-                          <div style={{ fontSize: 13, color: "#0F172A", fontWeight: 600, marginTop: 4 }}>
+                          <div style={{ fontSize: 13, color: "white", fontWeight: 600, marginTop: 4 }}>
                             {activeProject.phases.find(p => p.status === "in_progress")?.reminderText || "Follow standard agronomy schedule."}
                           </div>
                         </div>
@@ -733,8 +733,8 @@ export default function SoilAnalyser() {
                                 alignItems: "center",
                                 padding: "10px 12px",
                                 borderRadius: 10,
-                                background: p.status === "completed" ? "#EFF6FF" : p.status === "in_progress" ? "rgba(245, 158, 11, 0.15)" : "rgba(255, 255, 255, 0.03)",
-                                border: `1px solid ${p.status === "completed" ? "#2563EB" : p.status === "in_progress" ? "#f59e0b" : "rgba(255, 255, 255, 0.05)"}`,
+                                background: p.status === "completed" ? "rgba(16, 185, 129, 0.1)" : p.status === "in_progress" ? "rgba(245, 158, 11, 0.15)" : "rgba(255, 255, 255, 0.03)",
+                                border: `1px solid ${p.status === "completed" ? "#10b981" : p.status === "in_progress" ? "#f59e0b" : "rgba(255, 255, 255, 0.05)"}`,
                               }}
                             >
                               <div>
@@ -763,7 +763,7 @@ export default function SoilAnalyser() {
                                     ✓ Lodge Done
                                   </button>
                                 ) : p.status === "completed" ? (
-                                  <span style={{ fontSize: 11, color: "#60A5FA", fontWeight: 800, background: "#EFF6FF", padding: "4px 8px", borderRadius: 6 }}>
+                                  <span style={{ fontSize: 11, color: "#34d399", fontWeight: 800, background: "rgba(16, 185, 129, 0.2)", padding: "4px 8px", borderRadius: 6 }}>
                                     ✓ Done
                                   </span>
                                 ) : (
@@ -782,7 +782,7 @@ export default function SoilAnalyser() {
                             width: "100%",
                             background: "rgba(255, 255, 255, 0.06)",
                             border: "1px solid rgba(255, 255, 255, 0.12)",
-                            color: "#0F172A",
+                            color: "white",
                             padding: "10px",
                             borderRadius: 10,
                             fontSize: 13,
@@ -806,8 +806,8 @@ export default function SoilAnalyser() {
                         style={{
                           padding: "14px 24px",
                           fontSize: 15,
-                          background: "linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%)",
-                          boxShadow: "0 8px 24px #BFDBFE",
+                          background: "linear-gradient(135deg, #059669 0%, #10b981 100%)",
+                          boxShadow: "0 8px 24px rgba(16, 185, 129, 0.35)",
                         }}
                         onClick={() => handleStartCultivation(selectedCropKey)}
                       >
@@ -822,7 +822,7 @@ export default function SoilAnalyser() {
                 <div style={{ display: "flex", gap: 12 }}>
                   <button
                     className="km-btn-doc primary"
-                    style={{ background: speaking ? "#f59e0b" : "linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%)" }}
+                    style={{ background: speaking ? "#f59e0b" : "linear-gradient(135deg, #059669 0%, #10b981 100%)" }}
                     onClick={handleSpeakReport}
                   >
                     <Volume2 style={{ width: 16, height: 16 }} />
@@ -842,7 +842,7 @@ export default function SoilAnalyser() {
               /* Empty State Showcase */
               <div style={{ textAlign: "center", padding: "30px 20px" }}>
                 <div style={{ fontSize: 40, marginBottom: 10 }}>🧪</div>
-                <h4 style={{ margin: 0, color: "#0F172A", fontSize: 16, fontWeight: 700 }}>
+                <h4 style={{ margin: 0, color: "white", fontSize: 16, fontWeight: 700 }}>
                   Ready to Test Your Soil Texture & Nutrients
                 </h4>
                 <p style={{ color: "#94a3b8", fontSize: 13, marginTop: 6, marginBottom: 20 }}>
@@ -856,7 +856,7 @@ export default function SoilAnalyser() {
                       className="km-sample-card"
                       onClick={() => handleSampleSelect(sample)}
                     >
-                      <h5 style={{ color: "#60A5FA" }}>{sample.name}</h5>
+                      <h5 style={{ color: "#34d399" }}>{sample.name}</h5>
                       <p style={{ margin: "4px 0", fontSize: 12 }}>pH: {sample.ph} • Moisture: {sample.moisture}</p>
                       <p style={{ color: "#cbd5e1" }}>{sample.texture}</p>
                     </div>
@@ -888,7 +888,7 @@ export default function SoilAnalyser() {
             <div
               style={{
                 background: "#0d1b13",
-                border: "1.5px solid #2563EB",
+                border: "1.5px solid #10b981",
                 borderRadius: 20,
                 padding: 24,
                 maxWidth: 480,
@@ -896,7 +896,7 @@ export default function SoilAnalyser() {
                 boxShadow: "0 20px 50px rgba(0,0,0,0.8)",
               }}
             >
-              <h3 style={{ margin: "0 0 8px 0", color: "#0F172A", fontSize: 18, fontWeight: 800 }}>
+              <h3 style={{ margin: "0 0 8px 0", color: "white", fontSize: 18, fontWeight: 800 }}>
                 ✓ Lodge Progress: {lodgeModalPhase.title}
               </h3>
               <p style={{ margin: "0 0 16px 0", color: "#94a3b8", fontSize: 13 }}>
@@ -907,11 +907,11 @@ export default function SoilAnalyser() {
                 rows={3}
                 style={{
                   width: "100%",
-                  background: "#F8FAFC",
-                  border: "1px solid #CBD5E1",
+                  background: "rgba(0,0,0,0.4)",
+                  border: "1px solid rgba(255,255,255,0.15)",
                   borderRadius: 12,
                   padding: 12,
-                  color: "#0F172A",
+                  color: "white",
                   fontSize: 13,
                   outline: "none",
                   boxSizing: "border-box",
@@ -932,7 +932,7 @@ export default function SoilAnalyser() {
                 </button>
                 <button
                   className="km-btn-doc primary"
-                  style={{ flex: 2, padding: 12, background: "linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%)" }}
+                  style={{ flex: 2, padding: 12, background: "linear-gradient(135deg, #059669 0%, #10b981 100%)" }}
                   onClick={() => handleLodgeDone(lodgeModalPhase.id)}
                 >
                   Confirm Step Completed ➔

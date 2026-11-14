@@ -6,11 +6,7 @@
 .km-login-page {
   min-height: 100vh;
   width: 100%;
-  background-color: #F8FAFC;
-  background-image: 
-    radial-gradient(circle at 10% 15%, rgba(56, 189, 248, 0.12) 0%, transparent 45%),
-    radial-gradient(circle at 90% 75%, rgba(37, 99, 235, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 50% 50%, rgba(217, 119, 6, 0.08) 0%, transparent 50%);
+  background: radial-gradient(circle at 85% 15%, #0f2d1e 0%, #071710 50%, #030a06 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +28,7 @@
 .km-login-bg-glow.glow-1 {
   width: 500px;
   height: 500px;
-  background: rgba(37, 99, 235, 0.08);
+  background: rgba(16, 185, 129, 0.12);
   top: -100px;
   right: -100px;
 }
@@ -40,7 +36,7 @@
 .km-login-bg-glow.glow-2 {
   width: 450px;
   height: 450px;
-  background: rgba(217, 119, 6, 0.08);
+  background: rgba(245, 158, 11, 0.08);
   bottom: -80px;
   left: -80px;
 }
@@ -74,19 +70,19 @@
   width: 42px;
   height: 42px;
   border-radius: 14px;
-  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.35);
 }
 
 .km-brand-name {
   font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #0F172A;
+  color: #ffffff;
   display: block;
 }
 
@@ -94,9 +90,9 @@
   display: inline-block;
   font-size: 10.5px;
   font-weight: 700;
-  color: #60A5FA;
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid rgba(37, 99, 235, 0.25);
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
   padding: 2px 8px;
   border-radius: 10px;
   margin-top: 2px;
@@ -106,23 +102,23 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #F1F5F9;
-  border: 1px solid #EFF6FF;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 6px 14px;
   border-radius: 20px;
-  color: #60A5FA;
+  color: #34d399;
   transition: all 0.2s ease;
 }
 
 .km-login-lang-picker:hover {
-  background: #EFF6FF;
-  border-color: #60A5FA;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #34d399;
 }
 
 .km-login-lang-picker select {
   background: transparent;
   border: none;
-  color: #0F172A;
+  color: #f1f5f9;
   font-size: 13px;
   font-weight: 600;
   outline: none;
@@ -130,8 +126,8 @@
 }
 
 .km-login-lang-picker select option {
-  background: #FFFFFF;
-  color: #0F172A;
+  background: #0b1f15;
+  color: #ffffff;
 }
 
 /* ---------------- Split Grid ---------------- */
@@ -154,7 +150,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(217, 119, 6, 0.12);
+  background: rgba(245, 158, 11, 0.14);
   color: #fbbf24;
   border: 1px solid rgba(245, 158, 11, 0.3);
   padding: 6px 14px;
@@ -167,13 +163,13 @@
 .km-showcase-title {
   font-size: 40px;
   font-weight: 800;
-  color: #0F172A;
+  color: #ffffff;
   line-height: 1.15;
   margin: 0;
 }
 
 .km-highlight {
-  background: linear-gradient(135deg, #60A5FA 0%, #2563EB 100%);
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -197,8 +193,8 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  background: #F1F5F9;
-  border: 1px solid #F1F5F9;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
   padding: 14px 18px;
   backdrop-filter: blur(10px);
@@ -206,8 +202,8 @@
 }
 
 .km-feature-mini-card:hover {
-  background: #F1F5F9;
-  border-color: rgba(37, 99, 235, 0.25);
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(52, 211, 153, 0.3);
   transform: translateX(4px);
 }
 
@@ -222,14 +218,14 @@
   flex-shrink: 0;
 }
 
-.km-feature-icon.green { background: rgba(37, 99, 235, 0.08); border: 1px solid rgba(37, 99, 235, 0.25); }
-.km-feature-icon.amber { background: rgba(217, 119, 6, 0.12); border: 1px solid rgba(245, 158, 11, 0.3); }
+.km-feature-icon.green { background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); }
+.km-feature-icon.amber { background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.3); }
 .km-feature-icon.blue { background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); }
 
 .km-feature-mini-card strong {
   display: block;
   font-size: 14px;
-  color: #0F172A;
+  color: #ffffff;
   margin-bottom: 2px;
 }
 
@@ -258,10 +254,10 @@
   width: 100%;
   max-width: 440px;
   background: rgba(13, 31, 22, 0.88);
-  border: 1px solid rgba(37, 99, 235, 0.25);
+  border: 1px solid rgba(52, 211, 153, 0.25);
   border-radius: 28px;
   padding: 32px 28px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.65), 0 0 35px rgba(37, 99, 235, 0.08);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.65), 0 0 35px rgba(16, 185, 129, 0.12);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
 }
@@ -274,7 +270,7 @@
 .km-card-header h2 {
   font-size: 24px;
   font-weight: 800;
-  color: #0F172A;
+  color: #ffffff;
   margin: 0 0 6px;
 }
 
@@ -301,7 +297,7 @@
 /* Instant Demo Sign-In Button */
 .km-demo-login-btn {
   width: 100%;
-  background: linear-gradient(135deg, rgba(217, 119, 6, 0.12) 0%, rgba(217, 119, 6, 0.25) 100%);
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.18) 0%, rgba(217, 119, 6, 0.25) 100%);
   border: 1px solid rgba(245, 158, 11, 0.45);
   color: #fde68a;
   padding: 12px;
@@ -314,7 +310,7 @@
   gap: 8px;
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 4px 15px rgba(217, 119, 6, 0.12);
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.15);
 }
 
 .km-demo-login-btn:hover {
@@ -322,7 +318,7 @@
   border-color: #fbbf24;
   color: #ffffff;
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(217, 119, 6, 0.18);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.25);
 }
 
 .km-login-divider {
@@ -341,7 +337,7 @@
 .km-login-divider::after {
   content: "";
   flex: 1;
-  border-bottom: 1px solid #F1F5F9;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .km-login-divider span {
@@ -351,11 +347,11 @@
 /* Method Tabs */
 .km-method-tabs {
   display: flex;
-  background: #F1F5F9;
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 14px;
   padding: 4px;
   margin-bottom: 18px;
-  border: 1px solid #F1F5F9;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .km-tab-btn {
@@ -376,9 +372,9 @@
 }
 
 .km-tab-btn.active {
-  background: #2563EB;
+  background: #10b981;
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
 }
 
 /* Form Fields */
@@ -404,7 +400,7 @@
 
 .km-forgot-link {
   font-size: 11.5px;
-  color: #60A5FA;
+  color: #34d399;
   font-weight: 600;
 }
 
@@ -427,21 +423,21 @@
 
 .km-input-wrapper input {
   width: 100%;
-  background: #FFFFFF;
-  border: 1px solid #CBD5E1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 14px;
   padding: 13px 40px 13px 40px;
   font-size: 13.5px;
-  color: #0F172A;
+  color: #ffffff;
   outline: none;
   font-family: inherit;
   transition: all 0.2s ease;
 }
 
 .km-input-wrapper input:focus {
-  border-color: #2563EB;
-  background: #FFFFFF;
-  box-shadow: 0 0 16px rgba(37, 99, 235, 0.15);
+  border-color: #34d399;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);
 }
 
 .km-password-eye {
@@ -476,7 +472,7 @@
 }
 
 .km-checkbox-label input {
-  accent-color: #2563EB;
+  accent-color: #10b981;
   width: 16px;
   height: 16px;
   cursor: pointer;
@@ -485,7 +481,7 @@
 /* Submit Button */
 .km-submit-btn {
   width: 100%;
-  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: #ffffff;
   border: none;
   border-radius: 16px;
@@ -497,13 +493,13 @@
   justify-content: center;
   gap: 8px;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.4);
   transition: all 0.25s ease;
 }
 
 .km-submit-btn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
+  box-shadow: 0 14px 30px rgba(16, 185, 129, 0.55);
 }
 
 .km-submit-btn:disabled {
@@ -515,7 +511,7 @@
 .km-card-footer {
   margin-top: 24px;
   padding-top: 20px;
-  border-top: 1px solid #F1F5F9;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -528,7 +524,7 @@
 }
 
 .km-signup-link {
-  color: #60A5FA;
+  color: #34d399;
   font-weight: 700;
   margin-left: 6px;
 }
@@ -588,9 +584,9 @@
   }
 
   .km-login-card {
-    background: #FFFFFF !important;
+    background: #0b1e15 !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6) !important;
-    border: 1px solid rgba(37, 99, 235, 0.25) !important;
+    border: 1px solid rgba(52, 211, 153, 0.25) !important;
   }
 }
 
@@ -613,8 +609,8 @@
 /* ---------------- Auth Mode Switcher Tabs ---------------- */
 .km-auth-mode-tabs {
   display: flex;
-  background: #F8FAFC;
-  border: 1px solid #EFF6FF;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 14px;
   padding: 4px;
   margin-bottom: 20px;
@@ -639,14 +635,14 @@
 }
 
 .km-auth-tab-btn.active {
-  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: #ffffff;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.4);
 }
 
 .km-auth-tab-btn:hover:not(.active) {
-  color: #0F172A;
-  background: #E2E8F0;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.06);
 }
 
 /* ---------------- Google Mail Login Button ---------------- */
@@ -656,9 +652,9 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  background: #FFFFFF;
-  border: 1px solid #CBD5E1;
-  color: #0F172A;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
   border-radius: 14px;
   padding: 12px 18px;
   font-size: 14px;
@@ -669,7 +665,7 @@
 }
 
 .km-btn-google-login:hover {
-  background: #EFF6FF;
+  background: rgba(255, 255, 255, 0.15);
   border-color: #38bdf8;
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
@@ -696,7 +692,7 @@
   content: "";
   flex: 1;
   height: 1px;
-  background: #EFF6FF;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* ---------------- Phone Input Row ---------------- */
@@ -710,11 +706,11 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  background: #FFFFFF;
-  border: 1px solid #CBD5E1;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   padding: 0 14px;
-  color: #0F172A;
+  color: #ffffff;
   font-size: 14px;
   font-weight: 700;
   white-space: nowrap;
@@ -722,8 +718,8 @@
 
 /* ---------------- OTP Input Box ---------------- */
 .km-otp-card-box {
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid rgba(37, 99, 235, 0.25);
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(52, 211, 153, 0.3);
   border-radius: 14px;
   padding: 16px;
   margin-bottom: 18px;
@@ -732,28 +728,28 @@
 .km-otp-input-field {
   width: 100%;
   background: rgba(0, 0, 0, 0.4);
-  border: 2px solid rgba(37, 99, 235, 0.25);
+  border: 2px solid rgba(52, 211, 153, 0.5);
   border-radius: 12px;
   padding: 12px 16px;
   font-size: 24px;
   font-weight: 800;
   letter-spacing: 8px;
   text-align: center;
-  color: #60A5FA;
+  color: #34d399;
   outline: none;
   box-sizing: border-box;
 }
 
 .km-otp-input-field:focus {
-  border-color: #2563EB;
-  box-shadow: 0 0 15px rgba(37, 99, 235, 0.35);
+  border-color: #10b981;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
 }
 
 .km-otp-demo-pill {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(217, 119, 6, 0.12);
+  background: rgba(245, 158, 11, 0.15);
   border: 1px solid rgba(245, 158, 11, 0.35);
   border-radius: 8px;
   padding: 6px 12px;
@@ -790,8 +786,8 @@
 .km-demo-judge-box {
   margin-top: 20px;
   padding: 16px;
-  background: rgba(37, 99, 235, 0.05);
-  border: 1px dashed rgba(37, 99, 235, 0.25);
+  background: rgba(16, 185, 129, 0.05);
+  border: 1px dashed rgba(52, 211, 153, 0.35);
   border-radius: 16px;
 }
 
@@ -801,7 +797,7 @@
   gap: 6px;
   font-size: 12px;
   font-weight: 700;
-  color: #60A5FA;
+  color: #34d399;
   margin-bottom: 10px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -820,8 +816,8 @@
 }
 
 .km-demo-btn {
-  background: #F1F5F9;
-  border: 1px solid #EFF6FF;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 10px;
   padding: 10px;
   text-align: left;
@@ -830,15 +826,15 @@
 }
 
 .km-demo-btn:hover {
-  background: rgba(37, 99, 235, 0.08);
-  border-color: #60A5FA;
+  background: rgba(16, 185, 129, 0.15);
+  border-color: #34d399;
   transform: translateY(-1px);
 }
 
 .km-demo-btn-name {
   font-size: 13px;
   font-weight: 800;
-  color: #0F172A;
+  color: #ffffff;
   display: block;
 }
 
@@ -852,9 +848,9 @@
 /* ---------------- Styled Premium Button ---------------- */
 .km-btn-submit {
   width: 100%;
-  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1D4ED8 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
   color: #ffffff;
-  border: 1px solid rgba(37, 99, 235, 0.25);
+  border: 1px solid rgba(52, 211, 153, 0.4);
   border-radius: 16px;
   padding: 14px 20px;
   font-size: 15px;
@@ -865,14 +861,14 @@
   justify-content: center;
   gap: 8px;
   cursor: pointer;
-  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.3);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .km-btn-submit:hover:not(:disabled) {
   transform: translateY(-2px);
-  background: linear-gradient(135deg, #60A5FA 0%, #2563EB 50%, #1D4ED8 100%);
-  box-shadow: 0 14px 35px rgba(37, 99, 235, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+  background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #059669 100%);
+  box-shadow: 0 14px 35px rgba(16, 185, 129, 0.6), inset 0 1px 2px rgba(255, 255, 255, 0.5);
 }
 
 .km-btn-submit:disabled {

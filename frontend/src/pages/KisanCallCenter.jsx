@@ -597,8 +597,8 @@ export default function KisanCallCenter() {
             justifyContent: "space-between",
             alignItems: "center",
             padding: "9px 18px",
-            background: "rgba(37, 99, 235, 0.08)",
-            borderBottom: "1px solid #BFDBFE",
+            background: "rgba(16, 185, 129, 0.08)",
+            borderBottom: "1px solid rgba(52, 211, 153, 0.15)",
             fontSize: "12px",
             position: "relative",
             zIndex: 9,
@@ -608,8 +608,8 @@ export default function KisanCallCenter() {
             onClick={() => setShowHistory(true)}
             style={{
               background: "rgba(255, 255, 255, 0.06)",
-              border: "1px solid #BFDBFE",
-              color: "#1D4ED8",
+              border: "1px solid rgba(52, 211, 153, 0.3)",
+              color: "#a7f3d0",
               padding: "5px 12px",
               borderRadius: "999px",
               display: "flex",
@@ -636,9 +636,9 @@ export default function KisanCallCenter() {
           <button
             onClick={handleStartNewChat}
             style={{
-              background: "linear-gradient(135deg, #1D4ED8, #2563EB)",
+              background: "linear-gradient(135deg, #059669, #10b981)",
               border: "none",
-              color: "#0F172A",
+              color: "#ffffff",
               padding: "5px 14px",
               borderRadius: "999px",
               display: "flex",
@@ -646,7 +646,7 @@ export default function KisanCallCenter() {
               gap: "5px",
               cursor: "pointer",
               fontWeight: "700",
-              boxShadow: "0 2px 8px #BFDBFE",
+              boxShadow: "0 2px 8px rgba(16,185,129,0.3)",
             }}
           >
             <Plus size={13} />
@@ -693,7 +693,7 @@ export default function KisanCallCenter() {
                   display: "flex",
                   alignItems: "center",
                   gap: "8px",
-                  color: "#60A5FA",
+                  color: "#34d399",
                   fontWeight: "700",
                   fontSize: "16px",
                 }}
@@ -714,7 +714,7 @@ export default function KisanCallCenter() {
                 style={{
                   background: "rgba(255,255,255,0.1)",
                   border: "none",
-                  color: "#0F172A",
+                  color: "white",
                   padding: "6px 14px",
                   borderRadius: "8px",
                   cursor: "pointer",
@@ -736,7 +736,7 @@ export default function KisanCallCenter() {
                     key={session.id}
                     style={{
                       background: "rgba(255, 255, 255, 0.04)",
-                      border: "1px solid #BFDBFE",
+                      border: "1px solid rgba(52, 211, 153, 0.2)",
                       borderRadius: "12px",
                       padding: "12px 14px",
                       display: "flex",
@@ -751,7 +751,7 @@ export default function KisanCallCenter() {
                       <div
                         style={{
                           fontSize: "11px",
-                          color: "#60A5FA",
+                          color: "#34d399",
                           fontWeight: "700",
                           marginBottom: "4px",
                         }}
@@ -774,8 +774,8 @@ export default function KisanCallCenter() {
                       <button
                         onClick={() => handleRestoreSession(session)}
                         style={{
-                          background: "#1D4ED8",
-                          color: "#0F172A",
+                          background: "#059669",
+                          color: "white",
                           border: "none",
                           padding: "6px 10px",
                           borderRadius: "8px",
@@ -824,11 +824,11 @@ export default function KisanCallCenter() {
                       width: "100%",
                       height: "100%",
                       borderRadius: "50%",
-                      background: "radial-gradient(circle at 35% 30%, #60A5FA 0%, #1D4ED8 65%, #1E3A8A 100%)",
+                      background: "radial-gradient(circle at 35% 30%, #34d399 0%, #059669 65%, #064e3b 100%)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      boxShadow: "0 0 25px rgba(37, 99, 235, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4)",
+                      boxShadow: "0 0 25px rgba(16, 185, 129, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4)",
                       border: "2px solid rgba(255, 255, 255, 0.4)",
                       fontSize: "40px",
                       userSelect: "none",
@@ -903,11 +903,11 @@ export default function KisanCallCenter() {
                       width: "100%",
                       height: "100%",
                       borderRadius: "50%",
-                      background: "radial-gradient(circle at 35% 30%, #60A5FA 0%, #1D4ED8 65%, #1E3A8A 100%)",
+                      background: "radial-gradient(circle at 35% 30%, #34d399 0%, #059669 65%, #064e3b 100%)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      boxShadow: "0 0 25px rgba(37, 99, 235, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4)",
+                      boxShadow: "0 0 25px rgba(16, 185, 129, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.4)",
                       border: "2px solid rgba(255, 255, 255, 0.4)",
                       fontSize: "40px",
                       userSelect: "none",
@@ -917,10 +917,10 @@ export default function KisanCallCenter() {
                   </div>
                 </div>
               </div>
-              <h2 style={{ fontSize: "22px", margin: "16px 0 6px", color: "#0F172A", fontWeight: "800" }}>
+              <h2 style={{ fontSize: "22px", margin: "16px 0 6px", color: "#ffffff", fontWeight: "800" }}>
                 {t.personaName}
               </h2>
-              <p style={{ color: "#60A5FA", fontSize: "14px", fontWeight: "600", margin: "0" }}>
+              <p style={{ color: "#34d399", fontSize: "14px", fontWeight: "600", margin: "0" }}>
                 {t.callingText}
               </p>
               <div className="ring-pulse-dots">
@@ -971,11 +971,11 @@ export default function KisanCallCenter() {
                       width: "100%",
                       height: "100%",
                       borderRadius: "50%",
-                      background: "radial-gradient(circle at 35% 30%, #60A5FA 0%, #1D4ED8 65%, #1E3A8A 100%)",
+                      background: "radial-gradient(circle at 35% 30%, #34d399 0%, #059669 65%, #064e3b 100%)",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      boxShadow: "0 0 20px rgba(37, 99, 235, 0.4)",
+                      boxShadow: "0 0 20px rgba(16, 185, 129, 0.4)",
                       fontSize: "36px",
                       userSelect: "none",
                     }}

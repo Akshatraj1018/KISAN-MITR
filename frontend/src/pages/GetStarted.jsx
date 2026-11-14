@@ -11,7 +11,7 @@ export default function GetStarted() {
   return (
     <div className="lang-page">
       <div className="lang-header">
-        <img src={logo} alt="App Logo" className="app-logo" style={{ width: 110, height: 110, borderRadius: "50%", objectFit: "cover", border: "3px solid #60A5FA", boxShadow: "0 10px 25px rgba(0,0,0,0.5)" }} />
+        <img src={logo} alt="App Logo" className="app-logo" style={{ width: 110, height: 110, borderRadius: "50%", objectFit: "cover", border: "3px solid #34d399", boxShadow: "0 10px 25px rgba(0,0,0,0.5)" }} />
         <h1 className="app-title">{t ? t("appName") : "Kisan Mitra"}</h1>
       </div>
 

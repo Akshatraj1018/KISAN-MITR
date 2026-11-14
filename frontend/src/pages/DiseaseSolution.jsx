@@ -152,7 +152,7 @@ export default function DiseaseSolution() {
         const greenRatio = greenCount / plantPixels;
         const brownRatio = brownCount / plantPixels;
 
-        // Guardrail: Non-plant surfaces (Tile floor, wall, floor, furniture, clothing)
+        // Guardrail: Non-plant surfaces (Tile floor, wall, furniture, clothing, household objects)
         if (greenRatio < 0.08 && brownRatio < 0.06 && !cropType && !symptomsInput) {
           setDiagnosis({
             is_plant: false,
@@ -302,7 +302,7 @@ export default function DiseaseSolution() {
         <div className="km-doc-grid">
           {/* Left Column: Viewfinder & Input Form */}
           <div className="km-doc-card">
-            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "#0F172A" }}>
+            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "white" }}>
               1. Capture or Upload Crop Photo
             </h3>
 
@@ -340,8 +340,8 @@ export default function DiseaseSolution() {
                       width: 60,
                       height: 60,
                       borderRadius: "50%",
-                      background: "#EFF6FF",
-                      color: "#60A5FA",
+                      background: "rgba(16,185,129,0.18)",
+                      color: "#34d399",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
@@ -351,7 +351,7 @@ export default function DiseaseSolution() {
                   >
                     📷
                   </div>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: "#0F172A", marginBottom: 4 }}>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: "white", marginBottom: 4 }}>
                     Tap to Open Camera or Choose Leaf Photo
                   </div>
                   <div style={{ fontSize: 12, color: "#94a3b8" }}>
@@ -381,15 +381,15 @@ export default function DiseaseSolution() {
                 onChange={(e) => setCropType(e.target.value)}
               >
                 <option value="">Auto-Detect Crop Species</option>
-                <option value="Maize">Maize</option>
-                <option value="Wheat">Wheat</option>
-                <option value="Paddy">Paddy</option>
-                <option value="Potato">Potato</option>
-                <option value="Mustard">Mustard</option>
-                <option value="Tomato">Tomato</option>
-                <option value="Cotton">Cotton</option>
-                <option value="Chilli">Chilli</option>
-                <option value="Soybean">Soybean</option>
+                <option value="Maize">Maize / Corn (मक्का)</option>
+                <option value="Wheat">Wheat (गेहूं)</option>
+                <option value="Paddy">Paddy / Rice (धान)</option>
+                <option value="Potato">Potato (आलू)</option>
+                <option value="Mustard">Mustard (सरसों)</option>
+                <option value="Tomato">Tomato (टमाटर)</option>
+                <option value="Cotton">Cotton (कपास)</option>
+                <option value="Chilli">Chilli / Pepper (मिर्च)</option>
+                <option value="Soybean">Soybean (सोयाबीन)</option>
               </select>
             </div>
 
@@ -431,15 +431,15 @@ export default function DiseaseSolution() {
 
           {/* Right Column: Diagnostic Report / Showcase */}
           <div className="km-doc-card">
-            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "#0F172A" }}>
+            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "white" }}>
               2. Scientific Diagnostic & Prescription
             </h3>
 
             {diagnosis ? (
               diagnosis.is_plant === false ? (
                 <div style={{
-                  background: "rgba(239, 68, 68, 0.08)",
-                  border: "1.5px solid rgba(239, 68, 68, 0.35)",
+                  background: "rgba(239, 68, 68, 0.12)",
+                  border: "1.5px solid rgba(239, 68, 68, 0.4)",
                   borderRadius: 16,
                   padding: 24,
                   textAlign: "center"
@@ -449,9 +449,9 @@ export default function DiseaseSolution() {
                     display: "inline-block",
                     fontSize: 11,
                     fontWeight: 800,
-                    color: "#DC2626",
-                    background: "#FEE2E2",
-                    border: "1px solid #FCA5A5",
+                    color: "#f87171",
+                    background: "rgba(239, 68, 68, 0.2)",
+                    border: "1px solid rgba(239, 68, 68, 0.4)",
                     padding: "4px 12px",
                     borderRadius: 20,
                     marginBottom: 10,
@@ -459,17 +459,17 @@ export default function DiseaseSolution() {
                   }}>
                     Non-Crop Surface Detected • Botanical Guardrail
                   </span>
-                  <h3 style={{ color: "#DC2626", fontSize: 20, fontWeight: 800, margin: "0 0 10px 0" }}>
+                  <h3 style={{ color: "#f87171", fontSize: 20, fontWeight: 800, margin: "0 0 10px 0" }}>
                     {diagnosis.predicted_class}
                   </h3>
-                  <p style={{ color: "#475569", fontSize: 14, lineHeight: 1.6, margin: "0 0 18px 0", fontWeight: 500 }}>
+                  <p style={{ color: "#e2e8f0", fontSize: 14, lineHeight: 1.6, margin: "0 0 18px 0", fontWeight: 500 }}>
                     {diagnosis.symptoms}
                   </p>
                   <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
                     <button
                       onClick={() => fileInputRef.current?.click()}
                       style={{
-                        background: "#2563EB",
+                        background: "linear-gradient(135deg, #10b981 0%, #059669 100%)",
                         color: "#FFFFFF",
                         border: "none",
                         borderRadius: 12,
@@ -477,6 +477,7 @@ export default function DiseaseSolution() {
                         fontWeight: 700,
                         fontSize: 14,
                         cursor: "pointer",
+                        boxShadow: "0 4px 14px rgba(16, 185, 129, 0.35)",
                       }}
                     >
                       📸 Retake Crop Leaf Photo
@@ -484,9 +485,9 @@ export default function DiseaseSolution() {
                     <button
                       onClick={handleClearImage}
                       style={{
-                        background: "#F1F5F9",
-                        color: "#0F172A",
-                        border: "1px solid #CBD5E1",
+                        background: "rgba(255, 255, 255, 0.08)",
+                        color: "#f8fafc",
+                        border: "1px solid rgba(255, 255, 255, 0.15)",
                         borderRadius: 12,
                         padding: "12px 18px",
                         fontWeight: 600,
@@ -500,7 +501,7 @@ export default function DiseaseSolution() {
                 </div>
               ) : (
                 <div>
-                  <div className="km-diagnostic-header-box">
+                <div className="km-diagnostic-header-box">
                   <div className="km-diag-tag-row">
                     {(() => {
                       const s = (diagnosis.severity || "").toLowerCase();
@@ -514,7 +515,7 @@ export default function DiseaseSolution() {
                         </span>
                       );
                     })()}
-                    <span style={{ fontSize: 12, color: "#60A5FA", fontWeight: 700 }}>
+                    <span style={{ fontSize: 12, color: "#34d399", fontWeight: 700 }}>
                       ● {Math.round((diagnosis.confidence || 0.96) * 100)}% Match Confidence
                     </span>
                     <span style={{ fontSize: 12, color: "#94a3b8" }}>
@@ -560,7 +561,7 @@ export default function DiseaseSolution() {
                               <h4>🌿 Recommended Foliar Nutrition & Micronutrients</h4>
                               <p>{diagnosis.recommendation?.advice}</p>
 
-                              <div style={{ background: "#EFF6FF", border: "1px solid #BFDBFE", borderRadius: 10, padding: "8px 12px", marginBottom: 14, fontSize: 13, color: "#1D4ED8", display: "flex", alignItems: "center", gap: 8 }}>
+                              <div style={{ background: "rgba(16, 185, 129, 0.14)", border: "1px solid rgba(16, 185, 129, 0.3)", borderRadius: 10, padding: "8px 12px", marginBottom: 14, fontSize: 13, color: "#a7f3d0", display: "flex", alignItems: "center", gap: 8 }}>
                                 <span>✅</span>
                                 <span><strong>Foliage is 100% Healthy:</strong> Zero chemical fungicides required. Maintain vegetative vigor with foliar sprays.</span>
                               </div>
@@ -576,7 +577,7 @@ export default function DiseaseSolution() {
                                 </div>
                               </div>
 
-                              <div style={{ fontSize: 12, color: "#60A5FA", fontWeight: 700 }}>
+                              <div style={{ fontSize: 12, color: "#34d399", fontWeight: 700 }}>
                                 Application Dosage: {diagnosis.recommendation?.dosage}
                               </div>
                             </>
@@ -651,11 +652,12 @@ export default function DiseaseSolution() {
                   </button>
                 </div>
               </div>
-            )) : (
+            )
+            ) : (
               /* Empty State Showcase */
               <div className="km-empty-doc-showcase">
                 <div style={{ fontSize: 40, marginBottom: 10 }}>🔬</div>
-                <h4 style={{ margin: 0, color: "#0F172A", fontSize: 16, fontWeight: 700 }}>
+                <h4 style={{ margin: 0, color: "white", fontSize: 16, fontWeight: 700 }}>
                   Ready to Diagnose Your Crop Sample
                 </h4>
                 <p style={{ color: "#94a3b8", fontSize: 13, marginTop: 6, marginBottom: 20 }}>
@@ -673,7 +675,7 @@ export default function DiseaseSolution() {
                         <h5>{sample.crop}</h5>
                         <span className={`km-severity-pill ${sample.severity}`}>{sample.severity}</span>
                       </div>
-                      <div style={{ fontSize: 12, color: "#60A5FA", fontWeight: 700, margin: "2px 0" }}>
+                      <div style={{ fontSize: 12, color: "#34d399", fontWeight: 700, margin: "2px 0" }}>
                         {sample.disease}
                       </div>
                       <p>{sample.symptoms}</p>

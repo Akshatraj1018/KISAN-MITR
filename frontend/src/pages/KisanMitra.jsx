@@ -163,15 +163,15 @@ export default function KisanMitra() {
                 display: "flex",
                 alignItems: "center",
                 gap: "6px",
-                background: "linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)",
-                color: "#0F172A",
+                background: "linear-gradient(135deg, #22c55e 0%, #16a34a 100%)",
+                color: "white",
                 border: "none",
                 borderRadius: "10px",
                 padding: "7px 12px",
                 fontWeight: "700",
                 fontSize: "13px",
                 cursor: "pointer",
-                boxShadow: "0 4px 10px rgba(37, 99, 235, 0.35)"
+                boxShadow: "0 4px 10px rgba(34, 197, 94, 0.35)"
               }}
             >
               📞 {language === "hi" ? "कॉल लगाएं" : (language === "pa" ? "ਕਾਲ ਕਰੋ" : (language === "bn" ? "কল করুন" : "Call AI"))}

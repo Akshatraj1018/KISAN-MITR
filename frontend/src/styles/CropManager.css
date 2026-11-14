@@ -2,13 +2,13 @@
 
 .km-crop-mgr-page {
   min-height: 100vh;
-  background-color: #F8FAFC;
+  background-color: #07100b;
   background-image: 
-    radial-gradient(circle at 10% 15%, rgba(37, 99, 235, 0.08) 0%, transparent 45%),
-    radial-gradient(circle at 90% 75%, rgba(217, 119, 6, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 10% 15%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 90% 75%, rgba(245, 158, 11, 0.08) 0%, transparent 40%),
     radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.05) 0%, transparent 50%);
   background-attachment: fixed;
-  color: #0F172A;
+  color: #f8fafc;
   padding-top: 86px;
   padding-bottom: 70px;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -34,7 +34,7 @@
   font-size: 28px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #0F172A;
+  color: white;
   margin: 0 0 4px 0;
   display: flex;
   align-items: center;
@@ -55,11 +55,11 @@
 }
 
 .km-stat-tile {
-  background: #FFFFFF;
-  border: 1px solid #F1F5F9;
+  background: rgba(13, 24, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 16px;
   padding: 18px 20px;
-  box-shadow: 0 10px 25px -10px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(14px);
 }
 
@@ -80,7 +80,7 @@
 
 .km-stat-sub {
   font-size: 12px;
-  color: #60A5FA;
+  color: #34d399;
   margin-top: 2px;
 }
 
@@ -93,17 +93,17 @@
 }
 
 .km-field-card {
-  background: #FFFFFF;
-  border: 1px solid #F1F5F9;
+  background: rgba(13, 24, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   border-radius: 18px;
   padding: 22px;
-  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(16px);
   transition: all 0.25s ease;
 }
 
 .km-field-card:hover {
-  border-color: rgba(37, 99, 235, 0.35);
+  border-color: rgba(16, 185, 129, 0.4);
   transform: translateY(-3px);
 }
 
@@ -118,9 +118,9 @@
   font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
-  background: rgba(37, 99, 235, 0.08);
-  color: #60A5FA;
-  border: 1px solid rgba(37, 99, 235, 0.25);
+  background: rgba(16, 185, 129, 0.18);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
   padding: 3px 10px;
   border-radius: 9999px;
 }
@@ -128,7 +128,7 @@
 .km-crop-title {
   font-size: 18px;
   font-weight: 800;
-  color: #0F172A;
+  color: white;
   margin: 0 0 2px 0;
 }
 
@@ -140,7 +140,7 @@
 .km-progress-bar-bg {
   width: 100%;
   height: 8px;
-  background: #F1F5F9;
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 9999px;
   margin: 14px 0 8px 0;
   overflow: hidden;
@@ -149,7 +149,7 @@
 .km-progress-fill {
   height: 100%;
   border-radius: 9999px;
-  background: linear-gradient(90deg, #2563EB, #f59e0b);
+  background: linear-gradient(90deg, #10b981, #f59e0b);
 }
 
 .km-field-meta-row {
@@ -158,7 +158,7 @@
   font-size: 12px;
   color: #cbd5e1;
   padding-top: 12px;
-  border-top: 1px solid #F1F5F9;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 @media (max-width: 900px) {

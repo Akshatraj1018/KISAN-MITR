@@ -5,13 +5,13 @@
 
 .km-soil-lab-page {
   min-height: 100vh;
-  background-color: #F8FAFC;
+  background-color: #07120c;
   background-image: 
-    radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.08) 0%, transparent 45%),
-    radial-gradient(circle at 85% 75%, rgba(217, 119, 6, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 15% 20%, rgba(16, 185, 129, 0.12) 0%, transparent 45%),
+    radial-gradient(circle at 85% 75%, rgba(245, 158, 11, 0.08) 0%, transparent 40%),
     radial-gradient(circle at 50% 90%, rgba(56, 189, 248, 0.06) 0%, transparent 50%);
   background-attachment: fixed;
-  color: #0F172A;
+  color: #f8fafc;
   padding-top: 80px;
   padding-bottom: 70px;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -42,7 +42,7 @@
   font-size: 26px;
   font-weight: 800;
   letter-spacing: -0.02em;
-  color: #0F172A;
+  color: white;
   margin: 0 0 6px 0;
   display: flex;
   align-items: center;
@@ -57,11 +57,11 @@
 }
 
 .km-doc-nav-back {
-  background: #FFFFFF;
-  border: 1px solid #EFF6FF;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 9999px;
   padding: 10px 18px;
-  color: #0F172A;
+  color: white;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -73,9 +73,9 @@
 }
 
 .km-doc-nav-back:hover {
-  background: rgba(37, 99, 235, 0.08);
-  border-color: rgba(37, 99, 235, 0.25);
-  color: #60A5FA;
+  background: rgba(16, 185, 129, 0.15);
+  border-color: rgba(52, 211, 153, 0.4);
+  color: #34d399;
 }
 
 /* Grid Layout */
@@ -88,11 +88,13 @@
 
 /* Cards */
 .km-soil-card {
-  background: #FFFFFF;
-  border: 1px solid #E2E8F0;
+  background: rgba(13, 27, 20, 0.88);
+  border: 1px solid rgba(52, 211, 153, 0.18);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   box-sizing: border-box;
 }
 
@@ -100,9 +102,9 @@
 .km-soil-viewfinder {
   width: 100%;
   min-height: 260px;
-  border: 2px dashed rgba(37, 99, 235, 0.25);
+  border: 2px dashed rgba(52, 211, 153, 0.35);
   border-radius: 16px;
-  background: #F8FAFC;
+  background: rgba(0, 0, 0, 0.35);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -118,13 +120,13 @@
 }
 
 .km-soil-viewfinder:hover {
-  border-color: #2563EB;
-  background: rgba(37, 99, 235, 0.06);
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.06);
 }
 
 .km-soil-viewfinder.has-preview {
   border-style: solid;
-  border-color: rgba(37, 99, 235, 0.25);
+  border-color: rgba(52, 211, 153, 0.5);
   padding: 0;
 }
 
@@ -143,9 +145,9 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: #F1F5F9;
-  border: 1px solid #CBD5E1;
-  color: #0F172A;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -178,11 +180,11 @@
 
 .km-form-input {
   width: 100%;
-  background: #FFFFFF;
-  border: 1px solid #CBD5E1;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
   padding: 12px 14px;
-  color: #0F172A;
+  color: #ffffff;
   font-size: 14px;
   font-family: inherit;
   outline: none;
@@ -191,9 +193,9 @@
 }
 
 .km-form-input:focus {
-  border-color: #2563EB;
-  box-shadow: 0 0 12px rgba(37, 99, 235, 0.15);
-  background: #FFFFFF;
+  border-color: #34d399;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.25);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .km-form-input::placeholder {
@@ -203,7 +205,7 @@
 /* Action Submit Button */
 .km-btn-analyze-submit {
   width: 100%;
-  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: #ffffff;
   border: none;
   border-radius: 14px;
@@ -216,7 +218,7 @@
   justify-content: center;
   gap: 10px;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.38);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   touch-action: manipulation;
   min-height: 48px;
@@ -225,8 +227,8 @@
 
 .km-btn-analyze-submit:hover:not(:disabled) {
   transform: translateY(-2px);
-  background: linear-gradient(135deg, #60A5FA 0%, #1D4ED8 100%);
-  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.45);
+  background: linear-gradient(135deg, #34d399 0%, #059669 100%);
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.55);
 }
 
 .km-btn-analyze-submit:disabled {
@@ -251,16 +253,16 @@
   gap: 6px;
   font-size: 11px;
   font-weight: 700;
-  color: #60A5FA;
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid rgba(37, 99, 235, 0.25);
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
   padding: 3px 10px;
   border-radius: 20px;
 }
 
 .km-soil-type-card {
-  background: #F8FAFC;
-  border: 1px solid #E2E8F0;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.16) 0%, rgba(13, 27, 20, 0.95) 100%);
+  border: 1px solid rgba(52, 211, 153, 0.35);
   border-radius: 16px;
   padding: 18px 22px;
   margin-bottom: 18px;
@@ -269,7 +271,7 @@
 .km-soil-type-title {
   font-size: 22px;
   font-weight: 800;
-  color: #60A5FA;
+  color: #34d399;
   margin: 0 0 6px 0;
 }
 
@@ -281,8 +283,8 @@
 }
 
 .km-soil-quad-box {
-  background: #F8FAFC;
-  border: 1px solid #F1F5F9;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   padding: 10px 12px;
   text-align: center;
@@ -298,7 +300,7 @@
 .km-soil-quad-val {
   font-size: 15px;
   font-weight: 800;
-  color: #0F172A;
+  color: white;
   margin-top: 4px;
 }
 
@@ -308,8 +310,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
-  background: #F1F5F9;
-  border: 1px solid #F1F5F9;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   margin-bottom: 8px;
   transition: all 0.2s ease;
@@ -317,16 +319,16 @@
 }
 
 .km-rec-crop-card-row:hover {
-  background: rgba(37, 99, 235, 0.08);
-  border-color: rgba(37, 99, 235, 0.25);
+  background: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
 }
 
 .km-match-badge {
   font-size: 11px;
   font-weight: 700;
-  color: #60A5FA;
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid rgba(37, 99, 235, 0.25);
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
   padding: 2px 8px;
   border-radius: 12px;
 }
@@ -340,8 +342,8 @@
 }
 
 .km-sample-card {
-  background: #F8FAFC;
-  border: 1px solid #F1F5F9;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 12px;
   padding: 14px;
   cursor: pointer;
@@ -350,8 +352,8 @@
 }
 
 .km-sample-card:hover {
-  border-color: #2563EB;
-  background: rgba(37, 99, 235, 0.08);
+  border-color: #10b981;
+  background: rgba(16, 185, 129, 0.08);
   transform: translateY(-2px);
 }
 
@@ -359,7 +361,7 @@
   margin: 0 0 4px 0;
   font-size: 13.5px;
   font-weight: 800;
-  color: #60A5FA;
+  color: #34d399;
 }
 
 .km-sample-card p {
@@ -418,7 +420,7 @@
     border-radius: 16px;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    background: #FFFFFF !important;
+    background: #0b1e15 !important;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
   }
 

@@ -86,9 +86,8 @@ export default function AboutUs() {
         {/* Contact & Hackathon Team Footer */}
         <div
           style={{
-            background: "#FFFFFF",
-            border: "1px solid #E2E8F0",
-            boxShadow: "0 4px 16px rgba(0, 0, 0, 0.04)",
+            background: "rgba(13, 24, 18, 0.85)",
+            border: "1px solid rgba(255, 255, 255, 0.09)",
             borderRadius: 18,
             padding: 24,
             display: "flex",

@@ -211,7 +211,7 @@ export default function CropManager() {
               style={{ width: "100%", maxWidth: 480 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <h3 style={{ margin: "0 0 16px 0", color: "#0F172A", fontSize: 20, fontWeight: 800 }}>Add New Field Crop</h3>
+              <h3 style={{ margin: "0 0 16px 0", color: "white", fontSize: 20, fontWeight: 800 }}>Add New Field Crop</h3>
 
               <form onSubmit={handleAddCrop}>
                 <div className="km-form-group">

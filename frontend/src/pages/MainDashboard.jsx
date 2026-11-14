@@ -178,12 +178,12 @@ export default function MainDashboard() {
       <header className="km-topbar">
         <div className="km-brand" onClick={() => navigate("/dashboard")}>
           <div className="km-brand-logo" style={{ background: "transparent", padding: 0 }}>
-            <img src={kisanMitrLogo} alt="Kisan Mitr" style={{ width: 38, height: 38, borderRadius: "50%", objectFit: "cover", border: "2px solid #60A5FA" }} />
+            <img src={kisanMitrLogo} alt="Kisan Mitr" style={{ width: 38, height: 38, borderRadius: "50%", objectFit: "cover", border: "2px solid #34d399" }} />
           </div>
           <div className="km-brand-text">
             <div className="km-brand-title">
               Kisan Mitr
-              <span className="km-brand-badge" style={{ background: "#EFF6FF", color: "#1D4ED8", borderColor: "#BFDBFE", fontWeight: 700 }}>Innovathon 2.0</span>
+              <span className="km-brand-badge" style={{ background: "rgba(16,185,129,0.2)", color: "#34d399", borderColor: "rgba(52,211,153,0.4)" }}>Innovathon 2.0</span>
             </div>
             <span className="km-brand-subtitle">AI Agricultural Operating System</span>
           </div>
@@ -217,17 +217,17 @@ export default function MainDashboard() {
           </button>
         </nav>
 
-        {/* Topbar Right Tools: Quick Language Selector + Farmer Profile Badge */}
+        {/* Topbar Right Tools: Quick Language Picker + Farmer Profile Badge */}
         <div className="km-topbar-tools">
-          <div className="km-quick-lang-picker" style={{ display: "flex", alignItems: "center", gap: 6, background: "#EFF6FF", border: "1px solid #BFDBFE", borderRadius: "9999px", padding: "6px 12px" }}>
-            <Globe style={{ width: 14, height: 14, color: "#2563EB" }} />
+          <div className="km-quick-lang-picker" style={{ display: "flex", alignItems: "center", gap: 6, background: "rgba(16, 185, 129, 0.15)", border: "1px solid rgba(52, 211, 153, 0.35)", borderRadius: "9999px", padding: "6px 12px" }}>
+            <Globe style={{ width: 14, height: 14, color: "#34d399" }} />
             <select
               value={language}
               onChange={(e) => setLanguage(e.target.value)}
               style={{
                 background: "transparent",
                 border: "none",
-                color: "#1D4ED8",
+                color: "#34d399",
                 fontWeight: 700,
                 fontSize: 13,
                 outline: "none",
@@ -235,13 +235,12 @@ export default function MainDashboard() {
               }}
             >
               {(languages || []).map((l) => (
-                <option key={l.code} value={l.code} style={{ color: "#0F172A", background: "#FFFFFF" }}>
+                <option key={l.code} value={l.code} style={{ color: "#ffffff", background: "#064e3b" }}>
                   {l.native} ({l.name})
                 </option>
               ))}
             </select>
           </div>
-
           <div className="km-farmer-badge" onClick={() => setSheetOpen(true)}>
             <div className="km-farmer-avatar">{farmerName.charAt(0)}</div>
             <div className="km-farmer-meta">
@@ -269,7 +268,7 @@ export default function MainDashboard() {
                 onClick={() => navigate("/call")}
                 title="Speak to Krishi Sathi AI Voice Agronomist"
               >
-                <div className="km-voice-avatar-mini" style={{ background: "radial-gradient(circle at 35% 30%, #60A5FA 0%, #1D4ED8 100%)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px" }}>
+                <div className="km-voice-avatar-mini" style={{ background: "radial-gradient(circle at 35% 30%, #34d399 0%, #059669 100%)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "18px" }}>
                   🌾
                   <span className="km-online-dot"></span>
                 </div>
@@ -310,14 +309,14 @@ export default function MainDashboard() {
             {activeProject ? (
               <div
                 className="km-pulse-pill optimal"
-                style={{ cursor: "pointer", border: "1px solid #2563EB" }}
+                style={{ cursor: "pointer", border: "1px solid #10b981" }}
                 onClick={() => navigate("/cultivation-tracker")}
               >
                 <span className="km-pulse-icon">🌱</span>
                 <div>
                   <div className="km-pulse-label">Active Cultivation</div>
-                  <div className="km-pulse-val" style={{ color: "#60A5FA" }}>
-                    {(activeProject.cropName || "").replace(/\s*\([^)]*[\u0900-\u097F][^)]*\)/g, "").replace(/\s*\/\s*Rice/gi, "").trim()} ({activeProject.progressPercent}% Done)
+                  <div className="km-pulse-val" style={{ color: "#34d399" }}>
+                    {activeProject.cropName} ({activeProject.progressPercent}% Done)
                   </div>
                 </div>
               </div>
@@ -350,15 +349,22 @@ export default function MainDashboard() {
         </section>
 
         {/* 2. DUAL ACTION COCKPIT: 🌦️ Weather Station & 🧪 Soil Analysis Rectangle Tab */}
-        <section className="km-cockpit-grid">
+        <section
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: 20,
+            marginBottom: 28,
+          }}
+        >
           {/* Card A: 🌦️ Agro-Weather & Spray Safety Station */}
           <div
             style={{
-              background: "#FFFFFF",
-              border: "1px solid #E2E8F0",
+              background: "linear-gradient(135deg, rgba(16, 32, 24, 0.95) 0%, rgba(10, 20, 15, 0.98) 100%)",
+              border: "1px solid rgba(56, 189, 248, 0.25)",
               borderRadius: 20,
               padding: 24,
-              boxShadow: "0 4px 20px -2px rgba(15, 23, 42, 0.06)",
+              boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.5)",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
@@ -366,10 +372,10 @@ export default function MainDashboard() {
           >
             <div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-                <span className="km-brand-badge" style={{ background: "#EFF6FF", color: "#0284C7", border: "1px solid #BAE6FD", fontWeight: 700 }}>
+                <span className="km-brand-badge" style={{ background: "rgba(56, 189, 248, 0.15)", color: "#38bdf8", borderColor: "rgba(56, 189, 248, 0.3)" }}>
                   🌦️ Micro-Climate Radar
                 </span>
-                <span style={{ fontSize: 12, color: "#475569", fontWeight: 600 }}>
+                <span style={{ fontSize: 12, color: "#94a3b8" }}>
                   📍 {farmerVillage}
                 </span>
               </div>
@@ -377,10 +383,10 @@ export default function MainDashboard() {
               <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 18 }}>
                 <div style={{ fontSize: 44 }}>⛅</div>
                 <div>
-                  <div style={{ fontSize: 32, fontWeight: 800, color: "#0F172A", lineHeight: 1 }}>
+                  <div style={{ fontSize: 32, fontWeight: 800, color: "white", lineHeight: 1 }}>
                     26°C
                   </div>
-                  <div style={{ fontSize: 13, color: "#0284C7", fontWeight: 700, marginTop: 4 }}>
+                  <div style={{ fontSize: 13, color: "#38bdf8", fontWeight: 700, marginTop: 4 }}>
                     Partly Cloudy • Low Rain Risk
                   </div>
                 </div>
@@ -392,9 +398,8 @@ export default function MainDashboard() {
                   display: "grid",
                   gridTemplateColumns: "repeat(3, 1fr)",
                   gap: 10,
-                  background: "#F8FAFC",
-                  border: "1px solid #E2E8F0",
-                  boxShadow: "inset 0 1px 2px rgba(0,0,0,0.02)",
+                  background: "rgba(0, 0, 0, 0.3)",
+                  border: "1px solid rgba(255, 255, 255, 0.06)",
                   borderRadius: 14,
                   padding: "12px 14px",
                   marginBottom: 16,
@@ -402,29 +407,28 @@ export default function MainDashboard() {
                 }}
               >
                 <div>
-                  <div style={{ fontSize: 11, color: "#475569", fontWeight: 700 }}>HUMIDITY</div>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: "#0F172A", marginTop: 2 }}>64%</div>
+                  <div style={{ fontSize: 11, color: "#94a3b8", fontWeight: 700 }}>HUMIDITY</div>
+                  <div style={{ fontSize: 15, fontWeight: 800, color: "white", marginTop: 2 }}>64%</div>
                 </div>
                 <div>
-                  <div style={{ fontSize: 11, color: "#475569", fontWeight: 700 }}>RAIN CHANCE</div>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: "#0284C7", marginTop: 2 }}>15%</div>
+                  <div style={{ fontSize: 11, color: "#94a3b8", fontWeight: 700 }}>RAIN CHANCE</div>
+                  <div style={{ fontSize: 15, fontWeight: 800, color: "#34d399", marginTop: 2 }}>15%</div>
                 </div>
                 <div>
-                  <div style={{ fontSize: 11, color: "#475569", fontWeight: 700 }}>WIND SPEED</div>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: "#0F172A", marginTop: 2 }}>9 km/h</div>
+                  <div style={{ fontSize: 11, color: "#94a3b8", fontWeight: 700 }}>WIND SPEED</div>
+                  <div style={{ fontSize: 15, fontWeight: 800, color: "white", marginTop: 2 }}>9 km/h</div>
                 </div>
               </div>
 
               {/* Spray Advisory Banner */}
               <div
                 style={{
-                  background: "#EFF6FF",
-                  border: "1px solid #BFDBFE",
+                  background: "rgba(16, 185, 129, 0.12)",
+                  border: "1px solid rgba(16, 185, 129, 0.3)",
                   borderRadius: 12,
                   padding: "10px 14px",
                   fontSize: 12,
-                  color: "#1E40AF",
-                  fontWeight: 600,
+                  color: "#a7f3d0",
                   display: "flex",
                   alignItems: "center",
                   gap: 8,
@@ -440,9 +444,9 @@ export default function MainDashboard() {
               className="km-btn-doc secondary"
               style={{
                 width: "100%",
-                background: "#2563EB",
-                border: "none",
-                color: "#FFFFFF",
+                background: "rgba(56, 189, 248, 0.15)",
+                border: "1px solid rgba(56, 189, 248, 0.35)",
+                color: "#e0f2fe",
                 padding: "12px",
                 borderRadius: 12,
                 fontSize: 13,
@@ -452,7 +456,6 @@ export default function MainDashboard() {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: 8,
-                boxShadow: "0 4px 14px rgba(37, 99, 235, 0.25)",
               }}
               onClick={() => navigate("/weather")}
             >
@@ -464,11 +467,11 @@ export default function MainDashboard() {
           {/* Card B: 🧪 Soil Analysis Rectangle Tab */}
           <div
             style={{
-              background: "#FFFFFF",
-              border: "1px solid #E2E8F0",
+              background: "linear-gradient(135deg, rgba(20, 36, 27, 0.95) 0%, rgba(13, 24, 18, 0.98) 100%)",
+              border: "1px solid rgba(52, 211, 153, 0.35)",
               borderRadius: 20,
               padding: 24,
-              boxShadow: "0 4px 20px -2px rgba(15, 23, 42, 0.06)",
+              boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.5)",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
@@ -479,18 +482,18 @@ export default function MainDashboard() {
           >
             <div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
-                <span className="km-brand-badge" style={{ background: "#EFF6FF", color: "#1D4ED8", border: "1px solid #BFDBFE", fontWeight: 700 }}>
+                <span className="km-brand-badge" style={{ background: "rgba(16, 185, 129, 0.2)", color: "#34d399" }}>
                   🧪 Soil Health Card Radar
                 </span>
-                <span style={{ fontSize: 12, color: "#1D4ED8", fontWeight: 700 }}>
+                <span style={{ fontSize: 12, color: "#34d399", fontWeight: 700 }}>
                   ● GPS Verified
                 </span>
               </div>
 
               <div style={{ marginBottom: 12 }}>
-                <div style={{ fontSize: 12, color: "#475569", fontWeight: 700 }}>CURRENT DETECTED CLASSIFICATION:</div>
-                <div style={{ fontSize: 20, fontWeight: 800, color: "#0F172A", marginTop: 2 }}>
-                  {currentSoil.name}
+                <div style={{ fontSize: 12, color: "#94a3b8", fontWeight: 700 }}>CURRENT DETECTED CLASSIFICATION:</div>
+                <div style={{ fontSize: 20, fontWeight: 800, color: "white", marginTop: 2 }}>
+                  {t(currentSoil.name, currentSoil.name)}
                 </div>
               </div>
 
@@ -500,9 +503,8 @@ export default function MainDashboard() {
                   display: "grid",
                   gridTemplateColumns: "repeat(3, 1fr)",
                   gap: 10,
-                  background: "#F8FAFC",
-                  border: "1px solid #E2E8F0",
-                  boxShadow: "inset 0 1px 2px rgba(0,0,0,0.02)",
+                  background: "rgba(0, 0, 0, 0.3)",
+                  border: "1px solid rgba(255, 255, 255, 0.06)",
                   borderRadius: 14,
                   padding: "12px 14px",
                   marginBottom: 16,
@@ -510,36 +512,36 @@ export default function MainDashboard() {
                 }}
               >
                 <div>
-                  <div style={{ fontSize: 11, color: "#475569", fontWeight: 700 }}>SOIL pH</div>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: "#1D4ED8", marginTop: 2 }}>{currentSoil.ph}</div>
+                  <div style={{ fontSize: 11, color: "#94a3b8", fontWeight: 700 }}>SOIL pH</div>
+                  <div style={{ fontSize: 15, fontWeight: 800, color: "#34d399", marginTop: 2 }}>{currentSoil.ph}</div>
                 </div>
                 <div>
-                  <div style={{ fontSize: 11, color: "#475569", fontWeight: 700 }}>MOISTURE</div>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: "#D97706", marginTop: 2 }}>{currentSoil.moisture}</div>
+                  <div style={{ fontSize: 11, color: "#94a3b8", fontWeight: 700 }}>MOISTURE</div>
+                  <div style={{ fontSize: 15, fontWeight: 800, color: "#f59e0b", marginTop: 2 }}>{currentSoil.moisture}</div>
                 </div>
                 <div>
-                  <div style={{ fontSize: 11, color: "#475569", fontWeight: 700 }}>ORG. CARBON</div>
-                  <div style={{ fontSize: 15, fontWeight: 800, color: "#0284C7", marginTop: 2 }}>{currentSoil.organicCarbon}</div>
+                  <div style={{ fontSize: 11, color: "#94a3b8", fontWeight: 700 }}>ORG. CARBON</div>
+                  <div style={{ fontSize: 15, fontWeight: 800, color: "#38bdf8", marginTop: 2 }}>{currentSoil.organicCarbon}</div>
                 </div>
               </div>
 
               {/* Recommended Crops Preview Chips */}
               <div style={{ marginBottom: 16 }}>
-                <div style={{ fontSize: 11, color: "#475569", fontWeight: 700, marginBottom: 8 }}>
+                <div style={{ fontSize: 11, color: "#94a3b8", fontWeight: 700, marginBottom: 8 }}>
                   HIGH-ROI RECOMMENDED CROPS FOR THIS SOIL:
                 </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                  <span style={{ background: "#F1F5F9", border: "1px solid #CBD5E1", borderRadius: 8, padding: "4px 10px", fontSize: 12, color: "#0F172A", fontWeight: 700 }}>
-                    🌾 Wheat (96%)
+                  <span style={{ background: "rgba(255, 255, 255, 0.06)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: 8, padding: "4px 10px", fontSize: 12, color: "white", fontWeight: 700 }}>
+                    🌾 {t("Wheat", "Wheat")} (96%)
                   </span>
-                  <span style={{ background: "#F1F5F9", border: "1px solid #CBD5E1", borderRadius: 8, padding: "4px 10px", fontSize: 12, color: "#0F172A", fontWeight: 700 }}>
-                    🟡 Mustard (92%)
+                  <span style={{ background: "rgba(255, 255, 255, 0.06)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: 8, padding: "4px 10px", fontSize: 12, color: "white", fontWeight: 700 }}>
+                    🟡 {t("Mustard", "Mustard")} (92%)
                   </span>
-                  <span style={{ background: "#F1F5F9", border: "1px solid #CBD5E1", borderRadius: 8, padding: "4px 10px", fontSize: 12, color: "#0F172A", fontWeight: 700 }}>
-                    🍚 Paddy (88%)
+                  <span style={{ background: "rgba(255, 255, 255, 0.06)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: 8, padding: "4px 10px", fontSize: 12, color: "white", fontWeight: 700 }}>
+                    🍚 {t("Paddy", "Paddy")} (88%)
                   </span>
-                  <span style={{ background: "#F1F5F9", border: "1px solid #CBD5E1", borderRadius: 8, padding: "4px 10px", fontSize: 12, color: "#0F172A", fontWeight: 700 }}>
-                    🥔 Potato (85%)
+                  <span style={{ background: "rgba(255, 255, 255, 0.06)", border: "1px solid rgba(255, 255, 255, 0.1)", borderRadius: 8, padding: "4px 10px", fontSize: 12, color: "white", fontWeight: 700 }}>
+                    🥔 {t("Potato", "Potato")} (85%)
                   </span>
                 </div>
               </div>
@@ -549,9 +551,9 @@ export default function MainDashboard() {
               className="km-btn-doc primary"
               style={{
                 width: "100%",
-                background: "linear-gradient(135deg, #1D4ED8 0%, #2563EB 100%)",
+                background: "linear-gradient(135deg, #059669 0%, #10b981 100%)",
                 border: "none",
-                color: "#FFFFFF",
+                color: "white",
                 padding: "12px",
                 borderRadius: 12,
                 fontSize: 13,
@@ -561,7 +563,7 @@ export default function MainDashboard() {
                 alignItems: "center",
                 justifyContent: "center",
                 gap: 8,
-                boxShadow: "0 4px 16px rgba(37, 99, 235, 0.25)",
+                boxShadow: "0 4px 16px rgba(16, 185, 129, 0.3)",
               }}
               onClick={(e) => {
                 e.stopPropagation();
@@ -619,20 +621,20 @@ export default function MainDashboard() {
                       <div className="km-crop-cell">
                         <div className="km-crop-icon-chip">{item.icon}</div>
                         <div>
-                          <div style={{ fontWeight: 800 }}>{item.crop}</div>
-                          <span style={{ fontSize: 11, color: "#475569", fontWeight: 600 }}>{item.category}</span>
+                          <div style={{ fontWeight: 800 }}>{t(item.crop, item.crop)}</div>
+                          <span style={{ fontSize: 11, color: "#94a3b8" }}>{t(item.category, item.category)}</span>
                         </div>
                       </div>
                     </td>
                     <td>
-                      <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, color: "#0F172A", fontWeight: 600 }}>
-                        <Building2 style={{ width: 13, height: 13, color: "#D97706" }} />
+                      <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 13, color: "#cbd5e1" }}>
+                        <Building2 style={{ width: 13, height: 13, color: "#f59e0b" }} />
                         {item.mandi}
                       </div>
                     </td>
                     <td>
                       <div className="km-price-today">
-                        ₹{item.todayPrice} <span style={{ fontSize: 12, color: "#475569" }}>{item.unit}</span>
+                        ₹{item.todayPrice} <span style={{ fontSize: 12, color: "#94a3b8" }}>{item.unit}</span>
                       </div>
                     </td>
                     <td>
@@ -649,7 +651,7 @@ export default function MainDashboard() {
                       </span>
                     </td>
                     <td>
-                      <span style={{ fontSize: 12, color: "#475569", fontWeight: 600 }}>{item.arrivals}</span>
+                      <span style={{ fontSize: 12, color: "#94a3b8" }}>{item.arrivals}</span>
                     </td>
                     <td>
                       <button
@@ -667,7 +669,7 @@ export default function MainDashboard() {
           </div>
 
           <div style={{ marginTop: 18, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
-            <span style={{ fontSize: 13, color: "#475569", fontWeight: 600 }}>
+            <span style={{ fontSize: 13, color: "#94a3b8" }}>
               ⚡ Rates verified directly from Agricultural Produce Market Committees (e-NAM Gov).
             </span>
             <button className="km-btn-hero-primary green" style={{ minWidth: 260 }} onClick={() => navigate("/mandi")}>
@@ -685,19 +687,19 @@ export default function MainDashboard() {
                 <span className="km-hero-card-badge voice-badge">
                   <Sparkles style={{ width: 12, height: 12 }} /> 24x7 Multilingual Voice AI
                 </span>
-                <span style={{ fontSize: 11, color: "#0284C7", fontWeight: 700 }}>● Instant Audio Reply</span>
+                <span style={{ fontSize: 11, color: "#38bdf8", fontWeight: 700 }}>● Instant Audio Reply</span>
               </div>
               <h2>Krishi Sathi Voice AI</h2>
               <p>Speak naturally in your native language for immediate crop diagnostics, spray dosages, and weather guidance.</p>
 
               <div className="km-voice-soundwave-box">
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <div className="km-voice-avatar-ring" style={{ background: "radial-gradient(circle at 35% 30%, #60A5FA 0%, #1D4ED8 100%)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "22px", borderRadius: "50%", width: 44, height: 44 }}>
+                  <div className="km-voice-avatar-ring" style={{ background: "radial-gradient(circle at 35% 30%, #34d399 0%, #059669 100%)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "22px", borderRadius: "50%", width: 44, height: 44 }}>
                     🌾
                   </div>
                   <div>
-                    <div style={{ fontSize: 13, fontWeight: 700, color: "#0F172A" }}>Krishi Sathi AI (Online)</div>
-                    <div style={{ fontSize: 11, color: "#0284C7", fontWeight: 600 }}>Hindi • Odia • Bengali • English</div>
+                    <div style={{ fontSize: 13, fontWeight: 700, color: "white" }}>Krishi Sathi AI (Online)</div>
+                    <div style={{ fontSize: 11, color: "#38bdf8" }}>Hindi • Odia • Bengali • English</div>
                   </div>
                 </div>
 
@@ -715,7 +717,7 @@ export default function MainDashboard() {
 
             <button
               className="km-btn-hero-primary blue"
-              style={{ width: "100%", padding: "12px 18px", borderRadius: 12, background: "#2563EB", color: "#FFFFFF" }}
+              style={{ width: "100%", padding: "12px 18px", borderRadius: 12 }}
               onClick={() => navigate("/call")}
             >
               <Mic style={{ width: 17, height: 17 }} />
@@ -730,7 +732,7 @@ export default function MainDashboard() {
                 <span className="km-hero-card-badge vision-badge">
                   <Sparkles style={{ width: 12, height: 12 }} /> 48+ Plant Pathogens • ICAR
                 </span>
-                <span style={{ fontSize: 11, color: "#1D4ED8", fontWeight: 700 }}>● Vision Diagnostic Core</span>
+                <span style={{ fontSize: 11, color: "#34d399", fontWeight: 700 }}>● Vision Diagnostic Core</span>
               </div>
               <h2>AI Crop Doctor & Disease Clinic</h2>
               <p>Got yellowing leaves or pest damage? Photograph diseased foliage to get certified chemical & organic prescriptions.</p>
@@ -739,11 +741,11 @@ export default function MainDashboard() {
                 <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                   <div className="km-viewfinder-icon">🌿</div>
                   <div className="km-viewfinder-specs">
-                    <span className="title" style={{ color: "#0F172A" }}>Foliar Vision Diagnostic Core</span>
-                    <span className="sub" style={{ color: "#475569" }}>Blight • Rust • Blast • Aphids</span>
+                    <span className="title">Foliar Vision Diagnostic Core</span>
+                    <span className="sub">Blight • Rust • Blast • Aphids</span>
                   </div>
                 </div>
-                <span className="km-brand-badge" style={{ background: "#EFF6FF", color: "#1D4ED8" }}>
+                <span className="km-brand-badge" style={{ background: "rgba(16,185,129,0.2)" }}>
                   Instant Remedy
                 </span>
               </div>
@@ -751,7 +753,7 @@ export default function MainDashboard() {
 
             <button
               className="km-btn-hero-primary green"
-              style={{ width: "100%", padding: "12px 18px", borderRadius: 12, background: "#2563EB", color: "#FFFFFF" }}
+              style={{ width: "100%", padding: "12px 18px", borderRadius: 12 }}
               onClick={() => navigate("/solution")}
             >
               <Camera style={{ width: 17, height: 17 }} />
@@ -783,7 +785,7 @@ export default function MainDashboard() {
               width: "100%",
               maxWidth: 380,
               height: "100%",
-              background: "#FFFFFF", border: "1px solid #E2E8F0", color: "#0F172A",
+              background: "#0c1711",
               borderLeft: "1px solid rgba(255, 255, 255, 0.12)",
               padding: 24,
               boxSizing: "border-box",
@@ -796,7 +798,7 @@ export default function MainDashboard() {
           >
             <div>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-                <h3 style={{ margin: 0, color: "#0F172A", fontSize: 18, fontWeight: 800 }}>Account & Settings</h3>
+                <h3 style={{ margin: 0, color: "white", fontSize: 18, fontWeight: 800 }}>Account & Settings</h3>
                 <button
                   style={{ background: "transparent", border: "none", color: "#94a3b8", cursor: "pointer", fontSize: 18 }}
                   onClick={() => setSheetOpen(false)}
@@ -812,9 +814,9 @@ export default function MainDashboard() {
                   alignItems: "center",
                   gap: 14,
                   padding: 16,
-                  background: "#F8FAFC",
+                  background: "rgba(255,255,255,0.06)",
                   borderRadius: 14,
-                  border: "1px solid #E2E8F0",
+                  border: "1px solid rgba(255,255,255,0.08)",
                   marginBottom: 20,
                   cursor: "pointer",
                 }}
@@ -826,7 +828,7 @@ export default function MainDashboard() {
                     height: 44,
                     borderRadius: "50%",
                     background: "linear-gradient(135deg, #f59e0b, #d97706)",
-                    color: "#FFFFFF",
+                    color: "white",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -837,9 +839,9 @@ export default function MainDashboard() {
                   {farmerName.charAt(0)}
                 </div>
                 <div>
-                  <div style={{ fontWeight: 800, color: "#0F172A", fontSize: 15 }}>{farmerName}</div>
-                  <div style={{ fontSize: 12, color: "#475569", fontWeight: 600 }}>{farmerVillage}</div>
-                  <div style={{ fontSize: 11, color: "#1D4ED8", fontWeight: 700, marginTop: 2 }}>● Verified Farmer</div>
+                  <div style={{ fontWeight: 800, color: "white", fontSize: 15 }}>{farmerName}</div>
+                  <div style={{ fontSize: 12, color: "#94a3b8" }}>{farmerVillage}</div>
+                  <div style={{ fontSize: 11, color: "#34d399", fontWeight: 700, marginTop: 2 }}>● Verified Farmer</div>
                 </div>
               </div>
 
@@ -850,7 +852,7 @@ export default function MainDashboard() {
                   style={{ justifyContent: "flex-start", width: "100%", padding: "12px 16px" }}
                   onClick={() => navigate("/farmer-profile")}
                 >
-                  <User style={{ width: 16, height: 16, color: "#2563EB" }} />
+                  <User style={{ width: 16, height: 16, color: "#10b981" }} />
                   <span>Farmer Profile</span>
                 </button>
                 <button
@@ -858,7 +860,7 @@ export default function MainDashboard() {
                   style={{ justifyContent: "flex-start", width: "100%", padding: "12px 16px" }}
                   onClick={() => navigate("/cultivation-tracker")}
                 >
-                  <Sprout style={{ width: 16, height: 16, color: "#60A5FA" }} />
+                  <Sprout style={{ width: 16, height: 16, color: "#34d399" }} />
                   <span>Cultivation Lifecycle Tracker</span>
                 </button>
                 <button
@@ -941,7 +943,7 @@ export default function MainDashboard() {
           onClick={() => navigate("/solution")}
           aria-label="Crop Doctor"
         >
-          <Stethoscope size={20} />
+          <span style={{ fontSize: 18, lineHeight: 1 }}>🌿</span>
           <span>Doctor</span>
         </button>
       </nav>

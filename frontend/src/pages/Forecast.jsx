@@ -38,10 +38,10 @@ export default function Forecast() {
         {/* Header Bar */}
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
           <div>
-            <h1 style={{ fontSize: 28, fontWeight: 800, color: "#0F172A", margin: "0 0 4px 0" }}>
+            <h1 style={{ fontSize: 28, fontWeight: 800, color: "white", margin: "0 0 4px 0" }}>
               🌦️ 7-Day Agricultural Weather & Spray Station
             </h1>
-            <p style={{ color: "#475569", fontSize: 14, margin: 0, fontWeight: 600 }}>
+            <p style={{ color: "#94a3b8", fontSize: 14, margin: 0 }}>
               Actionable micro-climate forecasts, evapotranspiration rates, and pesticide spray safety windows.
             </p>
           </div>
@@ -50,12 +50,11 @@ export default function Forecast() {
             className="km-doc-nav-back"
             onClick={() => navigate("/dashboard")}
             style={{
-              background: "#EFF6FF",
-              border: "1px solid #BFDBFE",
+              background: "rgba(255,255,255,0.06)",
+              border: "1px solid rgba(255,255,255,0.1)",
               borderRadius: "9999px",
               padding: "10px 18px",
-              color: "#1D4ED8",
-              fontWeight: 700,
+              color: "white",
               display: "flex",
               alignItems: "center",
               gap: 8,
@@ -88,14 +87,14 @@ export default function Forecast() {
               style={{
                 padding: "12px 16px",
                 borderRadius: 12,
-                background: activeDay.safeSpray ? "#EFF6FF" : "rgba(245,158,11,0.15)",
-                border: `1px solid ${activeDay.safeSpray ? "#BFDBFE" : "rgba(245,158,11,0.3)"}`,
+                background: activeDay.safeSpray ? "rgba(16,185,129,0.15)" : "rgba(245,158,11,0.15)",
+                border: `1px solid ${activeDay.safeSpray ? "rgba(16,185,129,0.3)" : "rgba(245,158,11,0.3)"}`,
               }}
             >
-              <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", color: activeDay.safeSpray ? "#1D4ED8" : "#B45309" }}>
+              <div style={{ fontSize: 11, fontWeight: 700, textTransform: "uppercase", color: activeDay.safeSpray ? "#34d399" : "#fcd34d" }}>
                 {activeDay.safeSpray ? "Safe Spray Window Active" : "Chemical Spray Not Recommended"}
               </div>
-              <div style={{ fontSize: 13, color: "#0F172A", marginTop: 2, fontWeight: 600 }}>
+              <div style={{ fontSize: 13, color: "white", marginTop: 2 }}>
                 {activeDay.safeSpray
                   ? "Wind speed < 12 km/h and dry conditions. Excellent time for foliar sprays."
                   : "High rain probability & wind will wash away chemicals and cause drift."}
@@ -103,24 +102,24 @@ export default function Forecast() {
             </div>
 
             <div style={{ display: "flex", gap: 10 }}>
-              <div style={{ flex: 1, padding: "10px", background: "#F8FAFC", border: "1px solid #E2E8F0", borderRadius: 10, textAlign: "center" }}>
-                <div style={{ fontSize: 11, color: "#475569", fontWeight: 700 }}>Rain Probability</div>
-                <div style={{ fontSize: 15, fontWeight: 800, color: "#0284C7", marginTop: 2 }}>{activeDay.pop}</div>
+              <div style={{ flex: 1, padding: "10px", background: "rgba(255,255,255,0.05)", borderRadius: 10, textAlign: "center" }}>
+                <div style={{ fontSize: 11, color: "#94a3b8" }}>Rain Probability</div>
+                <div style={{ fontSize: 15, fontWeight: 800, color: "#38bdf8", marginTop: 2 }}>{activeDay.pop}</div>
               </div>
-              <div style={{ flex: 1, padding: "10px", background: "#F8FAFC", border: "1px solid #E2E8F0", borderRadius: 10, textAlign: "center" }}>
-                <div style={{ fontSize: 11, color: "#475569", fontWeight: 700 }}>Humidity</div>
-                <div style={{ fontSize: 15, fontWeight: 800, color: "#0F172A", marginTop: 2 }}>92%</div>
+              <div style={{ flex: 1, padding: "10px", background: "rgba(255,255,255,0.05)", borderRadius: 10, textAlign: "center" }}>
+                <div style={{ fontSize: 11, color: "#94a3b8" }}>Humidity</div>
+                <div style={{ fontSize: 15, fontWeight: 800, color: "white", marginTop: 2 }}>92%</div>
               </div>
-              <div style={{ flex: 1, padding: "10px", background: "#F8FAFC", border: "1px solid #E2E8F0", borderRadius: 10, textAlign: "center" }}>
-                <div style={{ fontSize: 11, color: "#475569", fontWeight: 700 }}>Wind</div>
-                <div style={{ fontSize: 15, fontWeight: 800, color: "#0F172A", marginTop: 2 }}>14 km/h</div>
+              <div style={{ flex: 1, padding: "10px", background: "rgba(255,255,255,0.05)", borderRadius: 10, textAlign: "center" }}>
+                <div style={{ fontSize: 11, color: "#94a3b8" }}>Wind</div>
+                <div style={{ fontSize: 15, fontWeight: 800, color: "white", marginTop: 2 }}>14 km/h</div>
               </div>
             </div>
           </div>
         </div>
 
         {/* 7-Day Forecast Grid */}
-        <h3 style={{ fontSize: 18, fontWeight: 800, color: "#0F172A", margin: "0 0 14px 0" }}>
+        <h3 style={{ fontSize: 18, fontWeight: 800, color: "white", margin: "0 0 14px 0" }}>
           Weekly Agronomic Calendar
         </h3>
 

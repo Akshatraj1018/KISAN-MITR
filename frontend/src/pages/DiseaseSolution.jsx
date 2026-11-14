@@ -149,7 +149,39 @@ export default function DiseaseSolution() {
           if (g > r * 1.02 && g > b * 1.02 && g > 30) greenCount++;
           if (r > g * 1.15 && g > b && r > 60 && r < 175 && b < 85) brownCount++;
         }
-        if ((greenCount / plantPixels) > 0.20 && (brownCount / plantPixels) < 0.05 && !symptomsInput) {
+        const greenRatio = greenCount / plantPixels;
+        const brownRatio = brownCount / plantPixels;
+
+        // Guardrail: Non-plant surfaces (Tile floor, wall, floor, furniture, clothing)
+        if (greenRatio < 0.08 && brownRatio < 0.06 && !cropType && !symptomsInput) {
+          setDiagnosis({
+            is_plant: false,
+            error_code: "NON_BOTANICAL_SURFACE",
+            crop_detected: isHi ? "पौधा या पत्ती नहीं मिली (अमान्य नमूना)" : "No Plant Foliage Detected (Invalid Sample)",
+            predicted_class: isHi ? "फर्श / दीवार या गैर-पौधा वस्तु" : "Tile Floor / Wall / Non-Plant Object Detected",
+            confidence: 98.8,
+            severity: "Invalid Sample",
+            pathogen: "None (No crop or leaf material detected)",
+            symptoms: isHi
+              ? "अपलोड की गई फोटो में टाइल का फर्श, दीवार या गैर-पौधा वस्तु दिख रही है। कृपया खेत की असली फसल या पत्ती की स्पष्ट फोटो लें।"
+              : "The uploaded photograph appears to be a tile floor, wall, floor, or non-plant object. AI Crop Doctor requires a clear photo of actual crop foliage, diseased leaves, or plant canopy.",
+            recommendation: {
+              advice: isHi
+                ? "कृपया कैमरे को सीधे प्रभावित फसल की पत्तियों की ओर रखें और पुनः फोटो लें।"
+                : "Please point your camera directly at the affected crop foliage, leaf surface, or stem and retake the photo.",
+              pesticides: ["N/A - Non-plant object detected"],
+              organic_remedy: "N/A",
+              fertilizers: ["N/A"],
+              dosage: "N/A",
+              preventive_actions: "Ensure good lighting and hold the phone steady 15-20 cm from the crop leaf.",
+              profitability_percent: 0,
+            },
+          });
+          setIsAnalyzing(false);
+          return;
+        }
+
+        if (greenRatio > 0.20 && brownRatio < 0.05 && !symptomsInput) {
           isHealthyVisual = true;
         }
       } catch (e) {
@@ -404,8 +436,71 @@ export default function DiseaseSolution() {
             </h3>
 
             {diagnosis ? (
-              <div>
-                <div className="km-diagnostic-header-box">
+              diagnosis.is_plant === false ? (
+                <div style={{
+                  background: "rgba(239, 68, 68, 0.08)",
+                  border: "1.5px solid rgba(239, 68, 68, 0.35)",
+                  borderRadius: 16,
+                  padding: 24,
+                  textAlign: "center"
+                }}>
+                  <div style={{ fontSize: 44, marginBottom: 12 }}>🚫 🌿</div>
+                  <span style={{
+                    display: "inline-block",
+                    fontSize: 11,
+                    fontWeight: 800,
+                    color: "#DC2626",
+                    background: "#FEE2E2",
+                    border: "1px solid #FCA5A5",
+                    padding: "4px 12px",
+                    borderRadius: 20,
+                    marginBottom: 10,
+                    textTransform: "uppercase",
+                  }}>
+                    Non-Crop Surface Detected • Botanical Guardrail
+                  </span>
+                  <h3 style={{ color: "#DC2626", fontSize: 20, fontWeight: 800, margin: "0 0 10px 0" }}>
+                    {diagnosis.predicted_class}
+                  </h3>
+                  <p style={{ color: "#475569", fontSize: 14, lineHeight: 1.6, margin: "0 0 18px 0", fontWeight: 500 }}>
+                    {diagnosis.symptoms}
+                  </p>
+                  <div style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
+                    <button
+                      onClick={() => fileInputRef.current?.click()}
+                      style={{
+                        background: "#2563EB",
+                        color: "#FFFFFF",
+                        border: "none",
+                        borderRadius: 12,
+                        padding: "12px 22px",
+                        fontWeight: 700,
+                        fontSize: 14,
+                        cursor: "pointer",
+                      }}
+                    >
+                      📸 Retake Crop Leaf Photo
+                    </button>
+                    <button
+                      onClick={handleClearImage}
+                      style={{
+                        background: "#F1F5F9",
+                        color: "#0F172A",
+                        border: "1px solid #CBD5E1",
+                        borderRadius: 12,
+                        padding: "12px 18px",
+                        fontWeight: 600,
+                        fontSize: 14,
+                        cursor: "pointer",
+                      }}
+                    >
+                      Clear Sample
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div>
+                  <div className="km-diagnostic-header-box">
                   <div className="km-diag-tag-row">
                     {(() => {
                       const s = (diagnosis.severity || "").toLowerCase();
@@ -556,7 +651,7 @@ export default function DiseaseSolution() {
                   </button>
                 </div>
               </div>
-            ) : (
+            )) : (
               /* Empty State Showcase */
               <div className="km-empty-doc-showcase">
                 <div style={{ fontSize: 40, marginBottom: 10 }}>🔬</div>

@@ -452,7 +452,47 @@ export function offlineAnalyzeSoilImage(imgElement, language = "en") {
         return;
       }
 
-      // Guardrail 2: Smooth Manufactured Surface (Wooden Table, Desk, Tile, Wall, Paper)
+      // Guardrail 2: Stark Contrast Indoor Objects & Clothing (e.g., White Pants + Black Wardrobe / Fabric)
+      let whiteCount = 0;
+      let blackCount = 0;
+      for (let i = 0; i < lumaArr.length; i++) {
+        if (lumaArr[i] > 185) whiteCount++;
+        if (lumaArr[i] < 45) blackCount++;
+      }
+      const whiteRatio = whiteCount / lumaArr.length;
+      const blackRatio = blackCount / lumaArr.length;
+      const isClothingOrRoom = (whiteRatio > 0.08 && blackRatio > 0.10) || (whiteRatio > 0.35);
+      const isSyntheticBlack = (brightness < 60 && Math.abs(avgR - avgG) < 7 && Math.abs(avgR - avgB) < 7);
+
+      if (isClothingOrRoom || isSyntheticBlack) {
+        const reason = isClothingOrRoom 
+          ? (isEn ? "Clothing / Wardrobe / Room Interior" : "कपड़े / परिधान या कमरे का सामान")
+          : (isEn ? "Synthetic Black Fabric / Non-Earth Material" : "सिंथेटिक काला कपड़ा / गैर-मिट्टी सामग्री");
+
+        resolve({
+          is_soil: false,
+          error_code: "NON_SOIL_DETECTED",
+          surface_hint: reason,
+          soil_type: isEn ? `No Agricultural Soil Detected (${reason})` : `खेत की मिट्टी नहीं पाई गई (${reason})`,
+          confidence: 98.6,
+          ph: null,
+          moisture: "N/A",
+          quality: isEn ? `Non-Agricultural Object (${reason})` : `गैर-कृषि वस्तु (${reason})`,
+          recommendation: isEn
+            ? `The uploaded photograph shows ${reason} rather than agricultural field soil. Soil analysis requires a clear close-up photograph of actual farm soil, field dirt, or agricultural earth clods.`
+            : `अपलोड की गई फोटो में ${reason} दिख रहा है, खेत की मिट्टी नहीं। कृपया खेत की असली मिट्टी की स्पष्ट फोटो अपलोड करें।`,
+          recommended_crops: [],
+          action_redirect: "/soil",
+          action_label: "📸 Retake Farm Soil Photo",
+          isOfflineClassified: true,
+          isOffline: true,
+          roughness: Number(roughness.toFixed(1)),
+          stdDev: Number(stdDev.toFixed(1))
+        });
+        return;
+      }
+
+      // Guardrail 3: Smooth Manufactured Surface (Wooden Table, Desk, Tile, Wall, Paper)
       const isSmoothSurface = (roughness < 6.8 || stdDev < 9.5);
       const isSyntheticBlue = (avgB > avgR * 1.12 || (avgB > 115 && avgB > avgG));
       const isOverexposedWhite = (brightness > 220);
@@ -513,7 +553,7 @@ export function offlineAnalyzeSoilImage(imgElement, language = "en") {
         }
       }
 
-      if (minDistance > 68.0) {
+      if (minDistance > 38.0 || (detectedSoil === "Black Soil" && (avgR <= avgB * 1.04 || brightness < 48))) {
         // Fallback for unclassified non-agricultural surfaces
         resolve({
           is_soil: false,

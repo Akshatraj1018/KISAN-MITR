@@ -28,6 +28,16 @@ export function LanguageProvider({ children }) {
     setLanguageState(langCode);
     localStorage.setItem("kisan_mitra_lang", langCode);
     localStorage.setItem("km_lang", langCode);
+
+    try {
+      document.cookie = `googtrans=/en/${langCode}; path=/;`;
+      document.cookie = `googtrans=/en/${langCode}; path=/; domain=${window.location.hostname};`;
+      const combo = document.querySelector("select.goog-te-combo");
+      if (combo && combo.value !== langCode) {
+        combo.value = langCode;
+        combo.dispatchEvent(new Event("change"));
+      }
+    } catch (e) {}
   };
 
   const t = (keyOrText) => {

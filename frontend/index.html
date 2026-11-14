@@ -16,6 +16,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <title>KISAN MITRA | किसान मित्र — AI Agricultural Operating System</title>
+    <script>
+      // Force cache invalidation so browser never serves stale PWA bundles
+      const APP_VER = "km-v4-lang-patch-14nov";
+      if (localStorage.getItem("km_cache_ver") !== APP_VER) {
+        localStorage.setItem("km_cache_ver", APP_VER);
+        if ("caches" in window) {
+          caches.keys().then((keys) => keys.forEach((k) => caches.delete(k)));
+        }
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.getRegistrations().then((regs) => regs.forEach((r) => r.unregister()));
+        }
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

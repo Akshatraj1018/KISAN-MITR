@@ -452,22 +452,34 @@ export function offlineAnalyzeSoilImage(imgElement, language = "en") {
         return;
       }
 
-      // Guardrail 2: Stark Contrast Indoor Objects & Clothing (e.g., White Pants + Black Wardrobe / Fabric)
+      // Earth chrominance signature: Natural agricultural soil is distinctly warm earth tones (Red dominant over Blue).
+      // Synthetic indoor objects (white clothes, black wardrobes, cool tiles, blue items) have B >= R or no earth warmth.
+      const hasEarthChroma = (avgR > avgB * 1.15 && avgR >= avgG * 0.95);
+      const isCoolSynthetic = (avgB >= avgR * 1.02); // Synthetic cool fabrics / LED lighting
+
+      // Guardrail 2: Indoor Clothing & Synthetic Fabrics (e.g. White Pants, Black Wardrobe / Nylon)
       let whiteCount = 0;
       let blackCount = 0;
       for (let i = 0; i < lumaArr.length; i++) {
-        if (lumaArr[i] > 185) whiteCount++;
-        if (lumaArr[i] < 45) blackCount++;
+        if (lumaArr[i] > 195) whiteCount++;
+        if (lumaArr[i] < 40) blackCount++;
       }
       const whiteRatio = whiteCount / lumaArr.length;
       const blackRatio = blackCount / lumaArr.length;
-      const isClothingOrRoom = (whiteRatio > 0.08 && blackRatio > 0.10) || (whiteRatio > 0.35);
-      const isSyntheticBlack = (brightness < 60 && Math.abs(avgR - avgG) < 7 && Math.abs(avgR - avgB) < 7);
 
-      if (isClothingOrRoom || isSyntheticBlack) {
-        const reason = isClothingOrRoom 
-          ? (isEn ? "Clothing / Wardrobe / Room Interior" : "कपड़े / परिधान या कमरे का सामान")
-          : (isEn ? "Synthetic Black Fabric / Non-Earth Material" : "सिंथेटिक काला कपड़ा / गैर-मिट्टी सामग्री");
+      let isClothingOrRoom = false;
+      if (isCoolSynthetic && (whiteRatio > 0.25 || blackRatio > 0.25)) {
+        isClothingOrRoom = true;
+      } else if (whiteRatio > 0.42 && !hasEarthChroma) {
+        isClothingOrRoom = true;
+      } else if (whiteRatio > 0.22 && blackRatio > 0.20 && !hasEarthChroma) {
+        isClothingOrRoom = true;
+      } else if (brightness < 45 && Math.abs(avgR - avgG) < 5 && Math.abs(avgR - avgB) < 5 && roughness < 6.0) {
+        isClothingOrRoom = true;
+      }
+
+      if (isClothingOrRoom) {
+        const reason = isEn ? "Clothing / Wardrobe / Indoor Fabric" : "कपड़े / परिधान या कमरे का सामान";
 
         resolve({
           is_soil: false,
@@ -493,9 +505,9 @@ export function offlineAnalyzeSoilImage(imgElement, language = "en") {
       }
 
       // Guardrail 3: Smooth Manufactured Surface (Wooden Table, Desk, Tile, Wall, Paper)
-      const isSmoothSurface = (roughness < 6.8 || stdDev < 9.5);
-      const isSyntheticBlue = (avgB > avgR * 1.12 || (avgB > 115 && avgB > avgG));
-      const isOverexposedWhite = (brightness > 220);
+      const isSmoothSurface = (roughness < 6.0 && stdDev < 8.5 && !hasEarthChroma);
+      const isSyntheticBlue = (avgB > avgR * 1.15);
+      const isOverexposedWhite = (brightness > 225 && !hasEarthChroma);
 
       if (isSmoothSurface || isSyntheticBlue || isOverexposedWhite) {
         const reason = isSmoothSurface 
@@ -531,7 +543,7 @@ export function offlineAnalyzeSoilImage(imgElement, language = "en") {
       const centroids = {
         "Sandy Soil":    { r: 178, g: 142, b: 102, bright: 148, moisture: 18.0 },
         "Alluvial Soil": { r: 128, g: 108, b: 78,  bright: 110, moisture: 28.0 },
-        "Red Soil":      { r: 168, g: 84,  b: 54,  bright: 105, moisture: 22.0 },
+        "Red Soil":      { r: 168, g: 88,  b: 58,  bright: 110, moisture: 22.0 },
         "Black Soil":    { r: 65,  g: 60,  b: 55,  bright: 61,  moisture: 34.0 }
       };
 
@@ -539,21 +551,28 @@ export function offlineAnalyzeSoilImage(imgElement, language = "en") {
       let minDistance = Infinity;
       let moisturePercent = 25.0;
 
-      for (const [name, c] of Object.entries(centroids)) {
-        const dR = avgR - c.r;
-        const dG = (avgG - c.g) * 1.2;
-        const dB = avgB - c.b;
-        const dBr = brightness - c.bright;
-        const dist = Math.sqrt(dR * dR + dG * dG + dB * dB + dBr * dBr);
+      // Direct Red / Laterite Soil signature (Odisha & Eastern India red soil clods)
+      if (avgR > avgG * 1.18 && avgR > avgB * 1.28 && avgR > 105) {
+        detectedSoil = "Red Soil";
+        moisturePercent = 22.0;
+        minDistance = 12.0;
+      } else {
+        for (const [name, c] of Object.entries(centroids)) {
+          const dR = avgR - c.r;
+          const dG = (avgG - c.g) * 1.2;
+          const dB = avgB - c.b;
+          const dBr = brightness - c.bright;
+          const dist = Math.sqrt(dR * dR + dG * dG + dB * dB + dBr * dBr);
 
-        if (dist < minDistance) {
-          minDistance = dist;
-          detectedSoil = name;
-          moisturePercent = c.moisture;
+          if (dist < minDistance) {
+            minDistance = dist;
+            detectedSoil = name;
+            moisturePercent = c.moisture;
+          }
         }
       }
 
-      if (minDistance > 38.0 || (detectedSoil === "Black Soil" && (avgR <= avgB * 1.04 || brightness < 48))) {
+      if (minDistance > 68.0 || (detectedSoil === "Black Soil" && (avgR <= avgB * 1.04 || brightness < 48))) {
         // Fallback for unclassified non-agricultural surfaces
         resolve({
           is_soil: false,

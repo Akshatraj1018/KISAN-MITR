@@ -88,13 +88,11 @@
 
 /* Cards */
 .km-soil-card {
-  background: rgba(13, 27, 20, 0.88);
-  border: 1px solid rgba(37, 99, 235, 0.25);
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
   box-sizing: border-box;
 }
 
@@ -261,8 +259,8 @@
 }
 
 .km-soil-type-card {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08) 0%, rgba(13, 27, 20, 0.95) 100%);
-  border: 1px solid rgba(37, 99, 235, 0.25);
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
   border-radius: 16px;
   padding: 18px 22px;
   margin-bottom: 18px;

@@ -248,7 +248,7 @@ export default function SoilAnalyser() {
         <div className="km-soil-grid">
           {/* Left Column: Viewfinder & Input Form */}
           <div className="km-soil-card">
-            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "white" }}>
+            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "#0F172A" }}>
               1. Photograph Soil Sample
             </h3>
 
@@ -297,7 +297,7 @@ export default function SoilAnalyser() {
                   >
                     🌱
                   </div>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: "white", marginBottom: 4 }}>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: "#0F172A", marginBottom: 4 }}>
                     Tap to Capture or Upload Farm Soil
                   </div>
                   <div style={{ fontSize: 12, color: "#94a3b8" }}>
@@ -356,7 +356,7 @@ export default function SoilAnalyser() {
 
           {/* Right Column: Diagnostic Report & Cultivars */}
           <div className="km-soil-card">
-            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "white" }}>
+            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "#0F172A" }}>
               2. Soil Diagnostic & Cultivar Roadmap
             </h3>
 
@@ -559,7 +559,7 @@ export default function SoilAnalyser() {
                 {/* Recommended Crops - INTERACTIVE CLICKABLE */}
                 <div style={{ marginBottom: 20 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-                    <h4 style={{ fontSize: 15, fontWeight: 800, color: "white", margin: 0 }}>
+                    <h4 style={{ fontSize: 15, fontWeight: 800, color: "#0F172A", margin: 0 }}>
                       🌾 High-ROI Recommended Crops (Tap to View Growing Process):
                     </h4>
                     <span style={{ fontSize: 11, color: "#60A5FA", fontWeight: 700 }}>
@@ -631,7 +631,7 @@ export default function SoilAnalyser() {
                   >
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 }}>
                       <div>
-                        <h4 style={{ margin: 0, fontSize: 16, fontWeight: 800, color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+                        <h4 style={{ margin: 0, fontSize: 16, fontWeight: 800, color: "#0F172A", display: "flex", alignItems: "center", gap: 6 }}>
                           <span>📘</span> ICAR Cultivation Process: {CULTIVATION_BLUEPRINTS[selectedCropKey].name}
                         </h4>
                         <div style={{ fontSize: 12, color: "#94a3b8", marginTop: 3 }}>
@@ -659,7 +659,7 @@ export default function SoilAnalyser() {
                           }}
                         >
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
-                            <span style={{ fontWeight: 700, color: "white", fontSize: 13 }}>{ph.title}</span>
+                            <span style={{ fontWeight: 700, color: "#0F172A", fontSize: 13 }}>{ph.title}</span>
                             <span style={{ fontSize: 11, color: "#f59e0b", fontWeight: 700 }}>{ph.dayRange}</span>
                           </div>
                           <p style={{ margin: "0 0 4px 0", fontSize: 12, color: "#cbd5e1", lineHeight: 1.4 }}>
@@ -907,11 +907,11 @@ export default function SoilAnalyser() {
                 rows={3}
                 style={{
                   width: "100%",
-                  background: "rgba(0,0,0,0.4)",
-                  border: "1px solid rgba(255,255,255,0.15)",
+                  background: "#F8FAFC",
+                  border: "1px solid #CBD5E1",
                   borderRadius: 12,
                   padding: 12,
-                  color: "white",
+                  color: "#0F172A",
                   fontSize: 13,
                   outline: "none",
                   boxSizing: "border-box",

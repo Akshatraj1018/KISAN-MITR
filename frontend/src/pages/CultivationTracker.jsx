@@ -133,10 +133,10 @@ export default function CultivationTracker() {
 
           <div className="km-tracker-progress-shell">
             <div className="km-tracker-progress-header">
-              <span style={{ color: "white" }}>
+              <span style={{ color: "#0F172A", fontWeight: 700 }}>
                 Active Stage: <strong>{currentPhase.title}</strong>
               </span>
-              <span style={{ color: "#f59e0b" }}>
+              <span style={{ color: "#D97706", fontWeight: 700 }}>
                 Target Window: {currentPhase.dayRange}
               </span>
             </div>
@@ -170,7 +170,7 @@ export default function CultivationTracker() {
         </div>
 
         {/* Step-by-Step Interactive Timeline */}
-        <h3 style={{ fontSize: 20, fontWeight: 800, color: "white", margin: "0 0 16px 0" }}>
+        <h3 style={{ fontSize: 20, fontWeight: 800, color: "#0F172A", margin: "0 0 16px 0" }}>
           Step-by-Step Lifecycle Roadmap & Milestones
         </h3>
 

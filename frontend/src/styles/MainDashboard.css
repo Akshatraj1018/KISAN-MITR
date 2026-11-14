@@ -375,8 +375,9 @@
 }
 
 .km-voice-tag {
-  background: rgba(56, 189, 248, 0.25);
-  color: #38bdf8;
+  background: #DBEAFE;
+  color: #1E40AF;
+  border: 1px solid #93C5FD;
   font-size: 9px;
   font-weight: 800;
   padding: 1px 6px;
@@ -387,8 +388,8 @@
 
 .km-voice-inline-sub {
   font-size: 11px;
-  color: #7dd3fc;
-  font-weight: 600;
+  color: #0284C7;
+  font-weight: 700;
 }
 
 /* Prominent Mini Soundwave Bars */
@@ -403,9 +404,9 @@
 .km-soundwave-bars-mini .km-wave-bar {
   width: 3px;
   height: 100%;
-  background: #38bdf8;
+  background: #2563EB;
   border-radius: 2px;
-  box-shadow: 0 0 6px rgba(56, 189, 248, 0.6);
+  box-shadow: 0 0 4px rgba(37, 99, 235, 0.4);
   animation: wavePulse 1.1s ease-in-out infinite alternate;
 }
 
@@ -1238,6 +1239,14 @@
   color: var(--km-text-muted);
 }
 
+/* Dual Cockpit Grid */
+.km-cockpit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
 /* ================= RESPONSIVE MEDIA QUERIES ================= */
 @media (max-width: 1024px) {
   .km-weather-top-row {
@@ -1268,7 +1277,7 @@
   }
 
   .km-dashboard {
-    padding-top: 68px;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 68px);
     padding-bottom: 84px !important;
     overflow-x: hidden;
     width: 100%;
@@ -1276,15 +1285,196 @@
   }
 
   .km-topbar {
-    padding: 0 14px;
-    height: 60px;
+    padding: env(safe-area-inset-top, 0px) 14px 0 14px;
+    height: calc(env(safe-area-inset-top, 0px) + 62px);
     background: #FFFFFF !important;
     border-bottom: 1px solid #E2E8F0;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .km-brand {
+    gap: 8px;
+  }
+
+  .km-brand-logo img {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .km-brand-title {
+    font-size: 17px !important;
+    font-weight: 800;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .km-brand-title .km-brand-badge {
+    display: none !important;
+  }
+
+  .km-brand-subtitle {
+    display: none !important;
+  }
+
+  .km-topbar-tools {
+    gap: 8px;
+  }
+
+  .km-farmer-meta {
+    display: none !important;
+  }
+
+  .km-farmer-badge {
+    padding: 3px !important;
+    background: transparent !important;
+    border: none !important;
+  }
+
+  .km-farmer-badge svg {
+    display: none;
+  }
+
+  .km-quick-lang-picker {
+    padding: 4px 8px !important;
+  }
+
+  .km-quick-lang-picker select {
+    font-size: 12px !important;
+    max-width: 110px !important;
   }
 
   .km-nav-pill-group {
     display: none;
+  }
+
+  .km-container {
+    padding: 0 12px;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .km-hero-cockpit {
+    padding: 16px;
+    border-radius: 16px;
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  }
+
+  .km-greeting-row {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .km-greeting-title {
+    font-size: 20px;
+    line-height: 1.3;
+    color: #0F172A;
+  }
+
+  .km-voice-hero-inline {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    justify-content: space-between !important;
+    padding: 10px 14px !important;
+    background: #EFF6FF !important;
+    border: 1.5px solid #BFDBFE !important;
+    border-radius: 14px !important;
+  }
+
+  .km-greeting-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 10px;
+  }
+
+  .km-cockpit-pulses {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .km-pulse-pill {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    background: #F8FAFC !important;
+    border: 1px solid #E2E8F0 !important;
+    padding: 10px 14px !important;
+  }
+
+  .km-pulse-label {
+    color: #475569 !important;
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  .km-pulse-val {
+    color: #0F172A !important;
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  /* Cockpit 2-column to 1-column on mobile */
+  .km-cockpit-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .km-weather-station,
+  .km-action-hero-card {
+    padding: 16px;
+    border-radius: 16px;
+    background: #FFFFFF !important;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  }
+
+  .km-hero-actions-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+
+  /* Mandi section mobile */
+  .km-mandi-section {
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .km-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .km-mandi-filter-chips {
+    width: 100%;
+    overflow-x: auto;
+    display: flex;
+    gap: 8px;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .km-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .km-table-wrapper table {
+    min-width: 640px;
   }
 
   /* Native Mobile Bottom Navigation Bar */
@@ -1300,8 +1490,8 @@
     z-index: 1000;
     align-items: center;
     justify-content: space-around;
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.06);
+    padding-bottom: env(safe-area-inset-bottom, 8px);
+    box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.08);
   }
 
   .km-mob-nav-btn {
@@ -1311,7 +1501,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4px;
+    gap: 3px;
     background: none;
     border: none;
     color: #64748B;
@@ -1325,64 +1515,21 @@
   .km-mob-nav-btn span {
     font-size: 11px;
     font-weight: 600;
+    color: #64748B;
   }
 
   .km-mob-nav-btn.active,
   .km-mob-nav-btn:active {
-    color: #2563EB;
+    color: #2563EB !important;
+  }
+
+  .km-mob-nav-btn.active span {
+    color: #2563EB !important;
+    font-weight: 700;
   }
 
   .km-mob-nav-btn.active svg {
-    color: #2563EB;
-    filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.25));
-  }
-
-  .km-container {
-    padding: 0 12px;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-
-  .km-metrics-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-  }
-
-  .km-advisory-row {
-    grid-template-columns: 1fr;
-  }
-
-  .km-hero-cockpit {
-    padding: 16px;
-    border-radius: 16px;
-    background: #FFFFFF !important;
-    border: 1px solid #E2E8F0;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
-  }
-
-  .km-greeting-title {
-    font-size: 19px;
-    color: #0F172A;
-  }
-
-  .km-weather-station {
-    padding: 16px;
-    border-radius: 16px;
-    background: #FFFFFF !important;
-    border: 1px solid #E2E8F0;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
-  }
-
-  .km-action-hero-card {
-    padding: 16px;
-    border-radius: 16px;
-    background: #FFFFFF !important;
-    border: 1px solid #E2E8F0;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
-  }
-
-  .km-hero-actions-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
+    color: #2563EB !important;
+    filter: drop-shadow(0 0 6px rgba(37, 99, 235, 0.35));
   }
 }

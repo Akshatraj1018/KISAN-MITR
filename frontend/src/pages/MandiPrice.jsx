@@ -200,12 +200,12 @@ export default function MandiPrice() {
               />
             </div>
 
-            <div style={{ padding: "14px", background: "rgba(245, 158, 11, 0.1)", borderRadius: 12, border: "1px solid rgba(245, 158, 11, 0.25)", marginBottom: 18 }}>
-              <div style={{ fontSize: 11, color: "#fcd34d", fontWeight: 700, textTransform: "uppercase" }}>Local Mandi Total Payout:</div>
-              <div style={{ fontSize: 24, fontWeight: 800, color: "white", marginTop: 4 }}>
+            <div style={{ padding: "14px", background: "#FEF3C7", borderRadius: 12, border: "1px solid #FDE68A", marginBottom: 18 }}>
+              <div style={{ fontSize: 11, color: "#B45309", fontWeight: 700, textTransform: "uppercase" }}>Local Mandi Total Payout:</div>
+              <div style={{ fontSize: 24, fontWeight: 800, color: "#0F172A", marginTop: 4 }}>
                 ₹{((getCropRate(MANDI_DATA[0]) * quantityQtl) - (MANDI_DATA[0].distanceKm * transportCostKm)).toLocaleString("en-IN")}
               </div>
-              <div style={{ fontSize: 11, color: "#94a3b8", marginTop: 4 }}>
+              <div style={{ fontSize: 11, color: "#475569", marginTop: 4 }}>
                 Includes {quantityQtl} qtl @ ₹{getCropRate(MANDI_DATA[0])}/q minus ₹{(MANDI_DATA[0].distanceKm * transportCostKm).toFixed(0)} freight.
               </div>
             </div>
@@ -281,13 +281,13 @@ export default function MandiPrice() {
                     return (
                       <tr key={idx}>
                         <td>
-                          <div style={{ fontWeight: 800, color: "white" }}>{item.mandi}</div>
+                          <div style={{ fontWeight: 800, color: "#0F172A" }}>{item.mandi}</div>
                         </td>
                         <td>
-                          <span style={{ color: "#94a3b8" }}>{item.state}</span>
+                          <span style={{ color: "#475569", fontWeight: 600 }}>{item.state}</span>
                         </td>
                         <td>
-                          <span style={{ color: "#cbd5e1" }}>{item.distanceKm} km</span>
+                          <span style={{ color: "#334155", fontWeight: 600 }}>{item.distanceKm} km</span>
                         </td>
                         <td>
                           <div className="km-price-today">₹{getCropRate(item)}/q</div>

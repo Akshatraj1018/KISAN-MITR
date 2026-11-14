@@ -270,7 +270,7 @@ export default function DiseaseSolution() {
         <div className="km-doc-grid">
           {/* Left Column: Viewfinder & Input Form */}
           <div className="km-doc-card">
-            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "white" }}>
+            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "#0F172A" }}>
               1. Capture or Upload Crop Photo
             </h3>
 
@@ -319,7 +319,7 @@ export default function DiseaseSolution() {
                   >
                     📷
                   </div>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: "white", marginBottom: 4 }}>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: "#0F172A", marginBottom: 4 }}>
                     Tap to Open Camera or Choose Leaf Photo
                   </div>
                   <div style={{ fontSize: 12, color: "#94a3b8" }}>
@@ -399,7 +399,7 @@ export default function DiseaseSolution() {
 
           {/* Right Column: Diagnostic Report / Showcase */}
           <div className="km-doc-card">
-            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "white" }}>
+            <h3 style={{ margin: "0 0 16px 0", fontSize: 18, fontWeight: 800, color: "#0F172A" }}>
               2. Scientific Diagnostic & Prescription
             </h3>
 

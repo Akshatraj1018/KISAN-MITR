@@ -33,6 +33,63 @@ import "../styles/SoilAnalyser.css";
 
 const BACKEND_URL = "http://127.0.0.1:8000";
 
+export const normalizeCrop = (c, idx = 0) => {
+  if (!c) return { key: "Wheat", icon: "🌾", name: "Wheat (गेहूं)", yield: "Certified ICAR cultivar • High yield", match: "95% Soil Match", profit: "₹45,000 / acre" };
+  if (typeof c === "string") {
+    const str = c.toLowerCase();
+    let key = "Wheat";
+    let icon = "🌾";
+    let profit = "₹45,000 / acre";
+    let yieldStr = "Certified ICAR cultivar • High yield";
+    let match = `${97 - idx * 3}% Soil Match`;
+
+    if (str.includes("groundnut") || str.includes("मूंगफली")) {
+      key = "Groundnut"; icon = "🥜"; yieldStr = "Easy pod penetration in red loam • 18-22 q/acre"; profit = "₹42,000 / acre";
+    } else if (str.includes("paddy") || str.includes("rice") || str.includes("धान")) {
+      key = "Paddy"; icon = "🍚"; yieldStr = "High moisture compatible • 24-28 q/acre"; profit = "₹40,000 / acre";
+    } else if (str.includes("mustard") || str.includes("सरसों")) {
+      key = "Mustard"; icon = "🟡"; yieldStr = "Low water need • Market Price: ₹5,650/q"; profit = "₹38,000 / acre";
+    } else if (str.includes("potato") || str.includes("आलू")) {
+      key = "Potato"; icon = "🥔"; yieldStr = "Rich tuber growth • 140-160 q/acre yield"; profit = "₹48,000 / acre";
+    } else if (str.includes("cotton") || str.includes("कपास")) {
+      key = "Cotton"; icon = "☁️"; yieldStr = "High boll count • 12-16 q/acre"; profit = "₹52,000 / acre";
+    } else if (str.includes("soybean") || str.includes("सोयाबीन") || str.includes("arhar") || str.includes("अरहर")) {
+      key = "Soybean"; icon = "🌱"; yieldStr = "Rich nitrogen fixation • 12-15 q/acre"; profit = "₹36,000 / acre";
+    } else if (str.includes("watermelon") || str.includes("तरबूज") || str.includes("ragi") || str.includes("रागी")) {
+      key = "Watermelon"; icon = "🍉"; yieldStr = "High sugar content • 150-180 q/acre"; profit = "₹55,000 / acre";
+    }
+
+    return {
+      key,
+      icon,
+      name: c,
+      yield: yieldStr,
+      match,
+      profit
+    };
+  }
+
+  const key = c.key || (
+    c.name?.toLowerCase().includes("groundnut") || c.name?.includes("मूंगफली") ? "Groundnut" :
+    c.name?.toLowerCase().includes("paddy") || c.name?.toLowerCase().includes("rice") || c.name?.includes("धान") ? "Paddy" :
+    c.name?.toLowerCase().includes("mustard") || c.name?.includes("सरसों") ? "Mustard" :
+    c.name?.toLowerCase().includes("potato") || c.name?.includes("आलू") ? "Potato" :
+    c.name?.toLowerCase().includes("cotton") || c.name?.includes("कपास") ? "Cotton" :
+    c.name?.toLowerCase().includes("soybean") || c.name?.includes("सोयाबीन") ? "Soybean" :
+    c.name?.toLowerCase().includes("watermelon") || c.name?.includes("तरबूज") ? "Watermelon" :
+    "Wheat"
+  );
+
+  return {
+    key,
+    icon: c.icon || (key === "Groundnut" ? "🥜" : key === "Paddy" ? "🍚" : key === "Mustard" ? "🟡" : key === "Potato" ? "🥔" : key === "Cotton" ? "☁️" : key === "Soybean" ? "🌱" : key === "Watermelon" ? "🍉" : "🌾"),
+    name: c.name || key,
+    yield: c.yield || "Certified ICAR cultivar • High yield",
+    match: c.match || `${97 - idx * 3}% Soil Match`,
+    profit: c.profit || "₹42,000 / acre"
+  };
+};
+
 const SAMPLE_SOIL_TYPES = [
   {
     name: "Red & Laterite Loam (लाल दोमट)",
@@ -157,9 +214,14 @@ export default function SoilAnalyser() {
 
         if (!res.ok) throw new Error("Soil backend offline");
         const data = await res.json();
-        setReport(data);
-        if (data.recommended_crops && data.recommended_crops.length > 0) {
-          setSelectedCropKey(data.recommended_crops[0].key);
+        const rawCrops = data.recommended_crops || [];
+        const normalizedCrops = rawCrops.map((c, i) => normalizeCrop(c, i));
+        setReport({
+          ...data,
+          recommended_crops: normalizedCrops,
+        });
+        if (normalizedCrops.length > 0) {
+          setSelectedCropKey(normalizedCrops[0].key);
         }
       } catch (backendErr) {
         console.warn("Backend unavailable, executing In-Browser PyTorch Soil Fallback...", backendErr);
@@ -168,12 +230,15 @@ export default function SoilAnalyser() {
         img.src = imagePreview;
         await new Promise((res) => { img.onload = res; });
         const offlineResult = await offlineAnalyzeSoilImage(img, language || "en");
+        const rawCrops = offlineResult.recommended_crops || [];
+        const normalizedCrops = rawCrops.map((c, i) => normalizeCrop(c, i));
         setReport({
           ...offlineResult,
+          recommended_crops: normalizedCrops,
           isOffline: true,
         });
-        if (offlineResult.recommended_crops && offlineResult.recommended_crops.length > 0) {
-          setSelectedCropKey(offlineResult.recommended_crops[0].key);
+        if (normalizedCrops.length > 0) {
+          setSelectedCropKey(normalizedCrops[0].key);
         }
       }
     } catch (err) {
@@ -185,6 +250,7 @@ export default function SoilAnalyser() {
   };
 
   const handleSampleSelect = (sample) => {
+    const sampleCrops = (sample.bestCrops || []).map((c, i) => normalizeCrop(c, i));
     setReport({
       soil_type: sample.name,
       ph: sample.ph,
@@ -194,15 +260,13 @@ export default function SoilAnalyser() {
         { name: "Phosphorus (P)", status: "Low", value: "14 kg/ha" },
         { name: "Potassium (K)", status: "Adequate", value: "310 kg/ha" },
       ],
-      recommendation: `Optimal soil condition for high-yielding cereals and oilseeds. Apply DAP @ 50 kg/acre to compensate for low phosphorus.`,
-      recommended_crops: sample.bestCrops.map((c) => ({
-        name: c,
-        variety: "Certified ICAR cultivar",
-        yield: "22-26 q/acre",
-        profit: "₹45,000 / acre",
-      })),
+      recommendation: `Optimal soil condition for high-yielding crops. Apply DAP @ 50 kg/acre to compensate for low phosphorus.`,
+      recommended_crops: sampleCrops,
       isOffline: true,
     });
+    if (sampleCrops.length > 0) {
+      setSelectedCropKey(sampleCrops[0].key);
+    }
   };
 
   const handleSpeakReport = () => {
@@ -573,11 +637,12 @@ export default function SoilAnalyser() {
                       { key: "Mustard", icon: "🟡", name: "Mustard (सरसों - Pusa Bold / Giriraj)", yield: "Low water need • Market Price: ₹5,120/q", match: "92% Soil Match" },
                       { key: "Paddy", icon: "🍚", name: "Paddy (धान - Swarna / MTU-1010)", yield: "High moisture retention compatible", match: "88% Soil Match" },
                       { key: "Potato", icon: "🥔", name: "Potato (आलू - Kufri Pukhraj)", yield: "Rich tuber growth • 140 q/acre yield", match: "85% Soil Match" },
-                    ]).map((cropItem) => {
+                    ]).map((rawCrop, idx) => {
+                      const cropItem = normalizeCrop(rawCrop, idx);
                       const isSelected = selectedCropKey === cropItem.key;
                       return (
                         <div
-                          key={cropItem.key}
+                          key={cropItem.key || idx}
                           className="km-rec-crop-card-row"
                           onClick={() => setSelectedCropKey(cropItem.key)}
                           style={{
@@ -619,204 +684,212 @@ export default function SoilAnalyser() {
                 </div>
 
                 {/* Cultivation Process Blueprint for Selected Crop */}
-                {CULTIVATION_BLUEPRINTS[selectedCropKey] && (
-                  <div
-                    style={{
-                      background: "rgba(0, 0, 0, 0.45)",
-                      border: "1.5px solid rgba(52, 211, 153, 0.4)",
-                      borderRadius: 16,
-                      padding: 20,
-                      marginBottom: 20,
-                    }}
-                  >
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 }}>
-                      <div>
-                        <h4 style={{ margin: 0, fontSize: 16, fontWeight: 800, color: "white", display: "flex", alignItems: "center", gap: 6 }}>
-                          <span>📘</span> ICAR Cultivation Process: {CULTIVATION_BLUEPRINTS[selectedCropKey].name}
-                        </h4>
-                        <div style={{ fontSize: 12, color: "#94a3b8", marginTop: 3 }}>
-                          Variety: <strong>{CULTIVATION_BLUEPRINTS[selectedCropKey].variety}</strong> • Duration: <strong>{CULTIVATION_BLUEPRINTS[selectedCropKey].durationDays} Days</strong>
+                {(() => {
+                  const currentKey = CULTIVATION_BLUEPRINTS[selectedCropKey]
+                    ? selectedCropKey
+                    : (report?.recommended_crops?.[0]?.key && CULTIVATION_BLUEPRINTS[report.recommended_crops[0].key] ? report.recommended_crops[0].key : "Wheat");
+                  const currentBlueprint = CULTIVATION_BLUEPRINTS[currentKey] || CULTIVATION_BLUEPRINTS.Wheat;
+                  if (!currentBlueprint) return null;
+
+                  return (
+                    <div
+                      style={{
+                        background: "rgba(0, 0, 0, 0.45)",
+                        border: "1.5px solid rgba(52, 211, 153, 0.4)",
+                        borderRadius: 16,
+                        padding: 20,
+                        marginBottom: 20,
+                      }}
+                    >
+                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14, flexWrap: "wrap", gap: 10 }}>
+                        <div>
+                          <h4 style={{ margin: 0, fontSize: 16, fontWeight: 800, color: "white", display: "flex", alignItems: "center", gap: 6 }}>
+                            <span>📘</span> ICAR Cultivation Process: {currentBlueprint.name}
+                          </h4>
+                          <div style={{ fontSize: 12, color: "#94a3b8", marginTop: 3 }}>
+                            Variety: <strong>{currentBlueprint.variety}</strong> • Duration: <strong>{currentBlueprint.durationDays} Days</strong>
+                          </div>
+                        </div>
+                        <div style={{ textAlign: "right" }}>
+                          <div style={{ fontSize: 11, color: "#94a3b8" }}>Estimated Profit:</div>
+                          <div style={{ fontSize: 16, fontWeight: 800, color: "#34d399" }}>
+                            {currentBlueprint.estimatedProfit}
+                          </div>
                         </div>
                       </div>
-                      <div style={{ textAlign: "right" }}>
-                        <div style={{ fontSize: 11, color: "#94a3b8" }}>Estimated Profit:</div>
-                        <div style={{ fontSize: 16, fontWeight: 800, color: "#34d399" }}>
-                          {CULTIVATION_BLUEPRINTS[selectedCropKey].estimatedProfit}
-                        </div>
-                      </div>
-                    </div>
 
-                    {/* Step-by-Step Preview */}
-                    <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 16 }}>
-                      {CULTIVATION_BLUEPRINTS[selectedCropKey].phases.map((ph) => (
-                        <div
-                          key={ph.id}
-                          style={{
-                            background: "rgba(255, 255, 255, 0.04)",
-                            border: "1px solid rgba(255, 255, 255, 0.06)",
-                            borderRadius: 10,
-                            padding: "10px 14px",
-                          }}
-                        >
-                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
-                            <span style={{ fontWeight: 700, color: "white", fontSize: 13 }}>{ph.title}</span>
-                            <span style={{ fontSize: 11, color: "#f59e0b", fontWeight: 700 }}>{ph.dayRange}</span>
-                          </div>
-                          <p style={{ margin: "0 0 4px 0", fontSize: 12, color: "#cbd5e1", lineHeight: 1.4 }}>
-                            {ph.description}
-                          </p>
-                          <div style={{ fontSize: 11, color: "#a7f3d0" }}>
-                            <strong>Inputs / Fertilizer:</strong> {ph.inputsRequired}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Live Cultivation Progress Tracker (Visible when active for this crop) */}
-                    {activeProject && activeProject.cropKey === selectedCropKey ? (
-                      <div
-                        style={{
-                          background: "linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(6, 78, 59, 0.35) 100%)",
-                          border: "1.5px solid #10b981",
-                          borderRadius: 14,
-                          padding: 18,
-                          marginTop: 14,
-                        }}
-                      >
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12, flexWrap: "wrap", gap: 8 }}>
-                          <div>
-                            <span className="km-brand-badge" style={{ background: "rgba(16, 185, 129, 0.3)", color: "#a7f3d0" }}>
-                              ⚡ Live Field Cultivation Progress Tracker
-                            </span>
-                            <h4 style={{ margin: "6px 0 0 0", color: "white", fontSize: 16, fontWeight: 800 }}>
-                              Active Execution: {activeProject.cropName} ({activeProject.plotName})
-                            </h4>
-                          </div>
-                          <div style={{ textAlign: "right" }}>
-                            <div style={{ fontSize: 20, fontWeight: 800, color: "#34d399" }}>
-                              {activeProject.progressPercent}%
-                            </div>
-                            <div style={{ fontSize: 11, color: "#94a3b8" }}>Field Completion</div>
-                          </div>
-                        </div>
-
-                        {/* Progress Bar */}
-                        <div style={{ background: "rgba(0,0,0,0.4)", borderRadius: 9999, height: 8, overflow: "hidden", marginBottom: 14 }}>
+                      {/* Step-by-Step Preview */}
+                      <div style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 16 }}>
+                        {currentBlueprint.phases.map((ph) => (
                           <div
+                            key={ph.id}
                             style={{
-                              width: `${activeProject.progressPercent}%`,
-                              height: "100%",
-                              background: "linear-gradient(90deg, #10b981, #34d399)",
-                              transition: "width 0.4s ease",
+                              background: "rgba(255, 255, 255, 0.04)",
+                              border: "1px solid rgba(255, 255, 255, 0.06)",
+                              borderRadius: 10,
+                              padding: "10px 14px",
                             }}
-                          />
-                        </div>
-
-                        {/* Active Phase & Next Step Alert */}
-                        <div style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 14px", marginBottom: 14 }}>
-                          <div style={{ fontSize: 12, color: "#fbbf24", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}>
-                            <span>⚡</span> IMMEDIATE ACTION REMINDER:
-                          </div>
-                          <div style={{ fontSize: 13, color: "white", fontWeight: 600, marginTop: 4 }}>
-                            {activeProject.phases.find(p => p.status === "in_progress")?.reminderText || "Follow standard agronomy schedule."}
-                          </div>
-                        </div>
-
-                        {/* Milestones List with Lodge Progress Button */}
-                        <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 16 }}>
-                          {activeProject.phases.map(p => (
-                            <div
-                              key={p.id}
-                              style={{
-                                display: "flex",
-                                justifyContent: "space-between",
-                                alignItems: "center",
-                                padding: "10px 12px",
-                                borderRadius: 10,
-                                background: p.status === "completed" ? "rgba(16, 185, 129, 0.1)" : p.status === "in_progress" ? "rgba(245, 158, 11, 0.15)" : "rgba(255, 255, 255, 0.03)",
-                                border: `1px solid ${p.status === "completed" ? "#10b981" : p.status === "in_progress" ? "#f59e0b" : "rgba(255, 255, 255, 0.05)"}`,
-                              }}
-                            >
-                              <div>
-                                <div style={{ fontSize: 13, fontWeight: 700, color: p.status === "completed" ? "#a7f3d0" : p.status === "in_progress" ? "#fde68a" : "#94a3b8" }}>
-                                  {p.status === "completed" ? "✓ " : p.status === "in_progress" ? "⚡ " : "⏳ "}
-                                  {p.title}
-                                </div>
-                                <div style={{ fontSize: 11, color: "#94a3b8" }}>{p.dayRange}</div>
-                              </div>
-
-                              <div>
-                                {p.status === "in_progress" ? (
-                                  <button
-                                    onClick={() => setLodgeModalPhase(p)}
-                                    style={{
-                                      background: "#f59e0b",
-                                      color: "#78350f",
-                                      border: "none",
-                                      borderRadius: 8,
-                                      padding: "6px 14px",
-                                      fontSize: 12,
-                                      fontWeight: 800,
-                                      cursor: "pointer",
-                                    }}
-                                  >
-                                    ✓ Lodge Done
-                                  </button>
-                                ) : p.status === "completed" ? (
-                                  <span style={{ fontSize: 11, color: "#34d399", fontWeight: 800, background: "rgba(16, 185, 129, 0.2)", padding: "4px 8px", borderRadius: 6 }}>
-                                    ✓ Done
-                                  </span>
-                                ) : (
-                                  <span style={{ fontSize: 11, color: "#64748b" }}>
-                                    Upcoming
-                                  </span>
-                                )}
-                              </div>
+                          >
+                            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 3 }}>
+                              <span style={{ fontWeight: 700, color: "white", fontSize: 13 }}>{ph.title}</span>
+                              <span style={{ fontSize: 11, color: "#f59e0b", fontWeight: 700 }}>{ph.dayRange}</span>
                             </div>
-                          ))}
-                        </div>
-
-                        <button
-                          className="km-btn-doc secondary"
-                          style={{
-                            width: "100%",
-                            background: "rgba(255, 255, 255, 0.06)",
-                            border: "1px solid rgba(255, 255, 255, 0.12)",
-                            color: "white",
-                            padding: "10px",
-                            borderRadius: 10,
-                            fontSize: 13,
-                            fontWeight: 700,
-                            cursor: "pointer",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            gap: 6,
-                          }}
-                          onClick={() => navigate("/cultivation-tracker")}
-                        >
-                          <span>Open Full Lifecycle Tracker Page</span>
-                          <ChevronRight style={{ width: 14, height: 14 }} />
-                        </button>
+                            <p style={{ margin: "0 0 4px 0", fontSize: 12, color: "#cbd5e1", lineHeight: 1.4 }}>
+                              {ph.description}
+                            </p>
+                            <div style={{ fontSize: 11, color: "#a7f3d0" }}>
+                              <strong>Inputs / Fertilizer:</strong> {ph.inputsRequired}
+                            </div>
+                          </div>
+                        ))}
                       </div>
-                    ) : (
-                      /* Start Cultivation Button */
-                      <button
-                        className="km-btn-analyze-submit"
-                        style={{
-                          padding: "14px 24px",
-                          fontSize: 15,
-                          background: "linear-gradient(135deg, #059669 0%, #10b981 100%)",
-                          boxShadow: "0 8px 24px rgba(16, 185, 129, 0.35)",
-                        }}
-                        onClick={() => handleStartCultivation(selectedCropKey)}
-                      >
-                        <Play style={{ width: 16, height: 16, fill: "white" }} />
-                        <span>Start Cultivation & Activate Progress Tracker for {CULTIVATION_BLUEPRINTS[selectedCropKey].name} ➔</span>
-                      </button>
-                    )}
-                  </div>
-                )}
+
+                      {/* Live Cultivation Progress Tracker (Visible when active for this crop) */}
+                      {activeProject && activeProject.cropKey === currentKey ? (
+                        <div
+                          style={{
+                            background: "linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(6, 78, 59, 0.35) 100%)",
+                            border: "1.5px solid #10b981",
+                            borderRadius: 14,
+                            padding: 18,
+                            marginTop: 14,
+                          }}
+                        >
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12, flexWrap: "wrap", gap: 8 }}>
+                            <div>
+                              <span className="km-brand-badge" style={{ background: "rgba(16, 185, 129, 0.3)", color: "#a7f3d0" }}>
+                                ⚡ Live Field Cultivation Progress Tracker
+                              </span>
+                              <h4 style={{ margin: "6px 0 0 0", color: "white", fontSize: 16, fontWeight: 800 }}>
+                                Active Execution: {activeProject.cropName} ({activeProject.plotName})
+                              </h4>
+                            </div>
+                            <div style={{ textAlign: "right" }}>
+                              <div style={{ fontSize: 20, fontWeight: 800, color: "#34d399" }}>
+                                {activeProject.progressPercent}%
+                              </div>
+                              <div style={{ fontSize: 11, color: "#94a3b8" }}>Field Completion</div>
+                            </div>
+                          </div>
+
+                          {/* Progress Bar */}
+                          <div style={{ background: "rgba(0,0,0,0.4)", borderRadius: 9999, height: 8, overflow: "hidden", marginBottom: 14 }}>
+                            <div
+                              style={{
+                                width: `${activeProject.progressPercent}%`,
+                                height: "100%",
+                                background: "linear-gradient(90deg, #10b981, #34d399)",
+                                transition: "width 0.4s ease",
+                              }}
+                            />
+                          </div>
+
+                          {/* Active Phase & Next Step Alert */}
+                          <div style={{ background: "rgba(0,0,0,0.3)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 12, padding: "12px 14px", marginBottom: 14 }}>
+                            <div style={{ fontSize: 12, color: "#fbbf24", fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}>
+                              <span>⚡</span> IMMEDIATE ACTION REMINDER:
+                            </div>
+                            <div style={{ fontSize: 13, color: "white", fontWeight: 600, marginTop: 4 }}>
+                              {activeProject.phases.find(p => p.status === "in_progress")?.reminderText || "Follow standard agronomy schedule."}
+                            </div>
+                          </div>
+
+                          {/* Milestones List with Lodge Progress Button */}
+                          <div style={{ display: "flex", flexDirection: "column", gap: 8, marginBottom: 16 }}>
+                            {activeProject.phases.map(p => (
+                              <div
+                                key={p.id}
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  alignItems: "center",
+                                  padding: "10px 12px",
+                                  borderRadius: 10,
+                                  background: p.status === "completed" ? "rgba(16, 185, 129, 0.1)" : p.status === "in_progress" ? "rgba(245, 158, 11, 0.15)" : "rgba(255, 255, 255, 0.03)",
+                                  border: `1px solid ${p.status === "completed" ? "#10b981" : p.status === "in_progress" ? "#f59e0b" : "rgba(255, 255, 255, 0.05)"}`,
+                                }}
+                              >
+                                <div>
+                                  <div style={{ fontSize: 13, fontWeight: 700, color: p.status === "completed" ? "#a7f3d0" : p.status === "in_progress" ? "#fde68a" : "#94a3b8" }}>
+                                    {p.status === "completed" ? "✓ " : p.status === "in_progress" ? "⚡ " : "⏳ "}
+                                    {p.title}
+                                  </div>
+                                  <div style={{ fontSize: 11, color: "#94a3b8" }}>{p.dayRange}</div>
+                                </div>
+
+                                <div>
+                                  {p.status === "in_progress" ? (
+                                    <button
+                                      onClick={() => setLodgeModalPhase(p)}
+                                      style={{
+                                        background: "#f59e0b",
+                                        color: "#78350f",
+                                        border: "none",
+                                        borderRadius: 8,
+                                        padding: "6px 14px",
+                                        fontSize: 12,
+                                        fontWeight: 800,
+                                        cursor: "pointer",
+                                      }}
+                                    >
+                                      ✓ Lodge Done
+                                    </button>
+                                  ) : p.status === "completed" ? (
+                                    <span style={{ fontSize: 11, color: "#34d399", fontWeight: 800, background: "rgba(16, 185, 129, 0.2)", padding: "4px 8px", borderRadius: 6 }}>
+                                      ✓ Done
+                                    </span>
+                                  ) : (
+                                    <span style={{ fontSize: 11, color: "#64748b" }}>
+                                      Upcoming
+                                    </span>
+                                  )}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+
+                          <button
+                            className="km-btn-doc secondary"
+                            style={{
+                              width: "100%",
+                              background: "rgba(255, 255, 255, 0.06)",
+                              border: "1px solid rgba(255, 255, 255, 0.12)",
+                              color: "white",
+                              padding: "10px",
+                              borderRadius: 10,
+                              fontSize: 13,
+                              fontWeight: 700,
+                              cursor: "pointer",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                              gap: 6,
+                            }}
+                            onClick={() => navigate("/cultivation-tracker")}
+                          >
+                            <span>Open Full Lifecycle Tracker Page</span>
+                            <ChevronRight style={{ width: 14, height: 14 }} />
+                          </button>
+                        </div>
+                      ) : (
+                        /* Start Cultivation Button */
+                        <button
+                          className="km-btn-analyze-submit"
+                          style={{
+                            padding: "14px 24px",
+                            fontSize: 15,
+                            background: "linear-gradient(135deg, #059669 0%, #10b981 100%)",
+                            boxShadow: "0 8px 24px rgba(16, 185, 129, 0.35)",
+                          }}
+                          onClick={() => handleStartCultivation(currentKey)}
+                        >
+                          <Play style={{ width: 16, height: 16, fill: "white" }} />
+                          <span>Start Cultivation & Activate Progress Tracker for {currentBlueprint.name} ➔</span>
+                        </button>
+                      )}
+                    </div>
+                  );
+                })()}
 
                 {/* Action Buttons */}
                 <div style={{ display: "flex", gap: 12 }}>

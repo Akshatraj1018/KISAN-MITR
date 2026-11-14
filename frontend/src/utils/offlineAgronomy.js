@@ -624,6 +624,38 @@ export function offlineAnalyzeSoilImage(imgElement, language = "en") {
 /**
  * Returns deep, actionable agronomy data for any soil type
  */
+// Cultivar-to-ICAR Blueprint Mappings for each soil type
+export const SOIL_CROP_BLUEPRINTS = {
+  "Red Soil": [
+    { key: "Groundnut", icon: "🥜", nameEn: "Groundnut (मूंगफली - TMV-2 / Kadiri-6)", nameHi: "मूंगफली (Groundnut - TMV-2 / कदिरी-6)", yieldEn: "Easy pod penetration in red loam • 18-22 q/acre", yieldHi: "भुरभुरी लाल मिट्टी में सुगम फली विकास • 18-22 क्विंटल/एकड़", match: "97% Soil Match", profit: "₹42,000 / acre" },
+    { key: "Paddy", icon: "🍚", nameEn: "Paddy (धान - Swarna / MTU-1010)", nameHi: "धान (Paddy - स्वर्णा / MTU-1010)", yieldEn: "High moisture compatible in valleys • 24-28 q/acre", yieldHi: "निचले क्षेत्रों में उच्च उत्पादन • 24-28 क्विंटल/एकड़", match: "94% Soil Match", profit: "₹40,000 / acre" },
+    { key: "Mustard", icon: "🟡", nameEn: "Mustard (सरसों - Pusa Bold / Giriraj)", nameHi: "सरसों (Mustard - पूसा बोल्ड / गिरिराज)", yieldEn: "Low water need • Market Price: ₹5,650/q", yieldHi: "कम जल आवश्यकता • समर्थन मूल्य: ₹5,650/क्विंटल", match: "91% Soil Match", profit: "₹38,000 / acre" },
+    { key: "Soybean", icon: "🌱", nameEn: "Soybean (सोयाबीन - JS-9560 / NRC-127)", nameHi: "सोयाबीन (Soybean - JS-9560 / NRC-127)", yieldEn: "Rich nitrogen fixation in warm red soils • 12-15 q/acre", yieldHi: "लाल मिट्टी में प्राकृतिक नाइट्रोजन स्थिरीकरण • 12-15 क्विंटल/एकड़", match: "88% Soil Match", profit: "₹35,000 / acre" },
+  ],
+  "Alluvial Soil": [
+    { key: "Wheat", icon: "🌾", nameEn: "Wheat (गेहूं - HD-2967 / DBW-187)", nameHi: "गेहूं (Wheat - HD-2967 / DBW-187)", yieldEn: "Yield: 24 q/acre • Sowing: Nov 1 - 25", yieldHi: "पैदावार: 24 क्विंटल/एकड़ • बुवाई: 1-25 नवंबर", match: "97% Soil Match", profit: "₹46,000 / acre" },
+    { key: "Mustard", icon: "🟡", nameEn: "Mustard (सरसों - Pusa Bold / Giriraj)", nameHi: "सरसों (Mustard - पूसा बोल्ड / गिरिराज)", yieldEn: "Low water need • Market Price: ₹5,650/q", yieldHi: "कम पानी की आवश्यकता • समर्थन मूल्य: ₹5,650/क्विंटल", match: "93% Soil Match", profit: "₹42,000 / acre" },
+    { key: "Paddy", icon: "🍚", nameEn: "Paddy (धान - Pusa Basmati 1121)", nameHi: "धान (Paddy - पूसा बासमती 1121)", yieldEn: "High-value aroma grain • 28 q/acre", yieldHi: "सुगंधित प्रीमियम उपज • 28 क्विंटल/एकड़", match: "91% Soil Match", profit: "₹54,000 / acre" },
+    { key: "Potato", icon: "🥔", nameEn: "Potato (आलू - Kufri Pukhraj)", nameHi: "आलू (Potato - कुफरी पुखराज)", yieldEn: "Rich tuber growth • 140-160 q/acre yield", yieldHi: "कंदों की तीव्र वृद्धि • 140-160 क्विंटल/एकड़", match: "88% Soil Match", profit: "₹48,000 / acre" },
+  ],
+  "Black Soil": [
+    { key: "Cotton", icon: "☁️", nameEn: "Cotton (कपास - Bt Cotton RCH-659)", nameHi: "कपास (Cotton - बीटी कॉटन RCH-659)", yieldEn: "Self-ploughing regur clay ideal • 12-16 q/acre", yieldHi: "काली कपासी मिट्टी हेतु सर्वोत्तम • 12-16 क्विंटल/एकड़", match: "98% Soil Match", profit: "₹52,000 / acre" },
+    { key: "Soybean", icon: "🌱", nameEn: "Soybean (सोयाबीन - JS-9560 / NRC-127)", nameHi: "सोयाबीन (Soybean - JS-9560 / NRC-127)", yieldEn: "High organic clay compatible • 12-15 q/acre", yieldHi: "उच्च नमी संचयन अनुकूल • 12-15 क्विंटल/एकड़", match: "95% Soil Match", profit: "₹40,000 / acre" },
+    { key: "Wheat", icon: "🌾", nameEn: "Wheat (गेहूं - Lok-1 / GW-322)", nameHi: "गेहूं (Wheat - लोक-1 / GW-322)", yieldEn: "Deep moisture retention • 20-22 q/acre", yieldHi: "अवशिष्ट नमी पर उत्कृष्ट पैदावार • 20-22 क्विंटल/एकड़", match: "91% Soil Match", profit: "₹44,000 / acre" },
+    { key: "Mustard", icon: "🟡", nameEn: "Mustard (सरसों - Pusa Bold)", nameHi: "सरसों (Mustard - पूसा बोल्ड)", yieldEn: "High oil content in black clay • 9-11 q/acre", yieldHi: "काली मिट्टी में उच्च तेल प्रतिशत • 9-11 क्विंटल/एकड़", match: "87% Soil Match", profit: "₹38,000 / acre" },
+  ],
+  "Sandy Soil": [
+    { key: "Watermelon", icon: "🍉", nameEn: "Watermelon (तरबूज - Sugar Baby / Max)", nameHi: "तरबूज (Watermelon - शुगर बेबी / मैक्स)", yieldEn: "Sandy loam aeration ideal for riverbeds • 150-180 q/acre", yieldHi: "रेतीली मिट्टी में तीव्र जड़ विकास • 150-180 क्विंटल/एकड़", match: "96% Soil Match", profit: "₹55,000 / acre" },
+    { key: "Groundnut", icon: "🥜", nameEn: "Groundnut (मूंगफली - Kadiri-6 / TG-37A)", nameHi: "मूंगफली (Groundnut - कदिरी-6 / TG-37A)", yieldEn: "Excellent peg penetration in loose sand • 16-20 q/acre", yieldHi: "हल्की रेतीली मिट्टी में सुगम खूंटी प्रवेश • 16-20 क्विंटल/एकड़", match: "92% Soil Match", profit: "₹40,000 / acre" },
+    { key: "Mustard", icon: "🟡", nameEn: "Mustard (सरसों - Pusa Bold)", nameHi: "सरसों (Mustard - पूसा बोल्ड)", yieldEn: "Drought tolerant oilseed • 8-10 q/acre", yieldHi: "कम जल में सुरक्षित उत्पादन • 8-10 क्विंटल/एकड़", match: "86% Soil Match", profit: "₹36,000 / acre" },
+  ],
+  "Loamy Soil": [
+    { key: "Wheat", icon: "🌾", nameEn: "Wheat (गेहूं - HD-2967 / DBW-187)", nameHi: "गेहूं (Wheat - HD-2967 / DBW-187)", yieldEn: "Yield: 24 q/acre • Sowing: Nov 1 - 25", yieldHi: "पैदावार: 24 क्विंटल/एकड़ • बुवाई: 1-25 नवंबर", match: "97% Soil Match", profit: "₹46,000 / acre" },
+    { key: "Potato", icon: "🥔", nameEn: "Potato (आलू - Kufri Pukhraj)", nameHi: "आलू (Potato - कुफरी पुखराज)", yieldEn: "Rich tuber growth • 140-160 q/acre yield", yieldHi: "कंदों की तीव्र वृद्धि • 140-160 क्विंटल/एकड़", match: "93% Soil Match", profit: "₹52,000 / acre" },
+    { key: "Mustard", icon: "🟡", nameEn: "Mustard (सरसों - Pusa Bold / Giriraj)", nameHi: "सरसों (Mustard - पूसा बोल्ड / गिरिराज)", yieldEn: "Low water need • Market Price: ₹5,650/q", yieldHi: "कम पानी की आवश्यकता • समर्थन मूल्य: ₹5,650/क्विंटल", match: "90% Soil Match", profit: "₹42,000 / acre" },
+  ]
+};
+
 export function getDetailedSoilReport(soilType, cropName = "", language = "en", moisture = 25.0) {
   const isEn = language === "en";
   const db = isEn ? OFFLINE_SOIL_DATABASE : OFFLINE_SOIL_DATABASE_HI;
@@ -637,20 +669,32 @@ export function getDetailedSoilReport(soilType, cropName = "", language = "en", 
     ? `${soilType} is prime agricultural soil with abundant potash and adequate lime. With scientific nutrient management and scheduled irrigations, excellent crop yields are achieved.`
     : `${soilType} भारत में कृषि के लिए अत्यंत उपयुक्त है। इसमें पोटाश व चूने की भरपूर मात्रा पाई जाती है। उचित खाद प्रबंधन और समयबद्ध सिंचाई से इसमें भरपूर पैदावार ली जा सकती है।`;
 
+  const blueprintsList = (SOIL_CROP_BLUEPRINTS[soilType] || SOIL_CROP_BLUEPRINTS["Alluvial Soil"]).map(item => ({
+    key: item.key,
+    icon: item.icon,
+    name: isEn ? item.nameEn : item.nameHi,
+    yield: isEn ? item.yieldEn : item.yieldHi,
+    match: item.match,
+    profit: item.profit
+  }));
+
   const cropSuit = isEn
-    ? `This soil is highly suitable for ${cropName || base.recommended_crops[0]}. Balanced nutrition delivers 20-30% additional harvest profit.`
-    : `यह मिट्टी ${cropName || base.recommended_crops[0]} के लिए सर्वोत्कृष्ट है। पोषक तत्वों की पूर्ति से 20-30% अतिरिक्त लाभ प्राप्त होगा।`;
+    ? `This soil is highly suitable for ${cropName || blueprintsList[0].name}. Balanced nutrition delivers 20-30% additional harvest profit.`
+    : `यह मिट्टी ${cropName || blueprintsList[0].name} के लिए सर्वोत्कृष्ट है। पोषक तत्वों की पूर्ति से 20-30% अतिरिक्त लाभ प्राप्त होगा।`;
 
   return {
     soil_type: soilType,
     soil_moisture: moistureStr,
+    moisture: moistureStr,
     ph: base.ph,
     nutrients: base.nutrients,
     soil_quality: base.soil_quality,
+    quality: base.soil_quality,
     summary: summary,
+    recommendation: summary,
     moisture_advice: base.irrigation,
-    recommended_crops: base.recommended_crops,
-    crop_name: cropName || base.recommended_crops[0],
+    recommended_crops: blueprintsList,
+    crop_name: cropName || blueprintsList[0].name,
     crop_suitability: cropSuit,
     fertilizer_line: base.fertilizer,
     how_to_use: base.how_to_use,

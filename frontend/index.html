@@ -3,22 +3,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <meta name="theme-color" content="#2563EB" />
-    <meta name="description" content="Kisan Mitra (किसान मित्र) - Next-Gen Edge-First AI Agricultural Operating System for Indian Farmers with PyTorch Soil CNN & Dr. Neerja Multilingual Voice Helpline." />
     
+    <!-- Primary Metadata -->
+    <title>KISAN MITR | किसान मित्र — AI Agricultural Operating System</title>
+    <meta name="title" content="KISAN MITR | किसान मित्र — AI Agricultural Operating System" />
+    <meta name="description" content="Kisan Mitr (किसान मित्र) - Next-Gen Edge-First AI Agricultural Operating System for Indian Farmers with PyTorch Soil CNN & Dr. Neerja Multilingual Voice Helpline." />
+    <meta name="author" content="Kisan Mitr Team" />
+    <meta name="theme-color" content="#2563EB" />
+
+    <!-- Favicons & App Icons -->
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Open Graph / Facebook / WhatsApp / Telegram Previews -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kisan-mitr-amber.vercel.app/" />
+    <meta property="og:site_name" content="KISAN MITR | किसान मित्र" />
+    <meta property="og:title" content="KISAN MITR | किसान मित्र — AI Agricultural Operating System" />
+    <meta property="og:description" content="Next-Gen Edge-First AI Agricultural Operating System for Indian Farmers with PyTorch Soil CNN & Multilingual Voice Helpline." />
+    <meta property="og:image" content="https://kisan-mitr-amber.vercel.app/kisanmitr_og.png" />
+    <meta property="og:image:secure_url" content="https://kisan-mitr-amber.vercel.app/kisanmitr_og.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="KISAN MITR Official Logo" />
+    <link rel="image_src" href="https://kisan-mitr-amber.vercel.app/kisanmitr_og.png" />
+
+    <!-- Twitter Card Previews -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://kisan-mitr-amber.vercel.app/" />
+    <meta name="twitter:title" content="KISAN MITR | किसान मित्र — AI Agricultural Operating System" />
+    <meta name="twitter:description" content="Next-Gen Edge-First AI Agricultural Operating System for Indian Farmers with PyTorch Soil CNN & Multilingual Voice Helpline." />
+    <meta name="twitter:image" content="https://kisan-mitr-amber.vercel.app/kisanmitr_og.png" />
+    <meta name="twitter:image:alt" content="KISAN MITR Official Logo" />
+
     <!-- Google Fonts: Plus Jakarta Sans & Inter for clean typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <title>KISAN MITRA | किसान मित्र — AI Agricultural Operating System</title>
     <script>
       // Force cache invalidation so browser never serves stale PWA bundles
-      const APP_VER = "km-v4-lang-patch-14nov";
+      const APP_VER = "km-v4-og-brand-14nov";
       if (localStorage.getItem("km_cache_ver") !== APP_VER) {
         localStorage.setItem("km_cache_ver", APP_VER);
         if ("caches" in window) {

@@ -1,11 +1,11 @@
 {
-  "name": "Kisan Mitra - AI Agricultural Assistant",
-  "short_name": "KisanMitra",
-  "description": "Next-Gen Edge-First AI Agricultural Operating System for Farmers",
+  "name": "Kisan Mitr - AI Agricultural Operating System",
+  "short_name": "KisanMitr",
+  "description": "Next-Gen Edge-First AI Agricultural Operating System for Indian Farmers",
   "start_url": "/dashboard",
   "display": "standalone",
-  "theme_color": "#10b981",
-  "background_color": "#091811",
+  "theme_color": "#2563EB",
+  "background_color": "#F8FAFC",
   "icons": [
     { "src": "/icons/icon-72.png",  "sizes": "72x72",   "type": "image/png", "purpose": "any" },
     { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },

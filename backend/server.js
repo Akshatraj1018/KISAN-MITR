@@ -1,9 +1,13 @@
 // ==============================================================================
-// 🌾 KISAN MITRA — HIGH-PERFORMANCE UNIFIED AGRI-BACKEND (server.js)
+// 🌾 KISAN MITR (किसान मित्र) — UNIFIED AGRI-BACKEND ENGINE (server.js)
 // ==============================================================================
-// Multi-crop Mandi APMC Engine • PyTorch Deep CNN Soil Classifier
-// Leaf Pathology Vision Engine • Agro-Meteorology Spray Advisory
-// 3-Tier Multilingual Krishi Sathi AI • Zero-Failure ICAR Agronomy
+// Core Microservices Hosted in this Unified Server:
+// 1. PyTorch Deep CNN Soil Classifier & Munsell Spectral Distance Engine
+// 2. Leaf Pathology Vision Diagnostic Engine with Multi-Tier Prescriptions
+// 3. APMC Mandi Intelligence & Geodesic Net Realization Freight Calculator
+// 4. Agro-Meteorological Micro-Climate & Spray Safety Window Radar
+// 5. 3-Tier Multilingual Krishi Sathi AI Voice Assistant (Gemini -> Local ICAR)
+// 6. Zero-Friction Farmer Mobile OTP Authentication Gateway
 // ==============================================================================
 
 import "dotenv/config";
@@ -551,41 +555,50 @@ function generateFemaleAudio(text, lang = "hi") {
 }
 
 // ==============================================================================
-// 3. API ENDPOINTS
+// 3. REST API ENDPOINTS
 // ==============================================================================
 
-// Health Check
+/**
+ * Route: GET /
+ * Purpose: Health check, API directory, and platform metadata for judges/monitors.
+ */
 app.get("/", (req, res) => {
   res.json({
     status: "online",
-    platform: "Kisan Mitra (किसान मित्र)",
+    platform: "Kisan Mitr | किसान मित्र",
+    version: "4.0.0",
     event: "Innovathon 2.0 • NIT Rourkela 2026",
     team: "Team Loop",
+    architecture: "Edge-First Hybrid Microservices Architecture",
     endpoints: [
-      "/recommend",
-      "/analyze",
-      "/predict/",
-      "/price-lookup",
-      "/api/mandi/rates",
-      "/api/mandi/crops",
-      "/api/weather",
-      "/api/call/initiate",
-      "/api/call/speak",
-      "/api/tts",
-      "/api/auth/send-otp",
-      "/api/auth/verify-otp"
+      { path: "/recommend", method: "ALL", desc: "PyTorch Soil CNN & Cultivar matching" },
+      { path: "/analyze", method: "POST", desc: "Image scanner soil routing endpoint" },
+      { path: "/predict/", method: "POST", desc: "AI Crop Doctor leaf disease vision" },
+      { path: "/price-lookup", method: "POST", desc: "APMC Mandi freight & net profit calculator" },
+      { path: "/api/mandi/rates", method: "GET", desc: "All-India APMC verified rates" },
+      { path: "/api/mandi/crops", method: "GET", desc: "Supported commodity list" },
+      { path: "/api/weather", method: "GET", desc: "Micro-climate radar & spray safety window" },
+      { path: "/api/call/initiate", method: "POST", desc: "Krishi Sathi voice session bootstrap" },
+      { path: "/api/call/speak", method: "POST", desc: "Krishi Sathi conversational voice AI" },
+      { path: "/api/tts", method: "GET", desc: "Text-to-speech audio rendering" },
+      { path: "/api/auth/send-otp", method: "POST", desc: "Farmer phone OTP dispatch" },
+      { path: "/api/auth/verify-otp", method: "POST", desc: "Farmer phone OTP verification" }
     ],
   });
 });
 
-// Soil Analysis Endpoint (Accepts both GET and POST with base64)
+/**
+ * Route: ALL /recommend & POST /analyze
+ * Purpose: Soil Health Card & Cultivar Matrix Inference
+ * Inputs: Base64 string OR Multipart Form-Data ('file' / 'image')
+ * Engine: PyTorch Deep CNN (ml-models/classify_soil.py) + Munsell Spectral Distance
+ */
 app.all("/recommend", async (req, res) => {
   const base64 = req.body?.soil_image_base64 || req.body?.image || "";
   const result = await classifySoilWithPyTorch(base64);
   res.json(result);
 });
 
-// Also handle /analyze for the Image Scanner
 app.post("/analyze", upload.single("file"), async (req, res) => {
   let b64 = "";
   if (req.file?.buffer) {
@@ -597,7 +610,12 @@ app.post("/analyze", upload.single("file"), async (req, res) => {
   res.json({ ...result, routed_to: "soil" });
 });
 
-// Crop Doctor - Leaf Disease Diagnosis via Vision Engine
+/**
+ * Route: POST /predict/
+ * Purpose: AI Crop Doctor — Leaf Pathology Diagnostic Vision Engine
+ * Inputs: Multipart Form-Data ('image') with optional 'symptoms' & 'crop_type'
+ * Engine: Canopy Foliage Segmentation + ICAR Multi-Tier Prescriptions (Chemical, Organic, Cultural)
+ */
 app.post("/predict/", upload.single("image"), async (req, res) => {
   let b64 = "";
   if (req.file?.buffer) {
@@ -613,7 +631,12 @@ app.post("/predict/", upload.single("image"), async (req, res) => {
   res.json(diagnosis);
 });
 
-// Multi-Crop APMC Mandi Calculator with Net Transport Optimization
+/**
+ * Route: POST /price-lookup
+ * Purpose: APMC Mandi Net Freight Deductive Payout Calculator
+ * Inputs: JSON { crop: string, quantity_quintal: number, district: string }
+ * Formula: Net Payout = (Mandi Rate * Quantity) - (Distance_km * Freight_per_km)
+ */
 app.post("/price-lookup", (req, res) => {
   const cropKey = (req.body.crop || "wheat").toLowerCase().replace(/[^a-z_]/g, "");
   const quantity = parseFloat(req.body.quantity_quintal) || 10;
@@ -735,7 +758,12 @@ app.get("/api/mandi/crops", (req, res) => {
   });
 });
 
-// Agro-Meteorological Weather & Spray Radar Endpoint
+/**
+ * Route: GET /api/weather
+ * Purpose: Agro-Meteorological Weather Station & Spray Window Safety Evaluator
+ * Parameters: city (string), state (string)
+ * Thresholds: Wind < 15 km/h && Rain Probability < 25% => SAFE_FOR_SPRAY
+ */
 app.get("/api/weather", (req, res) => {
   const city = req.query.city || "Rourkela";
   const state = req.query.state || "Odisha";
@@ -779,7 +807,12 @@ app.get("/api/weather", (req, res) => {
   });
 });
 
-// Kisan Call Center - Greeting when call starts
+/**
+ * Route: POST /api/call/initiate
+ * Purpose: Bootstrap session for Krishi Sathi AI Voice Helpline
+ * Parameters: lang (hi, or, bn, pa, en), farmer_name (string)
+ * Returns: Multilingual audio greeting (Base64) + navigation action shortcuts
+ */
 app.post("/api/call/initiate", (req, res) => {
   const lang = req.query.lang || req.body.language || "hi";
   const rawName = req.body.farmer_name || req.body.name || req.query.name || "";
@@ -969,7 +1002,13 @@ CRITICAL PERSONA & LANGUAGE RULES:
   };
 }
 
-// Kisan Call Center - When farmer speaks or types a question
+/**
+ * Route: POST /api/call/speak & POST /chat
+ * Purpose: Multilingual Conversational AI Consultation & Contextual Shortcut Generator
+ * Inputs: user_speech_text / message (string), language (string), farmer_name (string)
+ * Resolution: Google Gemini Flash-Lite (Tier 1) -> ICAR Agronomy Rules (Tier 2 Zero-Failure)
+ * Features: Auto-generates high-intent UI navigation action chips & contextual crop imagery
+ */
 app.post(["/api/call/speak", "/chat"], async (req, res) => {
   const rawQuery = req.body.user_speech_text || req.body.message || "";
   const query = rawQuery.toLowerCase();
@@ -1021,10 +1060,16 @@ app.post(["/api/call/speak", "/chat"], async (req, res) => {
 });
 
 // ==============================================================================
-// 4. SMART OTP VERIFICATION API
+// 4. SMART OTP VERIFICATION & AUTHENTICATION API
 // ==============================================================================
+// In-memory active OTP registry with expiration tracking
 const activeOtps = {};
 
+/**
+ * Route: POST /api/auth/send-otp
+ * Purpose: Generate and dispatch a 6-digit verification code for rural phone numbers
+ * Body: { phone: string }
+ */
 app.post("/api/auth/send-otp", (req, res) => {
   const { phone } = req.body || {};
   const cleanPhone = (phone || "").replace(/\D/g, "");
@@ -1045,6 +1090,11 @@ app.post("/api/auth/send-otp", (req, res) => {
   });
 });
 
+/**
+ * Route: POST /api/auth/verify-otp
+ * Purpose: Validate 6-digit OTP code and authenticate/register farmer
+ * Body: { phone: string, otp: string, name?: string, age?: number }
+ */
 app.post("/api/auth/verify-otp", (req, res) => {
   const { phone, otp, name, age } = req.body || {};
   const cleanPhone = (phone || "").replace(/\D/g, "");

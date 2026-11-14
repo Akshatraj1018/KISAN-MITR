@@ -97,10 +97,10 @@ export default function CultivationTracker() {
                 handleStartNewProject(e.target.value);
               }}
             >
-              <option value="Wheat">Switch: Wheat (गेहूं)</option>
-              <option value="Mustard">Switch: Mustard (सरसों)</option>
-              <option value="Paddy">Switch: Paddy / Rice (धान)</option>
-              <option value="Potato">Switch: Potato (आलू)</option>
+              <option value="Wheat">Switch: Wheat</option>
+              <option value="Mustard">Switch: Mustard</option>
+              <option value="Paddy">Switch: Paddy</option>
+              <option value="Potato">Switch: Potato</option>
             </select>
           </div>
         </div>

@@ -3,7 +3,7 @@
 
 export const CULTIVATION_BLUEPRINTS = {
   Wheat: {
-    name: "Wheat (गेहूं)",
+    name: "Wheat",
     variety: "HD-2967 / DBW-187 (Karan Vandana)",
     durationDays: 135,
     expectedYield: "22-25 Quintals / Acre",
@@ -83,7 +83,7 @@ export const CULTIVATION_BLUEPRINTS = {
     ],
   },
   Mustard: {
-    name: "Mustard (सरसों)",
+    name: "Mustard",
     variety: "Pusa Bold / Giriraj (High Oil 42%)",
     durationDays: 120,
     expectedYield: "8-12 Quintals / Acre",
@@ -143,7 +143,7 @@ export const CULTIVATION_BLUEPRINTS = {
     ],
   },
   Paddy: {
-    name: "Paddy / Rice (धान)",
+    name: "Paddy",
     variety: "Swarna (MTU-7029) / PR-126",
     durationDays: 135,
     expectedYield: "24-28 Quintals / Acre",
@@ -203,7 +203,7 @@ export const CULTIVATION_BLUEPRINTS = {
     ],
   },
   Potato: {
-    name: "Potato (आलू)",
+    name: "Potato",
     variety: "Kufri Pukhraj / Kufri Jyoti",
     durationDays: 90,
     expectedYield: "120-150 Quintals / Acre",
@@ -511,7 +511,14 @@ export function getActiveCultivation() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
-    return JSON.parse(raw);
+    const proj = JSON.parse(raw);
+    if (proj && proj.cropName) {
+      proj.cropName = proj.cropName
+        .replace(/\s*\([^)]*[\u0900-\u097F][^)]*\)/g, "")
+        .replace(/\s*\/\s*Rice/gi, "")
+        .trim();
+    }
+    return proj;
   } catch (e) {
     console.error("Error reading cultivation data:", e);
     return null;

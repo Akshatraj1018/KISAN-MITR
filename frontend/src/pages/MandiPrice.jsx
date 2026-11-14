@@ -107,12 +107,12 @@ export default function MandiPrice() {
 
   const getCropName = () => {
     switch (selectedCrop) {
-      case "wheat": return "Wheat (गेहूं)";
-      case "paddy": return "Paddy Swarna (धान)";
-      case "mustard": return "Mustard (सरसों)";
-      case "potato": return "Potato (आलू)";
-      case "tomato": return "Tomato (टमाटर)";
-      default: return "Wheat (गेहूं)";
+      case "wheat": return "Wheat";
+      case "paddy": return "Paddy Swarna";
+      case "mustard": return "Mustard";
+      case "potato": return "Potato";
+      case "tomato": return "Tomato";
+      default: return "Wheat";
     }
   };
 

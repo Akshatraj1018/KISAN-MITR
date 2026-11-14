@@ -25,7 +25,7 @@ export default function FarmerProfile() {
     email: localStorage.getItem("farmerEmail") || storedProfile?.email || "farmer@kisanmitr.in",
     location: localStorage.getItem("farmerLocation") || storedProfile?.location || "Rourkela, Sundargarh, Odisha",
     landSize: localStorage.getItem("farmerLandSize") || storedProfile?.landSize || "4 Acres",
-    soilType: storedProfile?.soilType || "Red & Laterite Loam (लाल और लैटेराइट दोमट)",
+    soilType: storedProfile?.soilType || "Red & Laterite Loam",
     primaryCrops: localStorage.getItem("farmerCrop") || storedProfile?.crop || "Wheat (HD-2967), Mustard",
     kccStatus: "Active (Approved ₹2,50,000)",
     pmKisanStatus: "17th Installment Credited",

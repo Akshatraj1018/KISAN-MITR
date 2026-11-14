@@ -349,15 +349,15 @@ export default function DiseaseSolution() {
                 onChange={(e) => setCropType(e.target.value)}
               >
                 <option value="">Auto-Detect Crop Species</option>
-                <option value="Maize">Maize / Corn (मक्का)</option>
-                <option value="Wheat">Wheat (गेहूं)</option>
-                <option value="Paddy">Paddy / Rice (धान)</option>
-                <option value="Potato">Potato (आलू)</option>
-                <option value="Mustard">Mustard (सरसों)</option>
-                <option value="Tomato">Tomato (टमाटर)</option>
-                <option value="Cotton">Cotton (कपास)</option>
-                <option value="Chilli">Chilli / Pepper (मिर्च)</option>
-                <option value="Soybean">Soybean (सोयाबीन)</option>
+                <option value="Maize">Maize</option>
+                <option value="Wheat">Wheat</option>
+                <option value="Paddy">Paddy</option>
+                <option value="Potato">Potato</option>
+                <option value="Mustard">Mustard</option>
+                <option value="Tomato">Tomato</option>
+                <option value="Cotton">Cotton</option>
+                <option value="Chilli">Chilli</option>
+                <option value="Soybean">Soybean</option>
               </select>
             </div>
 

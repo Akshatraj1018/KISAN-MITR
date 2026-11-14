@@ -58,10 +58,11 @@ export function LanguageProvider({ children }) {
     function translateStr(str) {
       if (!str || typeof str !== "string" || !str.trim()) return str;
       let res = str;
+      const lower = res.toLowerCase();
       for (const k of keys) {
-        if (res.includes(k)) {
+        if (lower.includes(k.toLowerCase())) {
           const escaped = k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-          const regex = new RegExp(`(?<![a-zA-Z0-9])${escaped}(?![a-zA-Z0-9])`, 'g');
+          const regex = new RegExp(`(?<![a-zA-Z0-9])${escaped}(?![a-zA-Z0-9])`, 'gi');
           res = res.replace(regex, dict[k]);
         }
       }

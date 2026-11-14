@@ -47,7 +47,7 @@ import kisanMitrLogo from "../assets/kisanmitr_logo.jpg";
 // Regional Soil Intelligence Profiles by District
 const DISTRICT_SOIL_DATA = {
   "Rourkela, Sundargarh": {
-    name: "Red & Laterite Loam (लाल और लैटेराइट दोमट)",
+    name: "Red & Laterite Loam",
     ph: "6.2 (Optimal for Cereals)",
     moisture: "68% (Adequate)",
     organicCarbon: "0.58% (Medium)",
@@ -62,7 +62,7 @@ const DISTRICT_SOIL_DATA = {
 // 3-Day Mandi Price Dataset
 const initialMandiData = [
   {
-    crop: "Wheat (गेहूं)",
+    crop: "Wheat",
     icon: "🌾",
     category: "Cereals",
     mandi: "Khanna / Rourkela",
@@ -75,7 +75,7 @@ const initialMandiData = [
     arrivals: "1,240 Quintals",
   },
   {
-    crop: "Paddy Swarna (धान)",
+    crop: "Paddy Swarna",
     icon: "🍚",
     category: "Cereals",
     mandi: "Bargarh / Rourkela",
@@ -88,7 +88,7 @@ const initialMandiData = [
     arrivals: "3,150 Quintals",
   },
   {
-    crop: "Mustard (सरसों)",
+    crop: "Mustard",
     icon: "🟡",
     category: "Oilseeds",
     mandi: "Bharatpur / Alwar",
@@ -101,7 +101,7 @@ const initialMandiData = [
     arrivals: "820 Quintals",
   },
   {
-    crop: "Potato (आलू)",
+    crop: "Potato",
     icon: "🥔",
     category: "Vegetables",
     mandi: "Agra / Azadpur",
@@ -114,7 +114,7 @@ const initialMandiData = [
     arrivals: "4,600 Quintals",
   },
   {
-    crop: "Tomato (टमाटर)",
+    crop: "Tomato",
     icon: "🍅",
     category: "Vegetables",
     mandi: "Kolar / Azadpur",
@@ -316,7 +316,7 @@ export default function MainDashboard() {
                 <div>
                   <div className="km-pulse-label">Active Cultivation</div>
                   <div className="km-pulse-val" style={{ color: "#60A5FA" }}>
-                    {activeProject.cropName} ({activeProject.progressPercent}% Done)
+                    {(activeProject.cropName || "").replace(/\s*\([^)]*[\u0900-\u097F][^)]*\)/g, "").replace(/\s*\/\s*Rice/gi, "").trim()} ({activeProject.progressPercent}% Done)
                   </div>
                 </div>
               </div>

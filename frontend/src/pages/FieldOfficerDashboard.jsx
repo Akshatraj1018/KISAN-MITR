@@ -40,7 +40,7 @@ function HomeIcon() {
 
 const officerDashboardTexts = {
   en: {
-    brandTitle: "AgroSubhidha",
+    brandTitle: "Kisan Mitr",
     brandSubtitle: "Field Officer Dashboard",
     navHome: "Home",
     navCrops: "Crops",
